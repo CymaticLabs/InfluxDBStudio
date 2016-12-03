@@ -1,0 +1,1 @@
+Use an EVERY interval in the RESAMPLE clause to specify the CQ’s execution interval.

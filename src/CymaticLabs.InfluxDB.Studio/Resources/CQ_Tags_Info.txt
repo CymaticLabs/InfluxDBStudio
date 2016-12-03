@@ -1,0 +1,2 @@
+By default, all INTO queries convert any tags in the source measurement to fields in the destination measurement.
+Type a comma-separated list of tag names to preserve in the destination measurement: tag1, tag2, tag3, etc.

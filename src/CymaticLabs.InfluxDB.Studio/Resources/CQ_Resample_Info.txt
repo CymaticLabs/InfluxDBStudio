@@ -1,0 +1,18 @@
+
+Advance Syntax/Schedule and Coverage:
+
+CQs operate on realtime data.With the advanced syntax, CQs use the local server’s timestamp, the information in the RESAMPLE clause,
+and InfluxDB’s preset time boundaries to determine when to execute and what time range to cover in the query.
+
+CQs execute at the same interval as the EVERY interval in the RESAMPLE clause, and they run at the start of InfluxDB’s preset time
+boundaries. If the EVERY interval is two hours, InfluxDB executes the CQ at the top of every other hour.
+
+When the CQ executes, it runs a single query for the time range between now() and now() minus the FOR interval in the RESAMPLE
+clause. If the FOR interval is two hours and the current time is 17:00, the query’s time range is between 15:00 and 16:59.999999999.
+
+Both the EVERY interval and the FOR interval accept duration literals. The RESAMPLE clause works with either or both of the EVERY
+and FOR intervals configured. CQs default to the relevant basic syntax behavior if the EVERY interval or FOR interval is not provided.
+
+Use an EVERY interval and FOR interval in the RESAMPLE clause to specify the CQ’s execution interval and the length of the CQ’s time range:
+
+  RESAMPLE EVERY 1h FOR 90m

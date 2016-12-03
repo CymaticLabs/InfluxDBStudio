@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0578E050-27C9-4345-A6C9-EBAA887611D2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CymaticLabs.InfluxDB.Studio</RootNamespace>
+    <AssemblyName>InfluxDBStudio</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="InfluxData.Net.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\InfluxData.Net.6.0.0\lib\InfluxData.Net.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfluxData.Net.InfluxDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\InfluxData.Net.6.0.0\lib\InfluxData.Net.InfluxDb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfluxData.Net.Kapacitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\InfluxData.Net.6.0.0\lib\InfluxData.Net.Kapacitor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ScintillaNET, Version=3.5.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\jacobslusser.ScintillaNET.3.5.10\lib\net40\ScintillaNET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppForm.Designer.cs">
+      <DependentUpon>AppForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExtendedTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ExtendedTabControl.Designer.cs">
+      <DependentUpon>ExtendedTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExtendedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Data\InfluxDataNetClient.cs" />
+    <Compile Include="Data\InfluxDbApiResponse.cs" />
+    <Compile Include="Data\InfluxDbClient.cs" />
+    <Compile Include="Data\InfluxDbClientFactory.cs" />
+    <Compile Include="Data\InfluxDbConnection.cs" />
+    <Compile Include="Data\InfluxDbContinuousQuery.cs" />
+    <Compile Include="Data\InfluxDbCqParams.cs" />
+    <Compile Include="Data\InfluxDbDiagnostics.cs" />
+    <Compile Include="Data\InfluxDbFieldKey.cs" />
+    <Compile Include="Data\InfluxDbFillTypes.cs" />
+    <Compile Include="Data\InfluxDbGrant.cs" />
+    <Compile Include="Data\InfluxDbHelper.cs" />
+    <Compile Include="Data\InfluxDbPingResponse.cs" />
+    <Compile Include="Data\InfluxDbPoint.cs" />
+    <Compile Include="Data\InfluxDbPrivileges.cs" />
+    <Compile Include="Data\InfluxDbQueryResult.cs" />
+    <Compile Include="Data\InfluxDbTagValue.cs" />
+    <Compile Include="Data\InfluxDbTimePrecisions.cs" />
+    <Compile Include="Data\InfluxDbTimeUnits.cs" />
+    <Compile Include="Data\InfluxDbUser.cs" />
+    <Compile Include="Data\SslIgnoreValidator.cs" />
+    <Compile Include="Dialogs\AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ConnectionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ConnectionDialog.Designer.cs">
+      <DependentUpon>ConnectionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContinuousQueryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ContinuousQueryControl.Designer.cs">
+      <DependentUpon>ContinuousQueryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CreateContinuousQueryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CreateContinuousQueryDialog.Designer.cs">
+      <DependentUpon>CreateContinuousQueryDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CreateDatabaseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CreateDatabaseDialog.Designer.cs">
+      <DependentUpon>CreateDatabaseDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DiagnosticsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DiagnosticsControl.Designer.cs">
+      <DependentUpon>DiagnosticsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditPrivilegeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditPrivilegeDialog.Designer.cs">
+      <DependentUpon>EditPrivilegeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditUserDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditUserDialog.Designer.cs">
+      <DependentUpon>EditUserDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FieldKeysControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FieldKeysControl.Designer.cs">
+      <DependentUpon>FieldKeysControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CreateUserDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CreateUserDialog.Designer.cs">
+      <DependentUpon>CreateUserDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\GrantPrivilegeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\GrantPrivilegeDialog.Designer.cs">
+      <DependentUpon>GrantPrivilegeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InfluxDbUsersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InfluxDbUsersControl.Designer.cs">
+      <DependentUpon>InfluxDbUsersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ManageConnectionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ManageConnectionsDialog.Designer.cs">
+      <DependentUpon>ManageConnectionsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controls\QueryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\QueryControl.Designer.cs">
+      <DependentUpon>QueryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\QueryResultsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\QueryResultsControl.Designer.cs">
+      <DependentUpon>QueryResultsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RequestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RequestControl.Designer.cs">
+      <DependentUpon>RequestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MeasurementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MeasurementControl.Designer.cs">
+      <DependentUpon>MeasurementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SeriesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SeriesControl.Designer.cs">
+      <DependentUpon>SeriesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TagKeysControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TagKeysControl.Designer.cs">
+      <DependentUpon>TagKeysControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TagValuesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TagValuesControl.Designer.cs">
+      <DependentUpon>TagValuesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\UserPasswordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UserPasswordDialog.Designer.cs">
+      <DependentUpon>UserPasswordDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AppForm.resx">
+      <DependentUpon>AppForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ExtendedTabControl.resx">
+      <DependentUpon>ExtendedTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SeriesControl.resx">
+      <DependentUpon>SeriesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ConnectionDialog.resx">
+      <DependentUpon>ConnectionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ContinuousQueryControl.resx">
+      <DependentUpon>ContinuousQueryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CreateContinuousQueryDialog.resx">
+      <DependentUpon>CreateContinuousQueryDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CreateDatabaseDialog.resx">
+      <DependentUpon>CreateDatabaseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DiagnosticsControl.resx">
+      <DependentUpon>DiagnosticsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CreateUserDialog.resx">
+      <DependentUpon>CreateUserDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditPrivilegeDialog.resx">
+      <DependentUpon>EditPrivilegeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditUserDialog.resx">
+      <DependentUpon>EditUserDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\GrantPrivilegeDialog.resx">
+      <DependentUpon>GrantPrivilegeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InfluxDbUsersControl.resx">
+      <DependentUpon>InfluxDbUsersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ManageConnectionsDialog.resx">
+      <DependentUpon>ManageConnectionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\QueryControl.resx">
+      <DependentUpon>QueryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\QueryResultsControl.resx">
+      <DependentUpon>QueryResultsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MeasurementControl.resx">
+      <DependentUpon>MeasurementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TagValuesControl.resx">
+      <DependentUpon>TagValuesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UserPasswordDialog.resx">
+      <DependentUpon>UserPasswordDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="InfluxData.Net.dll.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\CreateDatabase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Disconnect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Diagnostics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Connection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\EditConnection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Measurement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\CreateConnection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\DropDatabase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\NewQuery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\RunQuery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\DropMeasurement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\DropSeries.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Series.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\ShowSeries.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\FieldKeys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\TagKeys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\TagValues.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\CreateUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\DropUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\EditUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\EditPrivilege.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\GrantPrivilege.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\ContinuousQuery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_Interval_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_FillType_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_Tags_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_Resample_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_ResampleEvery_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_ResampleFor_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_Subquery_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\CreateContinuousQuery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\DropContinuousQuery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\influxdb-logo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

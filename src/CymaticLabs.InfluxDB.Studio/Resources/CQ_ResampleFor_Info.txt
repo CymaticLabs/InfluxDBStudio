@@ -1,0 +1,1 @@
+Use a FOR interval in the RESAMPLE clause to specify the length of the CQ’s time range.

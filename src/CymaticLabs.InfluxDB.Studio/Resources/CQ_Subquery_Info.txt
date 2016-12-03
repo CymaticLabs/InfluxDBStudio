@@ -1,0 +1,4 @@
+CQ's need at least one subquery/downsampler to be created.
+To add additional subqueries/downsamplers that will run as part of the CQ,
+click the "Add Subquery" button. Click the "X" button on the subquery tabs
+to remove unwanted subqueries.
