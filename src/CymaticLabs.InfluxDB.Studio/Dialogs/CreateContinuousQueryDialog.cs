@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using ScintillaNET;
-
 using CymaticLabs.InfluxDB.Data;
 
 namespace CymaticLabs.InfluxDB.Studio.Dialogs
@@ -18,7 +16,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
         #region Fields
 
         // Place holder text for the query editing portion of a new down sampler query
-        const string QueryEditorPlaceholderText = "#edit your query / down sampler here";
+        const string QueryEditorPlaceholderText = "#edit your query / downsamplers here";
 
         #endregion Fields
 
@@ -70,24 +68,14 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
         private void CreateContinuousQueryDialog_Load(object sender, EventArgs e)
         {
             // Setup help/info tool tips
+            destinationToolTip.SetToolTip(destinationInfo, Properties.Resources.CQ_Destination_Info);
+            sourceToolTip.SetToolTip(sourceInfo, Properties.Resources.CQ_Source_Info);
             intervalToolTip.SetToolTip(intervalInfo, Properties.Resources.CQ_Interval_Info);
             fillTypeToolTip.SetToolTip(fillTypeInfo, Properties.Resources.CQ_FillType_Info);
             tagsToolTip.SetToolTip(tagsInfo, Properties.Resources.CQ_Tags_Info);
             resampleToolTip.SetToolTip(resampleInfo, Properties.Resources.CQ_Resample_Info);
             resampleEveryToolTip.SetToolTip(resampleEveryInfo, Properties.Resources.CQ_ResampleEvery_Info);
             resampleForToolTip.SetToolTip(resampleForInfo, Properties.Resources.CQ_ResampleFor_Info);
-        }
-        
-        // Handle focus click into query editor
-        private void QueryEditor_GotFocus(object sender, EventArgs e)
-        {
-            //var queryEditor = (Scintilla)sender;
-
-            //// Clear out place holder text
-            //if (queryEditor.Lines.Count == 1 && queryEditor.Lines[0].Text.StartsWith(QueryEditorPlaceholderText))
-            //{
-            //    queryEditor.ClearAll();
-            //}
         }
 
         // Handle add new subquery button
@@ -133,35 +121,11 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
         public void NewQuery()
         {
             queryEditor.Text = QueryEditorPlaceholderText;
-            UpdateUIState();
-        }
-
-        // Create a Continuous Query
-        async Task CreateContinuousQuery()
-        {
-            try
-            {
-                // Validate
-                if (string.IsNullOrWhiteSpace(nameTextBox.Text))
-                {
-                    AppForm.DisplayError("Continuous Query name cannot be blank.", "Validation Error");
-                }
-            }
-            catch (Exception ex)
-            {
-                AppForm.DisplayException(ex);
-            }
         }
 
         #endregion Commands
 
         #region User Interface
-
-        // Updates the UI state
-        void UpdateUIState()
-        {
-            
-        }
 
         /// <summary>
         /// Resets the dialog form to its initial state.
@@ -222,8 +186,6 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
 
                 destinationComboBox.SelectedItem = null;
                 sourceComboBox.SelectedItem = null;
-                //if (destinationComboBox.Items.Count > 0) destinationComboBox.SelectedIndex = 0;
-                //if (sourceComboBox.Items.Count > 0) sourceComboBox.SelectedIndex = 0;
             }
             catch (Exception ex)
             {

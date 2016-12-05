@@ -212,7 +212,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
             listView.Items.Clear();
 
             // Go through each connection and add it to the list
-            foreach (var c in AppForm.AvailableConnections)
+            foreach (var c in AppForm.Settings.Connections)
             {
                 var li = new ListViewItem(c.Name, 0);
                 li.Tag = c;

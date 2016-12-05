@@ -45,10 +45,15 @@
             this.connectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allowUntrustedSSLCertificatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newQueryToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.runQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeFormatComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.dateFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateFormatComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.allowUntrustedSSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
@@ -64,6 +69,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.createDatabaseButton = new System.Windows.Forms.ToolStripButton();
             this.continuousQueryButton = new System.Windows.Forms.ToolStripButton();
+            this.backFillButton = new System.Windows.Forms.ToolStripButton();
             this.dropDatabaseButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tagKeysButton = new System.Windows.Forms.ToolStripButton();
@@ -87,6 +93,7 @@
             this.databaseRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.continousQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backFillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dropDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.measurementContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newQueryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,6 +123,7 @@
             this.fileToolStripMenuItem,
             this.connectionsToolStripMenuItem,
             this.queryToolStripMenuItem,
+            this.settingsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -174,8 +182,7 @@
             // 
             this.connectionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshToolStripMenuItem,
-            this.manageToolStripMenuItem,
-            this.allowUntrustedSSLCertificatesToolStripMenuItem});
+            this.manageToolStripMenuItem});
             this.connectionsToolStripMenuItem.Name = "connectionsToolStripMenuItem";
             this.connectionsToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.connectionsToolStripMenuItem.Text = "Connections";
@@ -185,24 +192,16 @@
             this.refreshToolStripMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.Refresh;
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
             this.refreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             // 
             // manageToolStripMenuItem
             // 
             this.manageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("manageToolStripMenuItem.Image")));
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.manageToolStripMenuItem.Text = "Manage";
             this.manageToolStripMenuItem.Click += new System.EventHandler(this.manageToolStripMenuItem_Click);
-            // 
-            // allowUntrustedSSLCertificatesToolStripMenuItem
-            // 
-            this.allowUntrustedSSLCertificatesToolStripMenuItem.CheckOnClick = true;
-            this.allowUntrustedSSLCertificatesToolStripMenuItem.Name = "allowUntrustedSSLCertificatesToolStripMenuItem";
-            this.allowUntrustedSSLCertificatesToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.allowUntrustedSSLCertificatesToolStripMenuItem.Text = "Allow Untrusted SSL Certificates";
-            this.allowUntrustedSSLCertificatesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.allowUntrustedSSLCertificatesToolStripMenuItem_CheckedChanged);
             // 
             // queryToolStripMenuItem
             // 
@@ -230,6 +229,64 @@
             this.runQueryToolStripMenuItem.Text = "Run";
             this.runQueryToolStripMenuItem.Click += new System.EventHandler(this.runQueryToolStripMenuItem_Click);
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.timeFormatToolStripMenuItem,
+            this.dateFormatToolStripMenuItem,
+            this.allowUntrustedSSLToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // timeFormatToolStripMenuItem
+            // 
+            this.timeFormatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.timeFormatComboBox});
+            this.timeFormatToolStripMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.Time;
+            this.timeFormatToolStripMenuItem.Name = "timeFormatToolStripMenuItem";
+            this.timeFormatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.timeFormatToolStripMenuItem.Text = "Time Format";
+            // 
+            // timeFormatComboBox
+            // 
+            this.timeFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.timeFormatComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.timeFormatComboBox.Items.AddRange(new object[] {
+            "2:30:45 PM  12 Hour",
+            "     14:30:45  24 Hour"});
+            this.timeFormatComboBox.Name = "timeFormatComboBox";
+            this.timeFormatComboBox.Size = new System.Drawing.Size(136, 23);
+            this.timeFormatComboBox.SelectedIndexChanged += new System.EventHandler(this.timeFormatComboBox_SelectedIndexChanged);
+            // 
+            // dateFormatToolStripMenuItem
+            // 
+            this.dateFormatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateFormatComboBox});
+            this.dateFormatToolStripMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.Date;
+            this.dateFormatToolStripMenuItem.Name = "dateFormatToolStripMenuItem";
+            this.dateFormatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dateFormatToolStripMenuItem.Text = "Date Format";
+            // 
+            // dateFormatComboBox
+            // 
+            this.dateFormatComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.dateFormatComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.dateFormatComboBox.Items.AddRange(new object[] {
+            "12/31/2016  mm/dd/yyyy",
+            "31/12/2016  dd/mm/yyyy "});
+            this.dateFormatComboBox.Name = "dateFormatComboBox";
+            this.dateFormatComboBox.Size = new System.Drawing.Size(160, 23);
+            this.dateFormatComboBox.SelectedIndexChanged += new System.EventHandler(this.dateFormatComboBox_SelectedIndexChanged);
+            // 
+            // allowUntrustedSSLToolStripMenuItem
+            // 
+            this.allowUntrustedSSLToolStripMenuItem.CheckOnClick = true;
+            this.allowUntrustedSSLToolStripMenuItem.Name = "allowUntrustedSSLToolStripMenuItem";
+            this.allowUntrustedSSLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.allowUntrustedSSLToolStripMenuItem.Text = "Allow Untrusted SSL";
+            this.allowUntrustedSSLToolStripMenuItem.CheckedChanged += new System.EventHandler(this.allowUntrustedSSLToolStripMenuItem_CheckedChanged);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -241,7 +298,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -268,6 +325,7 @@
             this.toolStripSeparator2,
             this.createDatabaseButton,
             this.continuousQueryButton,
+            this.backFillButton,
             this.dropDatabaseButton,
             this.toolStripSeparator3,
             this.tagKeysButton,
@@ -388,6 +446,16 @@
             this.continuousQueryButton.Size = new System.Drawing.Size(23, 22);
             this.continuousQueryButton.Text = "Show Continuous Queries";
             this.continuousQueryButton.Click += new System.EventHandler(this.continuousQueryButton_Click);
+            // 
+            // backFillButton
+            // 
+            this.backFillButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.backFillButton.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.BackFill;
+            this.backFillButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.backFillButton.Name = "backFillButton";
+            this.backFillButton.Size = new System.Drawing.Size(23, 22);
+            this.backFillButton.Text = "Run Back Fill";
+            this.backFillButton.Click += new System.EventHandler(this.backFillButton_Click);
             // 
             // dropDatabaseButton
             // 
@@ -612,9 +680,10 @@
             this.databaseRefreshToolStripMenuItem,
             this.newQueryToolStripMenuItem,
             this.continousQueriesToolStripMenuItem,
+            this.backFillToolStripMenuItem,
             this.dropDatabaseToolStripMenuItem});
             this.databaseContextMenu.Name = "databaseContextMenu";
-            this.databaseContextMenu.Size = new System.Drawing.Size(205, 92);
+            this.databaseContextMenu.Size = new System.Drawing.Size(205, 114);
             // 
             // databaseRefreshToolStripMenuItem
             // 
@@ -639,6 +708,14 @@
             this.continousQueriesToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.continousQueriesToolStripMenuItem.Text = "Show Continous Queries";
             this.continousQueriesToolStripMenuItem.Click += new System.EventHandler(this.continousQueriesToolStripMenuItem_Click);
+            // 
+            // backFillToolStripMenuItem
+            // 
+            this.backFillToolStripMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.BackFill;
+            this.backFillToolStripMenuItem.Name = "backFillToolStripMenuItem";
+            this.backFillToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.backFillToolStripMenuItem.Text = "Run Back Fill";
+            this.backFillToolStripMenuItem.Click += new System.EventHandler(this.backFillToolStripMenuItem_Click);
             // 
             // dropDatabaseToolStripMenuItem
             // 
@@ -785,7 +862,6 @@
         private System.Windows.Forms.ToolStripMenuItem newQueryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newQueryToolStripMenuItem1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
-        private System.Windows.Forms.ToolStripMenuItem allowUntrustedSSLCertificatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem diagnosticsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem continousQueriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showSeriesToolStripMenuItem;
@@ -824,6 +900,14 @@
         private Controls.ExtendedTabControl tabControl;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton backFillButton;
+        private System.Windows.Forms.ToolStripMenuItem backFillToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem timeFormatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox timeFormatComboBox;
+        private System.Windows.Forms.ToolStripMenuItem dateFormatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox dateFormatComboBox;
+        private System.Windows.Forms.ToolStripMenuItem allowUntrustedSSLToolStripMenuItem;
     }
 }
 

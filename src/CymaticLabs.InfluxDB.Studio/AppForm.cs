@@ -59,6 +59,9 @@ namespace CymaticLabs.InfluxDB.Studio
         // Used to create new databases
         CreateDatabaseDialog createDatabaseDialog;
 
+        // Used to perform back fill queries
+        private BackFillDialog backFillDialog;
+
         // The application about dialog
         AboutDialog aboutDialog;
 
@@ -67,14 +70,14 @@ namespace CymaticLabs.InfluxDB.Studio
         #region Properties
 
         /// <summary>
+        /// Gets the application settings.
+        /// </summary>
+        public static AppSettings Settings { get; private set; }
+
+        /// <summary>
         /// Gets the application's logger.
         /// </summary>
         public static ILog Log { get; private set; }
-
-        /// <summary>
-        /// Gets the list of all configured InfluxDB client connections.
-        /// </summary>
-        public static List<InfluxDbConnection> AvailableConnections { get; private set; }
 
         /// <summary>
         /// Gets the list of currently active InfluxDB client connections.
@@ -87,15 +90,21 @@ namespace CymaticLabs.InfluxDB.Studio
 
         public AppForm()
         {
+            // Setup static properties
             instance = this;
+            Settings = new AppSettings();
+
+            // Enable logging
             Log = LogManager.GetLogger("AppLogger");
-            AvailableConnections = new List<InfluxDbConnection>();
+
+            // Setup container for active database connection clients
             ActiveClients = new List<InfluxDbClient>();
             InitializeComponent();
 
             // Create dialog windows
             aboutDialog = new AboutDialog();
             createDatabaseDialog = new CreateDatabaseDialog();
+            backFillDialog = new BackFillDialog();
             manageConnectionsDialog = new ManageConnectionsDialog();
             manageConnectionsDialog.ConnectionCreated += ManageConnectionsDialog_ConnectionCreated;
             manageConnectionsDialog.ConnectionUpdated += ManageConnectionsDialog_ConnectionUpdated;
@@ -117,11 +126,15 @@ namespace CymaticLabs.InfluxDB.Studio
             // Clear the current list of connections
             connectionsTreeView.Nodes.Clear();
 
-            // Load the current list of InfluxDB connections.
-            LoadConnections();
+            // Load current application settings
+            Settings.LoadAll();
 
-            // Load application settings
-            LoadSettings();
+            // Apply the settings to the application
+            ApplySettings();
+
+            Console.WriteLine(Settings.TimeFormat);
+            Console.WriteLine(Settings.DateFormat);
+            Console.WriteLine(Settings.AllowUntrustedSsl);
 
             // Set initial tool strip state
             UpdateUIState();
@@ -165,15 +178,6 @@ namespace CymaticLabs.InfluxDB.Studio
             await ShowConnectionsDialog();
         }
 
-        // Handles Connections -> Allow Untrusted SSL Certificates
-        private void allowUntrustedSSLCertificatesToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            var allowUntrustedSsl = allowUntrustedSSLCertificatesToolStripMenuItem.Checked;
-            SslIgnoreValidator.AllowUntrusted = allowUntrustedSsl;
-            Properties.Settings.Default.AllowUntrustedSsl = allowUntrustedSsl;
-            Properties.Settings.Default.Save();
-        }
-
         #endregion Connections
 
         #region Query
@@ -193,6 +197,30 @@ namespace CymaticLabs.InfluxDB.Studio
         }
 
         #endregion Query
+
+        #region Settings
+
+        // Handles Settings -> Allow Untrusted SSL Certificates
+        private void allowUntrustedSSLToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            var allowUntrustedSsl = allowUntrustedSSLToolStripMenuItem.Checked;
+            SslIgnoreValidator.AllowUntrusted = allowUntrustedSsl;
+            Settings.AllowUntrustedSsl = allowUntrustedSsl;
+        }
+
+        // Handles Settings -> Time Format -> change of time format
+        private void timeFormatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.TimeFormat = timeFormatComboBox.SelectedIndex == 0 ? AppSettings.TimeFormat12Hour : AppSettings.TimeFormat24Hour;
+        }
+
+        // Handles Settings -> Date Format -> change of date format
+        private void dateFormatComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.DateFormat = dateFormatComboBox.SelectedIndex == 0 ? AppSettings.DateFormatMonth : AppSettings.DateFormatDay;
+        }
+
+        #endregion Settings
 
         #region Help
 
@@ -301,6 +329,14 @@ namespace CymaticLabs.InfluxDB.Studio
             var node = connectionsTreeView.SelectedNode;
             if (node == null) return;
             await ShowContinuousQueries(node);
+        }
+
+        // Run Back Fill
+        private async void backFillButton_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await RunBackFill(node);
         }
 
         // Drop Database
@@ -458,6 +494,14 @@ namespace CymaticLabs.InfluxDB.Studio
             await ShowContinuousQueries(node);
         }
 
+        // Database -> Run Back Fill
+        private async void backFillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await RunBackFill(node);
+        }
+
         // Database -> Drop Database
         private async void dropDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -552,7 +596,7 @@ namespace CymaticLabs.InfluxDB.Studio
             try
             {
                 // Ensure this is not a duplicate by name
-                foreach (var c in AvailableConnections)
+                foreach (var c in Settings.Connections)
                 {
                     if (c.Name == connection.Name)
                     {
@@ -562,10 +606,10 @@ namespace CymaticLabs.InfluxDB.Studio
                 }
 
                 // Add to the global list
-                AvailableConnections.Add(connection);
+                Settings.Connections.Add(connection);
 
                 // Save connection data
-                SaveConnections();
+                Settings.SaveConnections();
             }
             catch (Exception ex)
             {
@@ -580,7 +624,7 @@ namespace CymaticLabs.InfluxDB.Studio
             try
             {
                 // Save connection data
-                SaveConnections();
+                Settings.SaveConnections();
 
                 // Go through active connection and update the matching connection in the UI if found
                 foreach (TreeNode node in connectionsTreeView.Nodes)
@@ -606,17 +650,17 @@ namespace CymaticLabs.InfluxDB.Studio
             try
             {
                 // Remove the connection from the global list
-                foreach (var c in AvailableConnections)
+                foreach (var c in Settings.Connections)
                 {
                     if (c.Id == connection.Id)
                     {
-                        AvailableConnections.Remove(c);
+                        Settings.Connections.Remove(c);
                         break;
                     }
                 }
 
                 // Save connection data
-                SaveConnections();
+                Settings.SaveConnections();
 
                 // Remove from UI
                 foreach (TreeNode node in connectionsTreeView.Nodes)
@@ -656,15 +700,13 @@ namespace CymaticLabs.InfluxDB.Studio
                     var json = File.ReadAllText(openFileDialog.FileName);
 
                     // Convert to app settings object
-                    var appSettings = JsonConvert.DeserializeObject<AppSettings>(json);
-
-                    // TODO deal with different versions
-                    Properties.Settings.Default.AllowUntrustedSsl = appSettings.AllowUntrustedSsl;
-                    allowUntrustedSSLCertificatesToolStripMenuItem.Checked = appSettings.AllowUntrustedSsl;
-                    AvailableConnections = appSettings.Connections;
+                    Settings = JsonConvert.DeserializeObject<AppSettings>(json);
 
                     // Save to disk
-                    SaveConnections();
+                    Settings.SaveAll();
+
+                    // Apply Settings
+                    ApplySettings();
 
                     // Show connections manager if requested
                     if (showConnectionManage) await ShowConnectionsDialog();
@@ -684,16 +726,8 @@ namespace CymaticLabs.InfluxDB.Studio
                 // Prompt to save
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Create the settings object
-                    var appSettings = new AppSettings()
-                    {
-                        Version = GetType().Assembly.GetName().Version.ToString(),
-                        AllowUntrustedSsl = Properties.Settings.Default.AllowUntrustedSsl,
-                        Connections = AvailableConnections
-                    };
-
                     // Serialize to JSON
-                    var json = JsonConvert.SerializeObject(appSettings, Formatting.Indented);
+                    var json = JsonConvert.SerializeObject(Settings, Formatting.Indented);
 
                     // Write to file
                     File.WriteAllText(saveFileDialog.FileName, json);
@@ -701,7 +735,7 @@ namespace CymaticLabs.InfluxDB.Studio
             }
             catch (Exception ex)
             {
-
+                DisplayException(ex);
             }
         }
 
@@ -974,6 +1008,52 @@ namespace CymaticLabs.InfluxDB.Studio
                 UpdateUIState();
 
                 await continousQueryControl.ExecuteRequestAsync();
+            }
+            catch (Exception ex)
+            {
+                DisplayException(ex);
+            }
+        }
+
+        // Database -> Back Fill
+        async Task RunBackFill(TreeNode node)
+        {
+            try
+            {
+                // Get the connection for this node
+                var connection = GetConnection(node);
+
+                // Get the active client for this connection
+                var client = GetClient(connection);
+                var database = node.Text;
+
+                // Pass client connection down
+                backFillDialog.ResetBackFillForm();
+                backFillDialog.InfluxDbClient = client;
+                backFillDialog.Database = database;
+
+                // Bind dynamic data
+                await backFillDialog.BindInfluxDataSources();
+
+                if (backFillDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //// Get the resulting CQ params
+                    //var cqParams = createCqDialog.CqResult;
+
+                    //// Create the CQ and get the response
+                    //var response = await InfluxDbClient.CreateContinuousQueryAsync(cqParams);
+
+                    //if (response.Success)
+                    //{
+                    //    await ExecuteRequestAsync();
+                    //}
+                    //else
+                    //{
+                    //    AppForm.DisplayError(response.Body);
+                    //}
+
+                    //UpdateUIState();
+                }
             }
             catch (Exception ex)
             {
@@ -1339,10 +1419,34 @@ namespace CymaticLabs.InfluxDB.Studio
         #region Settings
 
         // Load application settings
-        void LoadSettings()
+        void ApplySettings()
         {
-            var allowUntrustedSsl = Properties.Settings.Default.AllowUntrustedSsl;
-            allowUntrustedSSLCertificatesToolStripMenuItem.Checked = allowUntrustedSsl;
+            // Set time format
+            if (Settings.TimeFormat == AppSettings.TimeFormat12Hour)
+            {
+                // 12 hour
+                timeFormatComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                // 24 hour
+                timeFormatComboBox.SelectedIndex = 1;
+            }
+
+            // Set date format
+            if (Settings.DateFormat == AppSettings.DateFormatMonth)
+            {
+                // month-first
+                dateFormatComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                // day-first
+                dateFormatComboBox.SelectedIndex = 1;
+            }
+
+            // Apply untrusted SSL
+            allowUntrustedSSLToolStripMenuItem.Checked = Settings.AllowUntrustedSsl;
         }
 
         #endregion Settings
@@ -1385,6 +1489,7 @@ namespace CymaticLabs.InfluxDB.Studio
             newQueryButton.Enabled = false;
             createDatabaseButton.Enabled = false;
             continuousQueryButton.Enabled = false;
+            backFillButton.Enabled = false;
             dropDatabaseButton.Enabled = false;
             tagKeysButton.Enabled = false;
             tagValuesButton.Enabled = false;
@@ -1404,6 +1509,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 showDiagnosticsButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 createDatabaseButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 continuousQueryButton.Enabled = type == InfluxDbNodeTypes.Database;
+                backFillButton.Enabled = type == InfluxDbNodeTypes.Database;
                 dropDatabaseButton.Enabled = type == InfluxDbNodeTypes.Database && node.Text != "_internal";
                 tagKeysButton.Enabled = type == InfluxDbNodeTypes.Measurement;
                 tagValuesButton.Enabled = type == InfluxDbNodeTypes.Measurement;
@@ -1421,6 +1527,7 @@ namespace CymaticLabs.InfluxDB.Studio
             #region Context Menus
 
             continousQueriesToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database;
+            backFillToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database;
             dropDatabaseToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database && node.Text != "_internal";
 
             #endregion Context Menus
@@ -1620,53 +1727,6 @@ namespace CymaticLabs.InfluxDB.Studio
         
         #endregion Rendering
 
-        #region Data
-
-        // Loads the current list of InfluxDB connections
-        void LoadConnections()
-        {
-            var json = Properties.Settings.Default.ConnectionsJson;
-            Console.WriteLine(json);
-            var loadedConnections = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-            
-            if (loadedConnections is JArray)
-            {
-                var array = (JArray)loadedConnections;
-
-                foreach (var item in array)
-                {
-                    try
-                    {
-                        // Convert to connection object
-                        var connection = item.ToObject<InfluxDbConnection>();
-                        if (connection != null) AvailableConnections.Add(connection);
-                    }
-                    catch (Exception ex)
-                    {
-                        DisplayException(ex);
-                    }
-                }
-            }
-        }
-
-        // Saves current connection data to disk
-        void SaveConnections()
-        {
-            try
-            {
-                // Save to disk
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject(AvailableConnections);
-                Properties.Settings.Default.ConnectionsJson = json;
-                Properties.Settings.Default.Save();
-            }
-            catch (Exception ex)
-            {
-                DisplayException(ex);
-            }
-        }
-
-        #endregion Data
-
         #endregion Connections
 
         #region Utility
@@ -1692,6 +1752,15 @@ namespace CymaticLabs.InfluxDB.Studio
         #endregion Utility
 
         #region Static
+
+        /// <summary>
+        /// Opens the Back Fill dialog and allows a user to run a back fill query.
+        /// </summary>
+        public static async Task RunBackFill()
+        {
+            if (instance == null || instance.connectionsTreeView.SelectedNode == null) return;
+            await instance.RunBackFill(instance.connectionsTreeView.SelectedNode);
+        }
 
         /// <summary>
         /// Sets the text of the applications status bar.

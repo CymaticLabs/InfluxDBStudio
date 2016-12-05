@@ -46,5 +46,29 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
                 this["AllowUntrustedSsl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("hh:mm:ss tt")]
+        public string TimeFormat {
+            get {
+                return ((string)(this["TimeFormat"]));
+            }
+            set {
+                this["TimeFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("M/dd/yyyy")]
+        public string DateFormat {
+            get {
+                return ((string)(this["DateFormat"]));
+            }
+            set {
+                this["DateFormat"] = value;
+            }
+        }
     }
 }

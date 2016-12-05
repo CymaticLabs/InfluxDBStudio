@@ -1,0 +1,2 @@
+The destination measurement will store the results of the Continuous Query.
+Select an existing measurement or type in the name of a new destination.

@@ -1,0 +1,2 @@
+This is the source measurement for data selected by the Continuous Query.
+Select or type in the name of the existing measurement for the query.

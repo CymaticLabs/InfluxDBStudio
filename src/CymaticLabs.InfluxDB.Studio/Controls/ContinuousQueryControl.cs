@@ -63,6 +63,12 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
             await DropContinuousQuery();
         }
 
+        // Handle running a back fill
+        private async void backFillButton_Click(object sender, EventArgs e)
+        {
+            await RunBackFill();
+        }
+
         // Handles selection of CQ in list view
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -170,6 +176,12 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
             {
                 AppForm.DisplayException(ex);
             }
+        }
+
+        // Runs a Back Fill query
+        async Task RunBackFill()
+        {
+            await AppForm.RunBackFill();
         }
 
         #endregion Commands

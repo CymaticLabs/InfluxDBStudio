@@ -33,6 +33,8 @@
             this.createCqButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dropCqButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.backFillButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,7 +55,9 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createCqButton,
             this.toolStripSeparator1,
-            this.dropCqButton});
+            this.dropCqButton,
+            this.toolStripSeparator2,
+            this.backFillButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(776, 25);
@@ -84,6 +88,20 @@
             this.dropCqButton.Text = "Drop CQ";
             this.dropCqButton.ToolTipText = "Drop Continuous Query";
             this.dropCqButton.Click += new System.EventHandler(this.dropCqButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // backFillButton
+            // 
+            this.backFillButton.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.BackFill;
+            this.backFillButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.backFillButton.Name = "backFillButton";
+            this.backFillButton.Size = new System.Drawing.Size(70, 22);
+            this.backFillButton.Text = "Back Fill";
+            this.backFillButton.Click += new System.EventHandler(this.backFillButton_Click);
             // 
             // splitContainer
             // 
@@ -192,5 +210,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem dropCQToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createCQToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton backFillButton;
     }
 }

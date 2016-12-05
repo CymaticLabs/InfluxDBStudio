@@ -235,4 +235,31 @@
   <data name="influxdb_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\influxdb-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BackFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\BackFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CQ_Destination_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_Destination_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="CQ_Source_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_Source_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Date" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Date.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Time" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BF_Destination_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BF_Destination_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="BF_Interval_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BF_Interval_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="BF_Source_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BF_Source_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="BF_Filters_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BF_Filters_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

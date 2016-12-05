@@ -136,6 +136,12 @@
     <Compile Include="Dialogs\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\BackFillDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BackFillDialog.Designer.cs">
+      <DependentUpon>BackFillDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ConnectionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BackFillDialog.resx">
+      <DependentUpon>BackFillDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ConnectionDialog.resx">
       <DependentUpon>ConnectionDialog.cs</DependentUpon>
@@ -460,6 +469,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\influxdb-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_Destination_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CQ_Source_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\BackFill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BF_Destination_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BF_Source_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BF_Interval_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BF_Filters_Info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

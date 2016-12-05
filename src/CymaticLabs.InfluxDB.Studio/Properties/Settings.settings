@@ -8,5 +8,11 @@
     <Setting Name="AllowUntrustedSsl" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="TimeFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">hh:mm:ss tt</Value>
+    </Setting>
+    <Setting Name="DateFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">M/dd/yyyy</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

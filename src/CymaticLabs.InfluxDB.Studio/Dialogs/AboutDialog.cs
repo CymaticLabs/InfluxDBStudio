@@ -31,7 +31,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
         private void AboutDialog_Load(object sender, EventArgs e)
         {
             // Apply the current version number
-            versionLabel.Text = GetType().Assembly.GetName().Version.ToString();
+            versionLabel.Text = AppForm.Settings.Version;
         }
 
         // Launch project link

@@ -73,6 +73,54 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BackFill {
+            get {
+                object obj = ResourceManager.GetObject("BackFill", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The destination measurement will store the results of the Back Fill.
+        ///Select an existing measurement or type in the name of a new destination..
+        /// </summary>
+        internal static string BF_Destination_Info {
+            get {
+                return ResourceManager.GetString("BF_Destination_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A comma-separated list of &quot;WHERE&quot; filters to apply to the query..
+        /// </summary>
+        internal static string BF_Filters_Info {
+            get {
+                return ResourceManager.GetString("BF_Filters_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Back Fill&apos;s interval: 1h, 30m, 45s, etc..
+        /// </summary>
+        internal static string BF_Interval_Info {
+            get {
+                return ResourceManager.GetString("BF_Interval_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is the source measurement for data selected by the Back Fill.
+        ///Select or type in the name of the existing measurement for the query..
+        /// </summary>
+        internal static string BF_Source_Info {
+            get {
+                return ResourceManager.GetString("BF_Source_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Connection {
             get {
                 object obj = ResourceManager.GetObject("Connection", resourceCulture);
@@ -87,6 +135,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
             get {
                 object obj = ResourceManager.GetObject("ContinuousQuery", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The destination measurement will store the results of the Continuous Query.
+        ///Select an existing measurement or type in the name of a new destination..
+        /// </summary>
+        internal static string CQ_Destination_Info {
+            get {
+                return ResourceManager.GetString("CQ_Destination_Info", resourceCulture);
             }
         }
         
@@ -139,6 +197,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         internal static string CQ_ResampleFor_Info {
             get {
                 return ResourceManager.GetString("CQ_ResampleFor_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is the source measurement for data selected by the Continuous Query.
+        ///Select or type in the name of the existing measurement for the query..
+        /// </summary>
+        internal static string CQ_Source_Info {
+            get {
+                return ResourceManager.GetString("CQ_Source_Info", resourceCulture);
             }
         }
         
@@ -210,6 +278,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         internal static System.Drawing.Bitmap Database {
             get {
                 object obj = ResourceManager.GetObject("Database", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Date {
+            get {
+                object obj = ResourceManager.GetObject("Date", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -440,6 +518,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         internal static System.Drawing.Bitmap TagValues {
             get {
                 object obj = ResourceManager.GetObject("TagValues", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Time {
+            get {
+                object obj = ResourceManager.GetObject("Time", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
