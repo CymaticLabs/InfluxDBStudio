@@ -11,7 +11,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
     /// <summary>
     /// Used to perform data back fills for aggregate data.
     /// </summary>
-    public partial class BackFillDialog : Form
+    public partial class BackfillDialog : Form
     {
         #region Fields
 
@@ -33,11 +33,16 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
         /// </summary>
         public string Database { get; set; }
 
+        /// <summary>
+        /// Gets the resulting Backfill Query parameters from the dialog.
+        /// </summary>
+        public InfluxDbBackfillParams BackfillResult { get; private set; }
+
         #endregion Properties
 
         #region Constructors
 
-        public BackFillDialog()
+        public BackfillDialog()
         {
             InitializeComponent();
 
@@ -60,6 +65,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
 
         #region Event Handlers
 
+        // Form Load
         private void BackFillDialog_Load(object sender, EventArgs e)
         {
             // Setup help/info tool tips
@@ -69,6 +75,26 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
             fillTypeToolTip.SetToolTip(fillTypeInfo, Properties.Resources.CQ_FillType_Info);
             filtersToolTip.SetToolTip(filtersInfo, Properties.Resources.BF_Filters_Info);
             tagsToolTip.SetToolTip(tagsInfo, Properties.Resources.CQ_Tags_Info);
+        }
+
+        // Form Closing
+        private void BackfillDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                // If the user is closing/canceling the form, nothing to do
+                if (DialogResult != DialogResult.OK) return;
+
+                // Create the Backfill result from form values
+                BackfillResult = CreateBackfillParamsFromValues();
+
+                // If a valid result wasn't returned, cancel
+                if (BackfillResult == null) e.Cancel = true;
+            }
+            catch (Exception ex)
+            {
+                AppForm.DisplayException(ex);
+            }
         }
 
         #endregion Event Handlers
@@ -110,7 +136,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
             toDateTimePicker.CustomFormat = dateTimeFormat;
 
             // Reset result
-            //CqResult = null;
+            BackfillResult = null;
 
             // Clear query
             NewQuery();
@@ -151,6 +177,141 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
             catch (Exception ex)
             {
                 AppForm.DisplayException(ex);
+            }
+        }
+
+        // Validates the current form values
+        bool ValidateBackfillValues()
+        {
+            try
+            {
+                // Source & Destination
+                var destination = destinationComboBox.SelectedItem as string;
+                if (string.IsNullOrWhiteSpace(destination)) destination = destinationComboBox.Text;
+                var source = sourceComboBox.SelectedItem as string;
+                if (string.IsNullOrWhiteSpace(source)) source = sourceComboBox.Text;
+
+                if (string.IsNullOrWhiteSpace(destination))
+                {
+                    AppForm.DisplayError("Destination cannot be blank.");
+                    return false;
+                }
+
+                if (string.IsNullOrWhiteSpace(source))
+                {
+                    AppForm.DisplayError("Source cannot be blank.");
+                    return false;
+                }
+
+                if (destination == source)
+                {
+                    if (MessageBox.Show("Source is the same as the Destination. These are typically different values for a Backfill Query. Are you sure that you want to have duplicate values?", "Confirm",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    {
+                        return false;
+                    }
+                }
+
+                // Interval
+                var interval = intervalTextBox.Text;
+
+                if (string.IsNullOrWhiteSpace(interval))
+                {
+                    AppForm.DisplayError("Interval cannot be blank. It should be an InfluxDB time interval value such as: 1d, 2h, 10m, 30s, etc.");
+                    return false;
+                }
+
+                interval = interval.Trim();
+
+                if (!InfluxDbHelper.IsTimeIntervalValid(interval))
+                {
+                    AppForm.DisplayError("Interval value is invalid. It should be an InfluxDB time interval value such as: 1d, 2h, 10m, 30s, etc.");
+                    return false;
+                }
+
+                // From/To time
+                var fromTime = fromDateTimePicker.Value;
+                var toTime = toDateTimePicker.Value;
+
+                if (fromTime >= toTime)
+                {
+                    AppForm.DisplayError("'From Time' is later than 'To Time'. 'From Time' should come before 'To Time'.");
+                    return false;
+                }
+
+                // Subquery
+                if (queryEditor.Text == null || queryEditor.Text.Length == 0 || queryEditor.Text == QueryEditorPlaceholderText)
+                {
+                    AppForm.DisplayError("SubQuery cannot be blank.");
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                AppForm.DisplayException(ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="InfluxDbBackfillParams">Backfill Query</see> parameters object
+        /// from the current dialog values.
+        /// </summary>
+        /// <returns>A Backfill params object if current values are valid, otherwise NULL.</returns>
+        public InfluxDbBackfillParams CreateBackfillParamsFromValues()
+        {
+            if (!ValidateBackfillValues()) return null;
+
+            try
+            {
+                // Collect form values
+                var destination = destinationComboBox.SelectedItem != null ? destinationComboBox.SelectedItem as string : destinationComboBox.Text;
+                var source = sourceComboBox.SelectedItem != null ? sourceComboBox.SelectedItem as string : sourceComboBox.Text;
+
+                // Subqueries
+                var subQueries = new List<string>();
+                subQueries.Add(queryEditor.Text.Trim());
+
+                // Filters
+                List<string> filters = new List<string>();
+
+                if (!string.IsNullOrWhiteSpace(filtersTextBox.Text))
+                {
+                    var parsedFilters = filtersTextBox.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var filter in parsedFilters) filters.Add(filter.Trim());
+                }
+
+                // Tags
+                List<string> tags = new List<string>();
+
+                if (!string.IsNullOrWhiteSpace(tagsTextBox.Text))
+                {
+                    var parsedTags = tagsTextBox.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var tag in parsedTags) tags.Add(tag.Trim());
+                }
+
+                // Create the Backfill parameters
+                var backfillParams = new InfluxDbBackfillParams()
+                {
+                    Destination = destination,
+                    Source = source,
+                    SubQueries = subQueries,
+                    Interval = intervalTextBox.Text,
+                    FillType = (InfluxDbFillTypes)fillTypeComboBox.SelectedItem,
+                    FromTime = fromDateTimePicker.Value,
+                    ToTime = toDateTimePicker.Value,
+                    Filters = filters.Count > 0 ? filters : null,
+                    Tags = tags.Count > 0 ? tags : null,
+                };
+
+                return backfillParams;
+            }
+            catch (Exception ex)
+            {
+                AppForm.DisplayException(ex);
+                return null;
             }
         }
 

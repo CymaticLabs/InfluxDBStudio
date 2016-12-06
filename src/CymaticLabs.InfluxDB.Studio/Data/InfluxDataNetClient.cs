@@ -256,7 +256,10 @@ namespace CymaticLabs.InfluxDB.Data
             if (string.IsNullOrWhiteSpace(cqParams.Destination)) throw new ArgumentNullException("cqParams.Destination");
             if (string.IsNullOrWhiteSpace(cqParams.Source)) throw new ArgumentNullException("cqParams.Source");
             if (string.IsNullOrWhiteSpace(cqParams.Interval)) throw new ArgumentNullException("cqParams.Interval");
-            
+
+            if (cqParams.SubQueries == null || cqParams.SubQueries.Count() == 0 || string.IsNullOrWhiteSpace(cqParams.SubQueries.First()))
+                throw new ArgumentException("cqParams.SubQueries needs at least one query.");
+
             if (!InfluxDbHelper.IsTimeIntervalValid(cqParams.Interval))
                 throw new ArgumentException("cqParams.Interval is invalid: " + cqParams.Interval);
 
@@ -312,6 +315,46 @@ namespace CymaticLabs.InfluxDB.Data
             if (string.IsNullOrWhiteSpace(database)) throw new ArgumentNullException("database");
             if (string.IsNullOrWhiteSpace(cqName)) throw new ArgumentNullException("cqName");
             var response = await influx.ContinuousQuery.DeleteContinuousQueryAsync(database, cqName).ConfigureAwait(false);
+            return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
+        }
+
+        /// <summary>
+        /// Performs a backfill query on the database based on a given time range and backfill parameters.
+        /// </summary>
+        /// <param name="database">The name of the database to perform the backfill on.</param>
+        /// <param name="backfillParams">The backfill parameters query.</param>
+        /// <returns>The API response.</returns>
+        public async override Task<InfluxDbApiResponse> BackfillAsync(string database, InfluxDbBackfillParams backfillParams)
+        {
+            if (backfillParams == null) throw new ArgumentNullException("backfillParams");
+
+            // Validate
+            if (string.IsNullOrWhiteSpace(backfillParams.Destination)) throw new ArgumentNullException("backfillParams.Destination");
+            if (string.IsNullOrWhiteSpace(backfillParams.Source)) throw new ArgumentNullException("backfillParams.Source");
+            if (string.IsNullOrWhiteSpace(backfillParams.Interval)) throw new ArgumentNullException("backfillParams.Interval");
+
+            if (backfillParams.SubQueries == null || backfillParams.SubQueries.Count() == 0 || string.IsNullOrWhiteSpace(backfillParams.SubQueries.First()))
+                throw new ArgumentException("backfillParams.SubQueries needs at least one query.");
+
+            if (!InfluxDbHelper.IsTimeIntervalValid(backfillParams.Interval))
+                throw new ArgumentException("backfillParams.Interval is invalid: " + backfillParams.Interval);
+
+            // Copy values to InfluxData.Net equivalent
+            var _bfParams = new BackfillParams()
+            {
+                DsSerieName = backfillParams.Destination,
+                SourceSerieName = backfillParams.Source,
+                Downsamplers = backfillParams.SubQueries.ToList(),
+                Interval = backfillParams.Interval,
+                TimeFrom = backfillParams.FromTime,
+                TimeTo = backfillParams.ToTime,
+                Filters = backfillParams.Filters != null ? backfillParams.Filters.ToList() : null,
+                FillType = (FillType)Enum.Parse(typeof(FillType), backfillParams.FillType.ToString(), true),
+                Tags = backfillParams.Tags != null ? backfillParams.Tags.ToList() : null,
+            };
+
+            // Execute the request and return response
+            var response = await influx.ContinuousQuery.BackfillAsync(database, _bfParams).ConfigureAwait(false);
             return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
         }
 

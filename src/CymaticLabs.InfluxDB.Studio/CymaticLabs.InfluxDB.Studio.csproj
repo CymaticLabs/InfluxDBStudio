@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="Data\InfluxDataNetClient.cs" />
     <Compile Include="Data\InfluxDbApiResponse.cs" />
+    <Compile Include="Data\InfluxDbBackfillParams.cs" />
     <Compile Include="Data\InfluxDbClient.cs" />
     <Compile Include="Data\InfluxDbClientFactory.cs" />
     <Compile Include="Data\InfluxDbConnection.cs" />
@@ -136,11 +137,11 @@
     <Compile Include="Dialogs\AboutDialog.Designer.cs">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\BackFillDialog.cs">
+    <Compile Include="Dialogs\BackfillDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\BackFillDialog.Designer.cs">
-      <DependentUpon>BackFillDialog.cs</DependentUpon>
+    <Compile Include="Dialogs\BackfillDialog.Designer.cs">
+      <DependentUpon>BackfillDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ConnectionDialog.cs">
       <SubType>Form</SubType>
@@ -277,8 +278,8 @@
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\BackFillDialog.resx">
-      <DependentUpon>BackFillDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogs\BackfillDialog.resx">
+      <DependentUpon>BackfillDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\ConnectionDialog.resx">
       <DependentUpon>ConnectionDialog.cs</DependentUpon>

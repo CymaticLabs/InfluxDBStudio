@@ -1,6 +1,6 @@
 ﻿namespace CymaticLabs.InfluxDB.Studio.Dialogs
 {
-    partial class BackFillDialog
+    partial class BackfillDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackFillDialog));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackfillDialog));
             this.queryEditor = new ScintillaNET.Scintilla();
             this.createButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -82,17 +82,16 @@
             this.queryEditor.Location = new System.Drawing.Point(12, 280);
             this.queryEditor.Name = "queryEditor";
             this.queryEditor.Size = new System.Drawing.Size(595, 145);
-            this.queryEditor.TabIndex = 18;
+            this.queryEditor.TabIndex = 8;
             // 
             // createButton
             // 
             this.createButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.createButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.createButton.Enabled = false;
             this.createButton.Location = new System.Drawing.Point(451, 431);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(75, 23);
-            this.createButton.TabIndex = 16;
+            this.createButton.TabIndex = 9;
             this.createButton.Text = "Run";
             this.createButton.UseVisualStyleBackColor = true;
             // 
@@ -103,7 +102,7 @@
             this.cancelButton.Location = new System.Drawing.Point(532, 431);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 17;
+            this.cancelButton.TabIndex = 10;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -169,7 +168,7 @@
             this.toDateTimePicker.Location = new System.Drawing.Point(376, 137);
             this.toDateTimePicker.Name = "toDateTimePicker";
             this.toDateTimePicker.Size = new System.Drawing.Size(180, 20);
-            this.toDateTimePicker.TabIndex = 12;
+            this.toDateTimePicker.TabIndex = 5;
             // 
             // fromDateTimePicker
             // 
@@ -179,7 +178,7 @@
             this.fromDateTimePicker.Location = new System.Drawing.Point(84, 137);
             this.fromDateTimePicker.Name = "fromDateTimePicker";
             this.fromDateTimePicker.Size = new System.Drawing.Size(180, 20);
-            this.fromDateTimePicker.TabIndex = 12;
+            this.fromDateTimePicker.TabIndex = 4;
             // 
             // filtersInfo
             // 
@@ -223,7 +222,7 @@
             this.destinationComboBox.Location = new System.Drawing.Point(84, 61);
             this.destinationComboBox.Name = "destinationComboBox";
             this.destinationComboBox.Size = new System.Drawing.Size(180, 24);
-            this.destinationComboBox.TabIndex = 2;
+            this.destinationComboBox.TabIndex = 0;
             // 
             // filtersLabel
             // 
@@ -271,7 +270,7 @@
             this.sourceComboBox.Location = new System.Drawing.Point(376, 61);
             this.sourceComboBox.Name = "sourceComboBox";
             this.sourceComboBox.Size = new System.Drawing.Size(180, 24);
-            this.sourceComboBox.TabIndex = 3;
+            this.sourceComboBox.TabIndex = 1;
             // 
             // toTimeLabel
             // 
@@ -315,14 +314,14 @@
             this.intervalTextBox.Location = new System.Drawing.Point(84, 98);
             this.intervalTextBox.Name = "intervalTextBox";
             this.intervalTextBox.Size = new System.Drawing.Size(103, 22);
-            this.intervalTextBox.TabIndex = 4;
+            this.intervalTextBox.TabIndex = 2;
             // 
             // tagsTextBox
             // 
             this.tagsTextBox.Location = new System.Drawing.Point(84, 214);
             this.tagsTextBox.Name = "tagsTextBox";
             this.tagsTextBox.Size = new System.Drawing.Size(472, 22);
-            this.tagsTextBox.TabIndex = 6;
+            this.tagsTextBox.TabIndex = 7;
             // 
             // fillTypeComboBox
             // 
@@ -331,7 +330,7 @@
             this.fillTypeComboBox.Location = new System.Drawing.Point(376, 98);
             this.fillTypeComboBox.Name = "fillTypeComboBox";
             this.fillTypeComboBox.Size = new System.Drawing.Size(103, 24);
-            this.fillTypeComboBox.TabIndex = 5;
+            this.fillTypeComboBox.TabIndex = 3;
             // 
             // databaseValue
             // 
@@ -411,7 +410,7 @@
             this.filtersToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.filtersToolTip.ToolTipTitle = "Filters";
             // 
-            // BackFillDialog
+            // BackfillDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -422,9 +421,10 @@
             this.Controls.Add(this.groupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "BackFillDialog";
+            this.Name = "BackfillDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Run Back Fill Query";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BackfillDialog_FormClosing);
             this.Load += new System.EventHandler(this.BackFillDialog_Load);
             this.groupBox.ResumeLayout(false);
             this.groupBox.PerformLayout();

@@ -193,6 +193,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
             }
         }
 
+        // Validates the current form values
         bool ValidateCqValues()
         {
             try
@@ -286,7 +287,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
                 }
 
                 // Subquery
-                if (queryEditor.Text == null || queryEditor.Text.Length == 0)
+                if (queryEditor.Text == null || queryEditor.Text.Length == 0 || queryEditor.Text == QueryEditorPlaceholderText)
                 {
                     AppForm.DisplayError("SubQuery cannot be blank.");
                     return false;

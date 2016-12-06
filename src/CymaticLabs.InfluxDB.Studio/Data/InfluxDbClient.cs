@@ -158,6 +158,14 @@ namespace CymaticLabs.InfluxDB.Data
         /// <returns>The API response.</returns>
         public abstract Task<InfluxDbApiResponse> DropContinuousQueryAsync(string database, string cqName);
 
+        /// <summary>
+        /// Performs a backfill query on the database based on a given time range and backfill parameters.
+        /// </summary>
+        /// <param name="database">The name of the database to perform the backfill on.</param>
+        /// <param name="backfillParams">The backfill parameters query.</param>
+        /// <returns>The API response.</returns>
+        public abstract Task<InfluxDbApiResponse> BackfillAsync(string database, InfluxDbBackfillParams backfillParams);
+
         #endregion Query
 
         #region Write

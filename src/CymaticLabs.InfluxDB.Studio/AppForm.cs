@@ -19,7 +19,7 @@ namespace CymaticLabs.InfluxDB.Studio
     public partial class AppForm : Form
     {
         #region Enums
-
+        
         /// <summary>
         /// Different InfluxDB types represented by tree view nodes.
         /// </summary>
@@ -60,7 +60,7 @@ namespace CymaticLabs.InfluxDB.Studio
         CreateDatabaseDialog createDatabaseDialog;
 
         // Used to perform back fill queries
-        private BackFillDialog backFillDialog;
+        private BackfillDialog backfillDialog;
 
         // The application about dialog
         AboutDialog aboutDialog;
@@ -104,7 +104,7 @@ namespace CymaticLabs.InfluxDB.Studio
             // Create dialog windows
             aboutDialog = new AboutDialog();
             createDatabaseDialog = new CreateDatabaseDialog();
-            backFillDialog = new BackFillDialog();
+            backfillDialog = new BackfillDialog();
             manageConnectionsDialog = new ManageConnectionsDialog();
             manageConnectionsDialog.ConnectionCreated += ManageConnectionsDialog_ConnectionCreated;
             manageConnectionsDialog.ConnectionUpdated += ManageConnectionsDialog_ConnectionUpdated;
@@ -1028,31 +1028,27 @@ namespace CymaticLabs.InfluxDB.Studio
                 var database = node.Text;
 
                 // Pass client connection down
-                backFillDialog.ResetBackFillForm();
-                backFillDialog.InfluxDbClient = client;
-                backFillDialog.Database = database;
+                backfillDialog.ResetBackFillForm();
+                backfillDialog.InfluxDbClient = client;
+                backfillDialog.Database = database;
 
                 // Bind dynamic data
-                await backFillDialog.BindInfluxDataSources();
+                await backfillDialog.BindInfluxDataSources();
 
-                if (backFillDialog.ShowDialog() == DialogResult.OK)
+                if (backfillDialog.ShowDialog() == DialogResult.OK)
                 {
-                    //// Get the resulting CQ params
-                    //var cqParams = createCqDialog.CqResult;
+                    // Get the resulting Backfill params
+                    var backfillParams = backfillDialog.BackfillResult;
 
-                    //// Create the CQ and get the response
-                    //var response = await InfluxDbClient.CreateContinuousQueryAsync(cqParams);
+                    // Create the CQ and get the response
+                    var response = await client.BackfillAsync(database, backfillParams);
 
-                    //if (response.Success)
-                    //{
-                    //    await ExecuteRequestAsync();
-                    //}
-                    //else
-                    //{
-                    //    AppForm.DisplayError(response.Body);
-                    //}
+                    if (!response.Success)
+                    {
+                        DisplayError(response.Body);
+                    }
 
-                    //UpdateUIState();
+                    UpdateUIState();
                 }
             }
             catch (Exception ex)

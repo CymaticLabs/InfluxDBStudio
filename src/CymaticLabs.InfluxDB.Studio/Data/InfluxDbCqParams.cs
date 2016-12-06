@@ -7,10 +7,6 @@ namespace CymaticLabs.InfluxDB.Data
     /// </summary>
     public class InfluxDbCqParams
     {
-        #region Fields
-
-        #endregion Fields
-
         #region Properties
 
         /// <summary>
@@ -68,13 +64,5 @@ namespace CymaticLabs.InfluxDB.Data
         public string ResampleForInterval { get; set; }
 
         #endregion Properties
-
-        #region Constructors
-
-        #endregion Constructors
-
-        #region Methods
-
-        #endregion Methods
     }
 }
