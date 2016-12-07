@@ -118,7 +118,7 @@ To drop a database, select it in the tree view on the left. Then **right-click**
 
 ![Confirm Drop Database](docs/img/Databases_Drop_2.png?raw=true "Confirm Drop Database")
 
-Confirm that you would like to drop the selected database _(**this is a permanent operation**)_.
+_Confirm that you would like to drop the selected database (**this is a permanent operation**)._
 
 ### Running a Database Query
 
@@ -140,7 +140,7 @@ To create and manage Continuous Queries, **right-click** or use **the toolbar bu
 
 ![Create Continuous Query](docs/img/Databases_CQ_2.png?raw=true "Create Continuous Query")
 
-Once the CQ tab opens, click the **Create CQ** button which will bring up the **Create Continuous Query Dialog**.
+_Once the CQ tab opens, click the **Create CQ** button which will bring up the **Create Continuous Query Dialog**._
 
 ### Continuous Query Dialog
 
@@ -148,7 +148,7 @@ Use the dialog to design a new **Continuous Query**. Mouse over the **help tool 
 
 ![Create Continuous Queries Dialog](docs/img/Databases_CQ_3.png?raw=true "Create Continuous Queries Dialog")
 
-Once you are satisified with your CQ press the **Create** button to create and run your query. You can vary the CQ is working by running queries against its destination measurement and exploring the data:
+Once you are satisified with your CQ press the **Create** button to create and run your query. You can verify that the CQ is working by running queries against its destination measurement and exploring the data:
 
 ![Continuous Query Created](docs/img/Databases_CQ_4.png?raw=true "Continuous Query Created")
 
