@@ -26,14 +26,15 @@ The following are planned features that are not yet implemented in the current v
    - [Running a Database Query](#running-a-database-query)
    - [Creating Continuous Queries](#creating-continuous-queries)
    - [Running a Backfill Query](#running-a-backfill-query)
+ - [License](#license)
    
-### Installation
+## Installation
 
 Currently you should build locally by downloading the source or cloning the repository. Eventually some binary releases might be included with the repository going forward. To build, you will need [Visual Studio 2015](https://www.visualstudio.com/downloads/). Building with Mono might be possible with additional steps but it's not clear how usable it will be. The Mac OS X version definitely has some issues. For now, Windows is the recommended platform to use.
 
 Open the solution file `CymaticLabs.InfluxDB.sln` to get started.
 
-### Managing Connections
+## Managing Connections
 
 Upon running **InfluxDBStudio.exe** you will be prompted with the **Manage Connections** dialog. This window will let you create, edit, and delete InfluxDB server connections.
 
@@ -60,7 +61,7 @@ _The **Ping** button lets you ping the InfluxDB server and check response time a
 
 _Press the **Save** button to create or update the connection information._
 
-### Connecting to a Server
+## Connecting to a Server
 
 Once you have created at least one connection, select it in the **Manage Connections** dialog and press the **Connect** buton.
 
@@ -72,7 +73,7 @@ After pressing the **Connect** button you will see the **the main application wi
 
 _Explore databases and measurements by using the tree view in the left panel._
 
-### Working with Connections
+## Working with Connections
 
 Right-click when you have a **Connection** node selected in the tree view. You will see a context menu of available commands for the server connection. These commands are also available at the top of the application on the toolbar. Find the corresponding toolbar button by matching its icon to the context menu command.
 
@@ -86,7 +87,7 @@ The following connection commands are available:
  * **Diagnostics** - Shows server diagnostics including runtime, version, uptime, etc.
  * **Disconnect** - Closes the connection and removes it from the active connection list.
  
-### Working with Databases
+## Working with Databases
 
 The following section outlines the actions available when working with InfluxDB databases.
 
@@ -117,3 +118,6 @@ Confirm that you would like to drop the selected database _(**this is a permanen
 #### Running a Backfill Query
  
  
+## License
+
+Code and documentation are available according to the *MIT* License (see [LICENSE](https://github.com/CymaticLabs/InfluxDBStudio/blob/master/LICENSE)).
