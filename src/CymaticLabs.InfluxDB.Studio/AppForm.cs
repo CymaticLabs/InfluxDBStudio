@@ -842,7 +842,7 @@ namespace CymaticLabs.InfluxDB.Studio
                         }
 
                         // If the create was successful, show the new database
-                        var newDatabaseNode = new TreeNode(createDatabaseDialog.DatabaseName, 1, 1);
+                        var newDatabaseNode = CreateTreeNode(createDatabaseDialog.DatabaseName, InfluxDbNodeTypes.Database);
                         node.Nodes.Add(newDatabaseNode);
                         connectionsTreeView.SelectedNode = newDatabaseNode;
                     }
