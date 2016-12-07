@@ -75,7 +75,7 @@ _Explore databases and measurements by using the tree view in the left panel._
 
 ## Working with Connections
 
-Right-click when you have a **Connection** node selected in the tree view. You will see a context menu of available commands for the server. These commands are also available at the top of the application in the toolbar. Find the corresponding toolbar button by matching its icon to the context menu command.
+**Right-click** when you have a **Connection** node selected in the tree view. You will see a **context menu** of available commands for the server. These commands are also available at the top of the application in **the toolbar**. Find the corresponding **toolbar button** by matching its icon to the **context menu** command.
 
 ![Connection Commands](docs/img/Connections_ContextMenu.png?raw=true "Connection Commands")
 
@@ -93,7 +93,7 @@ The following section outlines the actions available when working with InfluxDB 
 
 #### Creating a Database 
  
-To create a database, select the connection on which you'd like to create the database and select **Create Database** from the context menu or the toolbar. Next provide the name for the database to create and press the **Create** button:
+To create a database, select the connection on which you'd like to create the database and select **Create Database** from the **context menu** or **the toolbar button**. Next provide the name for the database to create and press the **Create** button:
  
 ![Create Database](docs/img/Connections_CreateDatabase_1.png?raw=true "Create Database")
 
@@ -103,7 +103,7 @@ The created database should now appear in the tree view on the left:
 
 #### Dropping a Database
 
-To drop a database, select it in the tree view on the left. Then right-click and use the context menu or use the toolbar button and select **Drop Database**:
+To drop a database, select it in the tree view on the left. Then **right-click** or use **the toolbar button** and select **Drop Database**:
 
 ![Drop Database](docs/img/Databases_Drop_1.png?raw=true "Drop Database")
 
@@ -112,6 +112,18 @@ Confirm that you would like to drop the selected database _(**this is a permanen
 ![Confirm Drop Database](docs/img/Databases_Drop_2.png?raw=true "Confirm Drop Database")
 
 #### Running a Database Query
+
+Select a database node in the tree view and either double click, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command:
+
+![Create New Query](docs/img/Databases_RunQuery_1.png?raw=true "Create New Query")
+
+Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query -> Run** to run the query. Results will be displayed in the table area below:
+
+![Run Query](docs/img/Databases_RunQuery_2.png?raw=true "Run Query")
+
+Using **aggregation (GROUP BY)** in queries will group the series results into their own tabs in the results area:
+
+![Group Results](docs/img/Databases_RunQuery_3.png?raw=true "Group Results")
 
 #### Creating Continuous Queries
 
