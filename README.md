@@ -19,7 +19,14 @@ The following are planned features that are not yet implemented in the current v
  - [Managing Connections](#managing-connections)
    - [Connection Settings](#connection-settings)
  - [Connecting to a Server](#connecting-to-a-server)
-
+ - [Working with Connections](#working-with-connections)
+ - [Working with Databases](#working-with-databases)
+   - [Creating a Database](#creating-a-database)
+   - [Dropping a Database](#dropping-a-database)
+   - [Running a Database Query](#running-a-database-query)
+   - [Creating Continuous Queries](#creating-continuous-queries)
+   - [Running a Backfill Query](#running-a-backfill-query)
+   
 ### Installation
 
 Currently you should build locally by downloading the source or cloning the repository. Eventually some binary releases might be included with the repository going forward. To build, you will need [Visual Studio 2015](https://www.visualstudio.com/downloads/). Building with Mono might be possible with additional steps but it's not clear how usable it will be. The Mac OS X version definitely has some issues. For now, Windows is the recommended platform to use.
@@ -47,9 +54,9 @@ Use the Connection Settings dialog to configure the details of the InfluxDB conn
 
 ![Create/Edit Connection Dialog](docs/img/ConnectionsDialog_1.png?raw=true "Create/Edit Connection Dialog")
 
-_The **Test** button to let's you test the connection to InfluxDB using the provided connection details._
+_The **Test** button to lets you test the connection to InfluxDB using the provided connection details._
 
-_The **Ping** button let's you ping the InfluxDB server and check response time and server version._
+_The **Ping** button lets you ping the InfluxDB server and check response time and server version._
 
 _Press the **Save** button to create or update the connection information._
 
@@ -64,3 +71,41 @@ After pressing the **Connect** button you will see the **the main application wi
 ![Main Window](docs/img/AppForm_InitialView.png?raw=true "Main Window")
 
 _Explore databases and measurements by using the tree view in the left panel._
+
+### Working with Connections
+
+Right-click when you have a **Connection** node selected in the tree view. You will see a context menu of available commands for the server connection. These commands are also available at the top of the application on the toolbar. Find the corresponding toolbar button by matching its icon to the context menu command.
+
+![Connection Commands](docs/img/Connections_ContextMenu.png?raw=true "Connection Commands")
+
+The following connection commands are available:
+
+ * **Refresh** - Refreshes the connections data; refetches database information from the server.
+ * **Create Database** - Creates a new database on the server.
+ * **Show Users** - Lists users on the server and provides a user management interface.
+ * **Diagnostics** - Shows server diagnostics including runtime, version, uptime, etc.
+ * **Disconnect** - Closes the connection and removes it from the active connection list.
+ 
+### Working with Databases
+
+The following section outlines the actions available when working with InfluxDB databases.
+
+#### Creating a Database 
+ 
+To create a database, select the connection on which you'd like to create the databse and select **Create Database** from the context menu or the toolbar. Next provide the name for the database to create:
+ 
+![Create Database](docs/img/Connections_CreateDatabase_1.png?raw=true "Create Database")
+
+The created database should now appear in the tree view on the left:
+
+![Database Created](docs/img/Connections_CreateDatabase_2.png?raw=true "Database Created")
+
+#### Dropping a Database
+
+#### Running a Database Query
+
+#### Creating Continuous Queries
+
+#### Running a Backfill Query
+ 
+ 
