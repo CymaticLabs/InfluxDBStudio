@@ -102,6 +102,14 @@ The created database should now appear in the tree view on the left:
 
 #### Dropping a Database
 
+To drop a database, select it in the tree view on the left. Then right click and use the context menu or use the toolbar button and select **Drop Database**:
+
+![Drop Database](docs/img/Databases_Drop_1.png?raw=true "Drop Database")
+
+Confirm that you would like to drop the selected database _(**this is a permanent operation**)_:
+
+![Confirm Drop Database](docs/img/Databases_Drop_2.png?raw=true "Confirm Drop Database")
+
 #### Running a Database Query
 
 #### Creating Continuous Queries
