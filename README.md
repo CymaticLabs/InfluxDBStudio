@@ -1,7 +1,6 @@
 # InfluxDB Studio
-**.NET Management Tools for InfluxDB and the TICK stack**
+**InfluxDB Studio is a UI management tool for [the InfluxDB time series database](https://www.influxdata.com/time-series-platform/influxdb/).**
 
-InfluxDB Studio is a UI management tool for [the InfluxDB time series database](https://www.influxdata.com/time-series-platform/influxdb/).
 Its inspiration comes from other similar database management tools such as [SQL Server Management Studio](https://en.wikipedia.org/wiki/SQL_Server_Management_Studio)
 and [Robomongo](https://robomongo.org/). Under the hood it's powered by [InfluxData.Net](https://github.com/pootzko/InfluxData.Net)
 which is a portable InfluxDB client library for .NET (plus some [Kapacitor](https://www.influxdata.com/time-series-platform/kapacitor/) support).
@@ -42,7 +41,7 @@ Upon running **InfluxDBStudio.exe** you will be prompted with the **Manage Conne
 
 Press the **Create** button to add your first InfluxDB connection using the **Connection Setting** dialog.
 
-#### Connection Settings
+### Connection Settings
 
 Use the Connection Settings dialog to configure the details of the InfluxDB connection:
 
@@ -75,7 +74,7 @@ _Explore databases and measurements by using the tree view in the left panel._
 
 ## Working with Connections
 
-Right-click when you have a **Connection** node selected in the tree view. You will see a context menu of available commands for the server. These commands are also available at the top of the application in the toolbar. Find the corresponding toolbar button by matching its icon to the context menu command.
+**Right-click** when you have a **Connection** node selected in the tree view. You will see a **context menu** of available commands for the server. These commands are also available at the top of the application in **the toolbar**. Find the corresponding **toolbar button** by matching its icon to the **context menu** command.
 
 ![Connection Commands](docs/img/Connections_ContextMenu.png?raw=true "Connection Commands")
 
@@ -89,11 +88,17 @@ The following connection commands are available:
  
 ## Working with Databases
 
-The following section outlines the actions available when working with InfluxDB databases.
+The following commands are available from the Database **context menu** and **toolbar buttons**:
 
-#### Creating a Database 
+  * **Refresh** - Refreshes the database data; refetches measurement/series information from the server.
+  * **New Query** - Opens a new query tab where you can run custom queries and explore the results.
+  * **Show Continuous Queries** - Allows you to list, create, and delete **Continuous Queries** for the database.
+  * **Run Backfill** - Lets your run a **Backfill Query** that downsamples or processes data into new measurements.
+  * **Drop Database** - Drops the current database from the server.
+
+### Creating a Database 
  
-To create a database, select the connection on which you'd like to create the database and select **Create Database** from the context menu or the toolbar. Next provide the name for the database to create and press the **Create** button:
+To create a database, select the **Connection** where you would like to create the database and select **Create Database** from the **context menu** or **the toolbar button**. Next provide the name for the database to create and press the **Create** button:
  
 ![Create Database](docs/img/Connections_CreateDatabase_1.png?raw=true "Create Database")
 
@@ -101,9 +106,9 @@ The created database should now appear in the tree view on the left:
 
 ![Database Created](docs/img/Connections_CreateDatabase_2.png?raw=true "Database Created")
 
-#### Dropping a Database
+### Dropping a Database
 
-To drop a database, select it in the tree view on the left. Then right-click and use the context menu or use the toolbar button and select **Drop Database**:
+To drop a database, select it in the tree view on the left. Then **right-click** or use **the toolbar button** and select **Drop Database**:
 
 ![Drop Database](docs/img/Databases_Drop_1.png?raw=true "Drop Database")
 
@@ -111,11 +116,43 @@ Confirm that you would like to drop the selected database _(**this is a permanen
 
 ![Confirm Drop Database](docs/img/Databases_Drop_2.png?raw=true "Confirm Drop Database")
 
-#### Running a Database Query
+### Running a Database Query
 
-#### Creating Continuous Queries
+Select a database node in the tree view and either double click, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command:
 
-#### Running a Backfill Query
+![Create New Query](docs/img/Databases_RunQuery_1.png?raw=true "Create New Query")
+
+Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query -> Run** to run the query. Results will be displayed in the table area below:
+
+![Run Query](docs/img/Databases_RunQuery_2.png?raw=true "Run Query")
+
+Using **aggregation (GROUP BY)** in queries will group the series results into their own tabs in the results area:
+
+![Group Results](docs/img/Databases_RunQuery_3.png?raw=true "Group Results")
+
+### Creating Continuous Queries
+
+[Continious Queries](http://docs.influxdata.com/influxdb/v1.1/query_language/continuous_queries/) run at an interval that you specify and are often used to downsample data by averaging it or processing it as it streams in and dumping the downsample data into a new measurement. 
+
+To create and manage Continuous Queries, **right-click** or use **the toolbar button** and select the **Show Continuous Queries** command:
+
+![Show Continuous Queries](docs/img/Databases_CQ_1.png?raw=true "Show Continuous Queries")
+
+Once the CQ tab opens, click the **Create CQ** button which will bring up the **Create Continuous Query Dialog**:
+
+![Create Continuous Query](docs/img/Databases_CQ_2.png?raw=true "Create Continuous Query")
+
+### Continuous Query Dialog
+
+Use the dialog to design a new **Continuous Query**. Mouse over the **help tool tips** to learn more about the different form properties.
+
+![Create Continuous Queries Dialog](docs/img/Databases_CQ_3.png?raw=true "Create Continuous Queries Dialog")
+
+Once you are satisified with your CQ press the **Create** button to create and run your query. You can vary the CQ is working by running queries against its destination measurement and exploring the data:
+
+![Continuous Query Created](docs/img/Databases_CQ_4.png?raw=true "Continuous Query Created")
+
+### Running a Backfill Query
  
  
 ## License
