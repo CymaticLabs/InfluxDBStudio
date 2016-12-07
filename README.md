@@ -90,8 +90,6 @@ The following connection commands are available:
 
 To show connection diagnostics **right-click** or use **the toolbar button** to select the **Show Diagnostics** command:
 
-![Show Diagnostics](docs/img/Connections_Diagnostics_1.png?raw=true "Show Diagnostics")
-
 ![Show Diagnostics](docs/img/Connections_Diagnostics_2.png?raw=true "Show Diagnostics")
  
 ## Working with Databases
@@ -118,17 +116,13 @@ The created database should now appear in the tree view on the left:
 
 To drop a database, select it in the tree view on the left. Then **right-click** or use **the toolbar button** and select **Drop Database**:
 
-![Drop Database](docs/img/Databases_Drop_1.png?raw=true "Drop Database")
-
-Confirm that you would like to drop the selected database _(**this is a permanent operation**)_:
-
 ![Confirm Drop Database](docs/img/Databases_Drop_2.png?raw=true "Confirm Drop Database")
+
+Confirm that you would like to drop the selected database _(**this is a permanent operation**)_.
 
 ### Running a Database Query
 
-Select a database node in the tree view and either double click, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command:
-
-![Create New Query](docs/img/Databases_RunQuery_1.png?raw=true "Create New Query")
+Select a database node in the tree view and either double click, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command.
 
 Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query -> Run** to run the query. Results will be displayed in the table area below:
 
@@ -142,13 +136,11 @@ Using **aggregation (GROUP BY)** in queries will group the series results into t
 
 [Continious Queries](http://docs.influxdata.com/influxdb/v1.1/query_language/continuous_queries/) run at an interval that you specify and are often used to downsample data by averaging it or processing it as it streams in and dumping the downsample data into a new measurement. 
 
-To create and manage Continuous Queries, **right-click** or use **the toolbar button** and select the **Show Continuous Queries** command:
-
-![Show Continuous Queries](docs/img/Databases_CQ_1.png?raw=true "Show Continuous Queries")
-
-Once the CQ tab opens, click the **Create CQ** button which will bring up the **Create Continuous Query Dialog**:
+To create and manage Continuous Queries, **right-click** or use **the toolbar button** and select the **Show Continuous Queries** command.
 
 ![Create Continuous Query](docs/img/Databases_CQ_2.png?raw=true "Create Continuous Query")
+
+Once the CQ tab opens, click the **Create CQ** button which will bring up the **Create Continuous Query Dialog**.
 
 ### Continuous Query Dialog
 
@@ -161,7 +153,7 @@ Once you are satisified with your CQ press the **Create** button to create and r
 ![Continuous Query Created](docs/img/Databases_CQ_4.png?raw=true "Continuous Query Created")
 
 ### Running a Backfill Query
- 
+ ...More Soon
  
 ## License
 
