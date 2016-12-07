@@ -12,7 +12,7 @@ The following are planned features that are not yet implemented in the current v
 * _An interface for writing point data directly to the database_
 * _Custom stats view for server stats (diagnostics is presently supported)_
 
-## Table of contents
+## Table of Contents
 
  - [Installation](#installation)
  - [Managing Connections](#managing-connections)
@@ -148,7 +148,7 @@ Use the dialog to design a new **Continuous Query**. Mouse over the **help tool 
 
 ![Create Continuous Queries Dialog](docs/img/Databases_CQ_3.png?raw=true "Create Continuous Queries Dialog")
 
-Once you are satisified with your CQ press the **Create** button to create and run your query. You can verify that the CQ is working by running queries against its destination measurement and exploring the data:
+_Once you are satisified with your CQ press the **Create** button to create and run your query. You can verify that the CQ is working by running queries against its destination measurement and exploring the data:_
 
 ![Continuous Query Created](docs/img/Databases_CQ_4.png?raw=true "Continuous Query Created")
 
