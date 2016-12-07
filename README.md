@@ -67,7 +67,7 @@ Once you have created at least one connection, select it in the **Manage Connect
 
 ![Connect to a Server](docs/img/ManageConnectionsDialog_WithLocalhost.png?raw=true "Connect to a Server")
 
-After pressing the **Connect** button you will see the **the main application window**. The list of active connection(s) is located in the tree view to the left. This window is where perform most of your interactions with the various InfluxDB connections that you have chosen to connect to. You can launch the **Manage Connections** dialog up again at any time by pressing the toolbar button in the top-left corner or by opening selecting from the application menu **Connections** -> **Manage**.
+After pressing the **Connect** button you will see the **the main application window**. The list of active connection(s) is located in the tree view to the left. This window is where perform most of your interactions with the various InfluxDB connections that you have chosen to connect to. You can launch the **Manage Connections** dialog again at any time by pressing the toolbar button in the top-left corner or by selecting from the application menu **Connections** -> **Manage**.
 
 ![Main Window](docs/img/AppForm_InitialView.png?raw=true "Main Window")
 
@@ -75,7 +75,7 @@ _Explore databases and measurements by using the tree view in the left panel._
 
 ## Working with Connections
 
-Right-click when you have a **Connection** node selected in the tree view. You will see a context menu of available commands for the server connection. These commands are also available at the top of the application on the toolbar. Find the corresponding toolbar button by matching its icon to the context menu command.
+Right-click when you have a **Connection** node selected in the tree view. You will see a context menu of available commands for the server. These commands are also available at the top of the application in the toolbar. Find the corresponding toolbar button by matching its icon to the context menu command.
 
 ![Connection Commands](docs/img/Connections_ContextMenu.png?raw=true "Connection Commands")
 
@@ -93,7 +93,7 @@ The following section outlines the actions available when working with InfluxDB 
 
 #### Creating a Database 
  
-To create a database, select the connection on which you'd like to create the databse and select **Create Database** from the context menu or the toolbar. Next provide the name for the database to create:
+To create a database, select the connection on which you'd like to create the database and select **Create Database** from the context menu or the toolbar. Next provide the name for the database to create and press the **Create** button:
  
 ![Create Database](docs/img/Connections_CreateDatabase_1.png?raw=true "Create Database")
 
@@ -103,7 +103,7 @@ The created database should now appear in the tree view on the left:
 
 #### Dropping a Database
 
-To drop a database, select it in the tree view on the left. Then right click and use the context menu or use the toolbar button and select **Drop Database**:
+To drop a database, select it in the tree view on the left. Then right-click and use the context menu or use the toolbar button and select **Drop Database**:
 
 ![Drop Database](docs/img/Databases_Drop_1.png?raw=true "Drop Database")
 
