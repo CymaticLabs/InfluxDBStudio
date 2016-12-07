@@ -86,6 +86,14 @@ The following connection commands are available:
  * **Diagnostics** - Shows server diagnostics including runtime, version, uptime, etc.
  * **Disconnect** - Closes the connection and removes it from the active connection list.
  
+### Show Diagnostics
+
+To show connection diagnostics **right-click** or use **the toolbar button** to select the **Show Diagnostics** command:
+
+![Show Diagnostics](docs/img/Connections_Diagnostics_1.png?raw=true "Show Diagnostics")
+
+![Show Diagnostics](docs/img/Connections_Diagnostics_2.png?raw=true "Show Diagnostics")
+ 
 ## Working with Databases
 
 The following commands are available from the Database **context menu** and **toolbar buttons**:
