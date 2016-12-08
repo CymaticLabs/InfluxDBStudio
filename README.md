@@ -19,12 +19,20 @@ The following are planned features that are not yet implemented in the current v
    - [Connection Settings](#connection-settings)
  - [Connecting to a Server](#connecting-to-a-server)
  - [Working with Connections](#working-with-connections)
+   - [Showing Server Diagnostics](#showing-server-diagnostics)
  - [Working with Databases](#working-with-databases)
    - [Creating a Database](#creating-a-database)
    - [Dropping a Database](#dropping-a-database)
    - [Running a Database Query](#running-a-database-query)
+   - [Exporting Query Results](#exporting-query-results)
    - [Creating Continuous Queries](#creating-continuous-queries)
    - [Running a Backfill Query](#running-a-backfill-query)
+ - [Working with Measurements and Series](#working-with-measurements-and-series)
+ - [Working with Users and Permissions](#working-with-users-and-permissions)
+ - [Application Settings](#application-settings)
+   - [Settings Overview](#settings-overview)
+   - [Exporting Settings](#exporting-settings)
+   - [Importing Settings](#importing-settings)
  - [License](#license)
    
 ## Installation
@@ -86,7 +94,7 @@ The following connection commands are available:
  * **Diagnostics** - Shows server diagnostics including runtime, version, uptime, etc.
  * **Disconnect** - Closes the connection and removes it from the active connection list.
  
-### Show Diagnostics
+### Showing Server Diagnostics
 
 To show connection diagnostics **right-click** or use **the toolbar button** to select the **Show Diagnostics** command:
 
@@ -132,6 +140,15 @@ Using **aggregation (GROUP BY)** in queries will group the series results into t
 
 ![Group Results](docs/img/Databases_RunQuery_3.png?raw=true "Group Results")
 
+### Exporting Query Results
+
+The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
+Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
+export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
+in the export context menu.
+
+![Exporting Results](docs/img/Databases_ExportQueryResults.png?raw=true "Exporting Results")
+
 ### Creating Continuous Queries
 
 [Continious Queries](http://docs.influxdata.com/influxdb/v1.1/query_language/continuous_queries/) run at an interval that you specify and are often used to downsample data by averaging it or processing it as it streams in and dumping the downsample data into a new measurement. 
@@ -144,7 +161,7 @@ _Once the CQ tab opens, click the **Create CQ** button which will bring up the *
 
 ### Continuous Query Dialog
 
-Use the dialog to design a new **Continuous Query**. Mouse over the **help tool tips** to learn more about the different form properties.
+Use the dialog to design a new **Continuous Query**. Mouse over the **help tool tips** to learn more about the different form values.
 
 ![Create Continuous Queries Dialog](docs/img/Databases_CQ_3.png?raw=true "Create Continuous Queries Dialog")
 
@@ -153,8 +170,42 @@ _Once you are satisified with your CQ press the **Create** button to create and 
 ![Continuous Query Created](docs/img/Databases_CQ_4.png?raw=true "Continuous Query Created")
 
 ### Running a Backfill Query
- ...More Soon
  
+**Backfill Queries** are similar to **Continuous Queries** in that they are typically used to process or downsample data from one measurement into another.
+The difference is that where as **Continuous Queries** run in realtime at a fixed interval and process incoming data inside a user-specified rolling time window,
+**Backfill Queries** are typically only run once on older measurment data that is already stored in the database and outside of the CQ time window.
+
+For example: imagine that you decided you needed to start downsampling data that you've already been collecting for months. You could create a **Continuous Query**
+that would downsample the data every hour and average it on all new, incoming data. However since that would only begin downsampling new data, you might also consider
+running a **Backfill Query** on the older historic data so that all data becomes downsampled both backwards and forwards through time.
+
+To run a **Backfill Query** either **right-click** or click **the toolbar button** and select **Run Backfill**. The **Run Backfill Query Dialog** will open:
+
+### Run Backfill Query Dialog
+
+Use the dialog to design a **Backfill Query**. Mouse over the help tool tips to learn more about the different form values.
+
+![Run Backfill Query Dialog](docs/img/Databases_Backfill_1.png?raw=true "Run Backfill Query Dialog")
+
+Click the **Run** button when you are ready to run the backfill. Unless you receive an error message, the query has successfully run.
+Check to see that the data exists in the destination measurement as expected:
+
+![Backfill Query Results](docs/img/Databases_Backfill_2.png?raw=true "Backfill Query Results")
+
+_If you don't see any data or your destination measurement was not created check your time ranges to make sure the **Backfill Query** did not operate on an empty result set._
+
+## Working with Measurements and Series
+
+... More Soon
+
+## Working with Users and Permissions
+
+... More Soon
+
+## Application Settings
+
+... More Soon
+
 ## License
 
 Code and documentation are available according to the *MIT* License (see [LICENSE](https://github.com/CymaticLabs/InfluxDBStudio/blob/master/LICENSE)).

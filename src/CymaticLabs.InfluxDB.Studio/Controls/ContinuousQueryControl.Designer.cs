@@ -99,8 +99,8 @@
             this.backFillButton.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.BackFill;
             this.backFillButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.backFillButton.Name = "backFillButton";
-            this.backFillButton.Size = new System.Drawing.Size(70, 22);
-            this.backFillButton.Text = "Back Fill";
+            this.backFillButton.Size = new System.Drawing.Size(89, 22);
+            this.backFillButton.Text = "Run Backfill";
             this.backFillButton.Click += new System.EventHandler(this.backFillButton_Click);
             // 
             // splitContainer

@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppForm));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Measurement", 3, 3);
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Database", 2, 2, new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Connection", 1, 1, new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Measurement", 3, 3);
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Database", 2, 2, new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Connection", 1, 1, new System.Windows.Forms.TreeNode[] {
+            treeNode5});
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -454,7 +454,7 @@
             this.backFillButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.backFillButton.Name = "backFillButton";
             this.backFillButton.Size = new System.Drawing.Size(23, 22);
-            this.backFillButton.Text = "Run Back Fill";
+            this.backFillButton.Text = "Run Backfill";
             this.backFillButton.Click += new System.EventHandler(this.backFillButton_Click);
             // 
             // dropDatabaseButton
@@ -581,20 +581,20 @@
             this.connectionsTreeView.ImageList = this.imageList;
             this.connectionsTreeView.Location = new System.Drawing.Point(0, 0);
             this.connectionsTreeView.Name = "connectionsTreeView";
-            treeNode1.ImageIndex = 3;
-            treeNode1.Name = "Node2";
-            treeNode1.SelectedImageIndex = 3;
-            treeNode1.Text = "Measurement";
-            treeNode2.ImageIndex = 2;
-            treeNode2.Name = "Node1";
-            treeNode2.SelectedImageIndex = 2;
-            treeNode2.Text = "Database";
-            treeNode3.ImageIndex = 1;
-            treeNode3.Name = "Node0";
-            treeNode3.SelectedImageIndex = 1;
-            treeNode3.Text = "Connection";
+            treeNode4.ImageIndex = 3;
+            treeNode4.Name = "Node2";
+            treeNode4.SelectedImageIndex = 3;
+            treeNode4.Text = "Measurement";
+            treeNode5.ImageIndex = 2;
+            treeNode5.Name = "Node1";
+            treeNode5.SelectedImageIndex = 2;
+            treeNode5.Text = "Database";
+            treeNode6.ImageIndex = 1;
+            treeNode6.Name = "Node0";
+            treeNode6.SelectedImageIndex = 1;
+            treeNode6.Text = "Connection";
             this.connectionsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode6});
             this.connectionsTreeView.SelectedImageIndex = 0;
             this.connectionsTreeView.Size = new System.Drawing.Size(168, 491);
             this.connectionsTreeView.TabIndex = 1;
@@ -714,7 +714,7 @@
             this.backFillToolStripMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.BackFill;
             this.backFillToolStripMenuItem.Name = "backFillToolStripMenuItem";
             this.backFillToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.backFillToolStripMenuItem.Text = "Run Back Fill";
+            this.backFillToolStripMenuItem.Text = "Run Backfill";
             this.backFillToolStripMenuItem.Click += new System.EventHandler(this.backFillToolStripMenuItem_Click);
             // 
             // dropDatabaseToolStripMenuItem
