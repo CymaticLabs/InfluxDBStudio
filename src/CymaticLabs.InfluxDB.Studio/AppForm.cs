@@ -132,10 +132,6 @@ namespace CymaticLabs.InfluxDB.Studio
             // Apply the settings to the application
             ApplySettings();
 
-            Console.WriteLine(Settings.TimeFormat);
-            Console.WriteLine(Settings.DateFormat);
-            Console.WriteLine(Settings.AllowUntrustedSsl);
-
             // Set initial tool strip state
             UpdateUIState();
 
@@ -844,6 +840,12 @@ namespace CymaticLabs.InfluxDB.Studio
                         // If the create was successful, show the new database
                         var newDatabaseNode = CreateTreeNode(createDatabaseDialog.DatabaseName, InfluxDbNodeTypes.Database);
                         node.Nodes.Add(newDatabaseNode);
+                        newDatabaseNode.ContextMenuStrip = databaseContextMenu;
+
+                        // Don't render measurement, instead include a loading place holder
+                        var placeholderNode = CreateTreeNode("loading...", InfluxDbNodeTypes.LoadingPlacholder);
+                        newDatabaseNode.Nodes.Add(placeholderNode);
+
                         connectionsTreeView.SelectedNode = newDatabaseNode;
                     }
                 }
