@@ -11,6 +11,8 @@ The following are planned features that are not yet implemented in the current v
 * _Retention Policy management_
 * _An interface for writing point data directly to the database_
 * _Custom stats view for server stats (diagnostics is presently supported)_
+* _Listing currently running queries_
+* _Stopping long running queries_
 
 ## Table of Contents
 
@@ -27,6 +29,8 @@ The following are planned features that are not yet implemented in the current v
    - [Exporting Query Results](#exporting-query-results)
    - [Creating Continuous Queries](#creating-continuous-queries)
    - [Running a Backfill Query](#running-a-backfill-query)
+   - [Listing Running Queries](#listing-running-queries)
+   - [Stopping Long Running Queries](#stopping-long-running-queries)
  - [Working with Measurements and Series](#working-with-measurements-and-series)
    - [Running a Query](#running-a-query)
    - [Showing Tag Keys](#showing-tag-keys)
