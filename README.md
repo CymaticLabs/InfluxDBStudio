@@ -24,13 +24,13 @@ The following are planned features that are not yet implemented in the current v
    - [Creating a Database](#creating-a-database)
    - [Dropping a Database](#dropping-a-database)
    - [Running a Database Query](#running-a-database-query)
-   - [Exporting Query Results](#exporting-query-results)
+   - [Exporting Database Query Results](#exporting-database-query-results)
    - [Creating Continuous Queries](#creating-continuous-queries)
    - [Running a Backfill Query](#running-a-backfill-query)
  - [Working with Measurements and Series](#working-with-measurements-and-series)
-   - [Running a Query](#running-a-query)
+   - [Running a Measurement Query](#running-a-measurement-query)
+   - [Exporting Measurement Query Results](#exporting-measurement-query-results)
    - [Showing Tag Keys](#showing-tag-keys)
-   - [Showing Tag Values](#showing-tag-values)
    - [Showing Tag Values](#showing-tag-values)
    - [Showing Field Keys](#showing-field-keys)
    - [Showing Series](#showing-series)
@@ -141,7 +141,7 @@ _Confirm that you would like to drop the selected database (**this is a permanen
 
 ### Running a Database Query
 
-Select a database node in the tree view and either double click, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command.
+Select a database node in the tree view and either **double-click**, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command.
 
 Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query -> Run** to run the query. Results will be displayed in the table area below:
 
@@ -151,14 +151,14 @@ Using **aggregation (GROUP BY)** in queries will group the series results into t
 
 ![Group Results](docs/img/Databases_RunQuery_3.png?raw=true "Group Results")
 
-### Exporting Query Results
+### Exporting Database Query Results
 
 The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
 Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
 export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
 in the export context menu.
 
-![Exporting Results](docs/img/Databases_ExportQueryResults.png?raw=true "Exporting Results")
+![Exporting Database Results](docs/img/Databases_ExportQueryResults.png?raw=true "Exporting Database Results")
 
 ### Creating Continuous Queries
 
@@ -207,7 +207,84 @@ _If you don't see any data or your destination measurement was not created check
 
 ## Working with Measurements and Series
 
-... More Soon
+The following commands are available from the Measurement **context menu** and **toolbar buttons**:
+
+  * **New Query** - Opens a new query tab where you can run custom queries and explore the results.
+  * **Show Tag Keys** - Lists all tag names/keys that exist for the selected measurement/series.
+  * **Show Tag Values** - Lets you explore the values of all tags keys.
+  * **Show Field Keys** - Lists the names/keys of all fields in the measurement as well as their data types.
+  * **Show Series** - Lists all Series that exist under the selected measurement.
+  * **Drop Measurement** - Drops the selected measurement from the database.
+  * **Drop Series** - Leaves the measurement but drops all series data from it.
+
+### Running a Measurement Query
+
+Select a measurement node in the tree view and either **double-click**, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command.
+
+Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query -> Run** to run the query. Results will be displayed in the table area below:
+
+![Run Query](docs/img/Measurements_RunQuery_1.png?raw=true "Run Query")
+
+Using **aggregation (GROUP BY)** in queries will group the series results into their own tabs in the results area:
+
+![Group Results](docs/img/Databases_RunQuery_3.png?raw=true "Group Results")
+
+### Exporting Measurement Query Results
+
+The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
+Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
+export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
+in the export context menu.
+
+![Exporting Measurement Results](docs/img/Measurements_ExportQuery_1.png?raw=true "Exporting Measurement Results")
+
+### Showing Tag keys
+
+Select a measurement node in the tree view and either **right-click** or use **the toolbar button** and select **Show Tag Keys**:
+
+![Showing Tag Keys](docs/img/Measurements_ShowTagKeys.png?raw=true "Showing Tag Keys")
+
+_Tag keys can be exported by **right-clicking** in the results area and using the **export context menu**._
+
+### Showing Tag Values
+
+Select a measurement node in the tree view and either **right-click** or use **the toolbar button** and select **Show Tag Values**:
+
+![Showing Tag Values](docs/img/Measurements_ShowTagValues.png?raw=true "Showing Tag Values")
+
+_Use the **drop down menu** in the **Tag Values tab** to explore the values for each tag. Tag values can be exported by **right-clicking** in the results area and using the **export context menu**._
+
+### Showing Field Keys
+
+Select a measurement node in the tree view and either **right-click** or use **the toolbar button** and select **Show Field Keys**:
+
+![Showing Field Keys](docs/img/Measurements_ShowFieldKeys.png?raw=true "Showing Field Keys")
+
+_Field keys can be exported by **right-clicking** in the results area and using the **export context menu**._
+
+### Showing Series
+
+Select a measurement node in the tree view and either **right-click** or use **the toolbar button** and select **Show Series**:
+
+![Showing Series](docs/img/Measurements_ShowSeries.png?raw=true "Showing Series")
+
+_Series information can be exported by **right-clicking** in the results area and using the **export context menu**._
+
+### Dropping Measurements
+
+To drop a measurement, select it in the tree view on the left. Then **right-click** or use **the toolbar button** and select **Drop Measurement**:
+
+![Confirm Drop Measurement](docs/img/Measurements_DropMeasurement.png?raw=true "Confirm Drop Measurement")
+
+_Confirm that you would like to drop the selected measurement (**this is a permanent operation**)._
+
+### Dropping Series
+
+To drop all series for a measurement, select the measurement in the tree view on the left. Then **right-click** or use **the toolbar button** and select **Drop Series**:
+
+![Confirm Drop Series](docs/img/Measurements_DropSeries.png?raw=true "Confirm Drop Series")
+
+_Confirm that you would like to drop series for the selected measurement (**this is a permanent operation**). The measurement will be left intact, but all series data will be dropped._
 
 ## Working with Users and Permissions
 
