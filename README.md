@@ -1,4 +1,4 @@
-# InfluxDB Studio
+﻿# InfluxDB Studio
 **InfluxDB Studio is a UI management tool for [the InfluxDB time series database](https://www.influxdata.com/time-series-platform/influxdb/).**
 
 Its inspiration comes from other similar database management tools such as [SQL Server Management Studio](https://en.wikipedia.org/wiki/SQL_Server_Management_Studio)
@@ -26,24 +26,24 @@ The following are planned features that are not yet implemented in the current v
    - [Creating a Database](#creating-a-database)
    - [Dropping a Database](#dropping-a-database)
    - [Running a Database Query](#running-a-database-query)
-   - [Exporting Query Results](#exporting-query-results)
+   - [Exporting Database Query Results](#exporting-database-query-results)
    - [Creating Continuous Queries](#creating-continuous-queries)
    - [Running a Backfill Query](#running-a-backfill-query)
    - [Listing Running Queries](#listing-running-queries)
    - [Stopping Long Running Queries](#stopping-long-running-queries)
  - [Working with Measurements and Series](#working-with-measurements-and-series)
-   - [Running a Query](#running-a-query)
+   - [Running a Measurement Query](#running-a-measurement-query)
+   - [Exporting Measurement Query Results](#exporting-measurement-query-results)
    - [Showing Tag Keys](#showing-tag-keys)
-   - [Showing Tag Values](#showing-tag-values)
    - [Showing Tag Values](#showing-tag-values)
    - [Showing Field Keys](#showing-field-keys)
    - [Showing Series](#showing-series)
    - [Dropping Measurements](#dropping-measurements)
    - [Dropping Series](#dropping-series)
- - [Working with Users and Permissions](#working-with-users-and-permissions)
+ - [Working with Users and Privileges](#working-with-users-and-privileges)
    - [Showing Users](#showing-users)
    - [Managing Users](#managing-users)
-   - [Managing Permissions](#managing-permissions)
+   - [Managing Privileges](#managing-privileges)
  - [Application Settings](#application-settings)
    - [Settings Overview](#settings-overview)
    - [Exporting Settings](#exporting-settings)
@@ -89,7 +89,7 @@ Once you have created at least one connection, select it in the **Manage Connect
 
 ![Connect to a Server](docs/img/ManageConnectionsDialog_WithLocalhost.png?raw=true "Connect to a Server")
 
-After pressing the **Connect** button you will see the **the main application window**. The list of active connection(s) is located in the tree view to the left. This window is where perform most of your interactions with the various InfluxDB connections that you have chosen to connect to. You can launch the **Manage Connections** dialog again at any time by pressing the toolbar button in the top-left corner or by selecting from the application menu **Connections** -> **Manage**.
+After pressing the **Connect** button you will see the **the main application window**. The list of active connection(s) is located in the tree view to the left. This window is where perform most of your interactions with the various InfluxDB connections that you have chosen to connect to. You can launch the **Manage Connections** dialog again at any time by pressing the toolbar button in the top-left corner or by selecting from the application menu **Connections** → **Manage**.
 
 ![Main Window](docs/img/AppForm_InitialView.png?raw=true "Main Window")
 
@@ -145,9 +145,9 @@ _Confirm that you would like to drop the selected database (**this is a permanen
 
 ### Running a Database Query
 
-Select a database node in the tree view and either double click, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command.
+Select a database node in the tree view and either **double-click**, **right-click**, use **the toolbar button**, or select from the application menu **Query → New** to select the **New Query** command.
 
-Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query -> Run** to run the query. Results will be displayed in the table area below:
+Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query → Run** to run the query. Results will be displayed in the table area below:
 
 ![Run Query](docs/img/Databases_RunQuery_2.png?raw=true "Run Query")
 
@@ -155,14 +155,14 @@ Using **aggregation (GROUP BY)** in queries will group the series results into t
 
 ![Group Results](docs/img/Databases_RunQuery_3.png?raw=true "Group Results")
 
-### Exporting Query Results
+### Exporting Database Query Results
 
 The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
 Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
 export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
 in the export context menu.
 
-![Exporting Results](docs/img/Databases_ExportQueryResults.png?raw=true "Exporting Results")
+![Exporting Database Results](docs/img/Databases_ExportQueryResults.png?raw=true "Exporting Database Results")
 
 ### Creating Continuous Queries
 
@@ -211,15 +211,185 @@ _If you don't see any data or your destination measurement was not created check
 
 ## Working with Measurements and Series
 
-... More Soon
+The following commands are available from the Measurement **context menu** and **toolbar buttons**:
 
-## Working with Users and Permissions
+  * **New Query** - Opens a new query tab where you can run custom queries and explore the results.
+  * **Show Tag Keys** - Lists all tag names/keys that exist for the selected measurement/series.
+  * **Show Tag Values** - Lets you explore the values of all tags keys.
+  * **Show Field Keys** - Lists the names/keys of all fields in the measurement as well as their data types.
+  * **Show Series** - Lists all Series that exist under the selected measurement.
+  * **Drop Measurement** - Drops the selected measurement from the database.
+  * **Drop Series** - Leaves the measurement but drops all series data from it.
 
-... More Soon
+### Running a Measurement Query
+
+Select a measurement node in the tree view and either **double-click**, **right-click**, use **the toolbar button**, or select from the application menu **Query → New** to select the **New Query** command.
+
+Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query → Run** to run the query. Results will be displayed in the table area below:
+
+![Run Query](docs/img/Measurements_RunQuery_1.png?raw=true "Run Query")
+
+Using **aggregation (GROUP BY)** in queries will group the series results into their own tabs in the results area:
+
+![Group Results](docs/img/Databases_RunQuery_3.png?raw=true "Group Results")
+
+### Exporting Measurement Query Results
+
+The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
+Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
+export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
+in the export context menu.
+
+![Exporting Measurement Results](docs/img/Measurements_ExportQuery_1.png?raw=true "Exporting Measurement Results")
+
+### Showing Tag keys
+
+Select a measurement node in the tree view and either **right-click** or use **the toolbar button** and select **Show Tag Keys**:
+
+![Showing Tag Keys](docs/img/Measurements_ShowTagKeys.png?raw=true "Showing Tag Keys")
+
+_Tag keys can be exported by **right-clicking** in the results area and using the **export context menu**._
+
+### Showing Tag Values
+
+Select a measurement node in the tree view and either **right-click** or use **the toolbar button** and select **Show Tag Values**:
+
+![Showing Tag Values](docs/img/Measurements_ShowTagValues.png?raw=true "Showing Tag Values")
+
+_Use the **drop down menu** in the **Tag Values tab** to explore the values for each tag. Tag values can be exported by **right-clicking** in the results area and using the **export context menu**._
+
+### Showing Field Keys
+
+Select a measurement node in the tree view and either **right-click** or use **the toolbar button** and select **Show Field Keys**:
+
+![Showing Field Keys](docs/img/Measurements_ShowFieldKeys.png?raw=true "Showing Field Keys")
+
+_Field keys can be exported by **right-clicking** in the results area and using the **export context menu**._
+
+### Showing Series
+
+Select a measurement node in the tree view and either **right-click** or use **the toolbar button** and select **Show Series**:
+
+![Showing Series](docs/img/Measurements_ShowSeries.png?raw=true "Showing Series")
+
+_Series information can be exported by **right-clicking** in the results area and using the **export context menu**._
+
+### Dropping Measurements
+
+To drop a measurement, select it in the tree view on the left. Then **right-click** or use **the toolbar button** and select **Drop Measurement**:
+
+![Confirm Drop Measurement](docs/img/Measurements_DropMeasurement.png?raw=true "Confirm Drop Measurement")
+
+_Confirm that you would like to drop the selected measurement (**this is a permanent operation**)._
+
+### Dropping Series
+
+To drop all series for a measurement, select the measurement in the tree view on the left. Then **right-click** or use **the toolbar button** and select **Drop Series**:
+
+![Confirm Drop Series](docs/img/Measurements_DropSeries.png?raw=true "Confirm Drop Series")
+
+_Confirm that you would like to drop series for the selected measurement (**this is a permanent operation**). The measurement will be left intact, but all series data will be dropped._
+
+## Working with Users and Privileges
+
+The following is a list of available commands when working with users and privileges:
+
+  * **Create User** - Creates a new user on the InfluxDB server.
+  * **Edit User** - Allows a user's administrator status to be updated.
+  * **Change Password** - Allows a user's password to be updated.
+  * **Drop User** - Drops a user from the InfluxDB server.
+  * **Grant Privilege** - Grants a privilege (Read, Write, All) to a user for a particular database.
+  * **Edit Privilege** - Updates a user's privilege for a particular database.
+ 
+### Showing Users
+
+Select a connection node in the tree view and either **right-click** or use **the toolbar button** and select **Show Users**:
+
+![Showing Users](docs/img/Connections_ShowUsers.png?raw=true "Showing Users")
+
+_Users for the connection will be listed with an indicator of whether or not they have administrator privileges. Clicking on a user in the list will also let you browse and edit their database privileges._
+
+### Managing Users
+
+#### Creating a User
+
+After bring up the **Users tab** by selecting the **[Show Users](#showing-users)** command, **right-click** or use the **Create User** button in the **Users tab**:
+
+![Create User Dialog](docs/img/Connections_CreateUser_1.png?raw=true "Create User Dialog")
+
+Enter the user's name and password and select whether or not they will be a server administrator and click the **Create** button.
+
+![User Created](docs/img/Connections_CreateUser_2.png?raw=true "User Created")
+
+#### Editing a User
+
+Presently the only editable aspect of a user is whether or not they are a server administrator. To edit a user **right-click** or click the **Edit User** button in the **Users tab**:
+
+![Edit User](docs/img/Connections_EditUser.png?raw=true "Edit User")
+
+#### Changing a User's Password
+
+To update a user's password, **right-click** or click the **Change Password** button in the **Users tab**:
+
+![Change User Password](docs/img/Connections_ChangeUserPassword.png?raw=true "Change User Password")
+
+#### Dropping a User
+
+To drop a user, **right-click** or click the **Drop User** button in the **Users tab**:
+
+![Confirm Drop User](docs/img/Connections_DropUser.png?raw=true "Confirm Drop User")
+
+_Confirm that you would like to drop the selected user (**this is a permanent operation**)._
+
+### Managing Privileges
+
+After bring up the **Users tab** by selecting the **[Show Users](#showing-users)** command, click on a user to select them from the list. The user's various databases privileges will be listed in the **Privileges Panel** below the users list.
+
+#### Granting a Privilege
+
+To grant a new database privilege to a user make sure the user is selected in the users list and then **right-click** in the **Privileges Panel** or click the **Grant Privilege** button:
+
+![Granting a Privilege](docs/img/Connections_GrantUserPrivilege_1.png?raw=true "Granting a Privilege")
+
+Select the database the privilege will be for and then select one of the following privileges to grant:
+
+  * **Read** - The user can only read from the database.
+  * **Write** - The user can only write to the database.
+  * **All** - The user can read and write to the database.
+
+Click the **Grant** button to grant the user the privilege:
+
+![Privilege Granted](docs/img/Connections_GrantUserPrivilege_2.png?raw=true "Privilege Granted")
+
+#### Editing a Privilege
+
+To edit a privilege make sure the user is selected in the users list and then **right-click** in the **Privileges Panel** or click the **Edit Privilege** button:
+
+![Edit a Privilege](docs/img/Connections_EditUserPrivilege.png?raw=true "Edit a Privilege")
+
+_Select the desired privilege from the drop down and save. To revoke all privileges, select the **None** option._
 
 ## Application Settings
 
-... More Soon
+Application settings can be adjusted in the application **Settings** menu. Settings and connection information can also be imported and exported.
+
+### Settings Overview
+  
+  * **Settings → Time Format**
+    * **12 hour** - Time will be displayed in a 12 hour format with AM/PM.
+	* **24 hour** - Time will be displayed in a 24 hour format.
+  * **Settings → Date Format**
+    * **Month First** - Dates will be displayed as: mm/dd/yyyy.
+	* **Day First** - Dates will be displayed as: dd/mm/yyyy.
+  * **Allow Untrusted SSL** - When this setting is turned on, untrusted SSL certificates for InfluxDB servers will be allowed.
+
+### Exporting Settings
+
+To export application settings, including all configured InfluxDB server connections, select **File → Export → Settings** from the **application menu** and choose a location and file name for the settings file and click **Save**.
+
+### Importing Settings
+
+To import application settings, including all configured InfluxDB server connections, select **File → Import → Settings** from the **application menu** and browse to and select the exported settings file you would like to import then click **Open**.
 
 ## License
 
