@@ -1,4 +1,4 @@
-# InfluxDB Studio
+﻿# InfluxDB Studio
 **InfluxDB Studio is a UI management tool for [the InfluxDB time series database](https://www.influxdata.com/time-series-platform/influxdb/).**
 
 Its inspiration comes from other similar database management tools such as [SQL Server Management Studio](https://en.wikipedia.org/wiki/SQL_Server_Management_Studio)
@@ -36,10 +36,10 @@ The following are planned features that are not yet implemented in the current v
    - [Showing Series](#showing-series)
    - [Dropping Measurements](#dropping-measurements)
    - [Dropping Series](#dropping-series)
- - [Working with Users and Permissions](#working-with-users-and-permissions)
+ - [Working with Users and Privileges](#working-with-users-and-privileges)
    - [Showing Users](#showing-users)
    - [Managing Users](#managing-users)
-   - [Managing Permissions](#managing-permissions)
+   - [Managing Privileges](#managing-privileges)
  - [Application Settings](#application-settings)
    - [Settings Overview](#settings-overview)
    - [Exporting Settings](#exporting-settings)
@@ -85,7 +85,7 @@ Once you have created at least one connection, select it in the **Manage Connect
 
 ![Connect to a Server](docs/img/ManageConnectionsDialog_WithLocalhost.png?raw=true "Connect to a Server")
 
-After pressing the **Connect** button you will see the **the main application window**. The list of active connection(s) is located in the tree view to the left. This window is where perform most of your interactions with the various InfluxDB connections that you have chosen to connect to. You can launch the **Manage Connections** dialog again at any time by pressing the toolbar button in the top-left corner or by selecting from the application menu **Connections** -> **Manage**.
+After pressing the **Connect** button you will see the **the main application window**. The list of active connection(s) is located in the tree view to the left. This window is where perform most of your interactions with the various InfluxDB connections that you have chosen to connect to. You can launch the **Manage Connections** dialog again at any time by pressing the toolbar button in the top-left corner or by selecting from the application menu **Connections** → **Manage**.
 
 ![Main Window](docs/img/AppForm_InitialView.png?raw=true "Main Window")
 
@@ -141,9 +141,9 @@ _Confirm that you would like to drop the selected database (**this is a permanen
 
 ### Running a Database Query
 
-Select a database node in the tree view and either **double-click**, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command.
+Select a database node in the tree view and either **double-click**, **right-click**, use **the toolbar button**, or select from the application menu **Query → New** to select the **New Query** command.
 
-Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query -> Run** to run the query. Results will be displayed in the table area below:
+Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query → Run** to run the query. Results will be displayed in the table area below:
 
 ![Run Query](docs/img/Databases_RunQuery_2.png?raw=true "Run Query")
 
@@ -219,9 +219,9 @@ The following commands are available from the Measurement **context menu** and *
 
 ### Running a Measurement Query
 
-Select a measurement node in the tree view and either **double-click**, **right-click**, use **the toolbar button**, or select from the application menu **Query -> New** to select the **New Query** command.
+Select a measurement node in the tree view and either **double-click**, **right-click**, use **the toolbar button**, or select from the application menu **Query → New** to select the **New Query** command.
 
-Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query -> Run** to run the query. Results will be displayed in the table area below:
+Press **CTRL+R**, **the toolbar button**, or select from the application menu **Query → Run** to run the query. Results will be displayed in the table area below:
 
 ![Run Query](docs/img/Measurements_RunQuery_1.png?raw=true "Run Query")
 
@@ -286,13 +286,106 @@ To drop all series for a measurement, select the measurement in the tree view on
 
 _Confirm that you would like to drop series for the selected measurement (**this is a permanent operation**). The measurement will be left intact, but all series data will be dropped._
 
-## Working with Users and Permissions
+## Working with Users and Privileges
 
-... More Soon
+The following is a list of available commands when working with users and privileges:
+
+  * **Create User** - Creates a new user on the InfluxDB server.
+  * **Edit User** - Allows a user's administrator status to be updated.
+  * **Change Password** - Allows a user's password to be updated.
+  * **Drop User** - Drops a user from the InfluxDB server.
+  * **Grant Privilege** - Grants a privilege (Read, Write, All) to a user for a particular database.
+  * **Edit Privilege** - Updates a user's privilege for a particular database.
+ 
+### Showing Users
+
+Select a connection node in the tree view and either **right-click** or use **the toolbar button** and select **Show Users**:
+
+![Showing Users](docs/img/Connections_ShowUsers.png?raw=true "Showing Users")
+
+_Users for the connection will be listed with an indicator of whether or not they have administrator privileges. Clicking on a user in the list will also let you browse and edit their database privileges._
+
+### Managing Users
+
+#### Creating a User
+
+After bring up the **Users tab** by selecting the **[Show Users](#showing-users)** command, **right-click** or use the **Create User** button in the **Users tab**:
+
+![Create User Dialog](docs/img/Connections_CreateUser_1.png?raw=true "Create User Dialog")
+
+Enter the user's name and password and select whether or not they will be a server administrator and click the **Create** button.
+
+![User Created](docs/img/Connections_CreateUser_2.png?raw=true "User Created")
+
+#### Editing a User
+
+Presently the only editable aspect of a user is whether or not they are a server administrator. To edit a user **right-click** or click the **Edit User** button in the **Users tab**:
+
+![Edit User](docs/img/Connections_EditUser.png?raw=true "Edit User")
+
+#### Changing a User's Password
+
+To update a user's password, **right-click** or click the **Change Password** button in the **Users tab**:
+
+![Change User Password](docs/img/Connections_ChangeUserPassword.png?raw=true "Change User Password")
+
+#### Dropping a User
+
+To drop a user, **right-click** or click the **Drop User** button in the **Users tab**:
+
+![Confirm Drop User](docs/img/Connections_DropUser.png?raw=true "Confirm Drop User")
+
+_Confirm that you would like to drop the selected user (**this is a permanent operation**)._
+
+### Managing Privileges
+
+After bring up the **Users tab** by selecting the **[Show Users](#showing-users)** command, click on a user to select them from the list. The user's various databases privileges will be listed in the **Privileges Panel** below the users list.
+
+#### Granting a Privilege
+
+To grant a new database privilege to a user make sure the user is selected in the users list and then **right-click** in the **Privileges Panel** or click the **Grant Privilege** button:
+
+![Granting a Privilege](docs/img/Connections_GrantUserPrivilege_1.png?raw=true "Granting a Privilege")
+
+Select the database the privilege will be for and then select one of the following privileges to grant:
+
+  * **Read** - The user can only read from the database.
+  * **Write** - The user can only write to the database.
+  * **All** - The user can read and write to the database.
+
+Click the **Grant** button to grant the user the privilege:
+
+![Privilege Granted](docs/img/Connections_GrantUserPrivilege_2.png?raw=true "Privilege Granted")
+
+#### Editing a Privilege
+
+To edit a privilege make sure the user is selected in the users list and then **right-click** in the **Privileges Panel** or click the **Edit Privilege** button:
+
+![Edit a Privilege](docs/img/Connections_EditUserPrivilege.png?raw=true "Edit a Privilege")
+
+_Select the desired privilege from the drop down and save. To revoke all privileges, select the **None** option._
 
 ## Application Settings
 
-... More Soon
+Application settings can be adjusted in the application **Settings** menu. Settings and connection information can also be imported and exported.
+
+### Settings Overview
+  
+  * **Settings → Time Format**
+    * **12 hour** - Time will be displayed in a 12 hour format with AM/PM.
+	* **24 hour** - Time will be displayed in a 24 hour format.
+  * **Settings → Date Format**
+    * **Month First** - Dates will be displayed as: mm/dd/yyyy.
+	* **Day First** - Dates will be displayed as: dd/mm/yyyy.
+  * **Allow Untrusted SSL** - When this setting is turned on, untrusted SSL certificates for InfluxDB servers will be allowed.
+
+### Exporting Settings
+
+To export application settings, including all configured InfluxDB server connections, select **File → Export → Settings** from the **application menu** and choose a location and file name for the settings file and click **Save**.
+
+### Importing Settings
+
+To import application settings, including all configured InfluxDB server connections, select **File → Import → Settings** from the **application menu** and browse to and select the exported settings file you would like to import then click **Open**.
 
 ## License
 
