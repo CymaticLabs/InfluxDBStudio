@@ -200,6 +200,35 @@ namespace CymaticLabs.InfluxDB.Data
         #region Query
 
         /// <summary>
+        /// Gets a list of the currently running queries.
+        /// </summary>
+        /// <returns>A list of the currently running queries.</returns>
+        public async override Task<IEnumerable<InfluxDbRunningQuery>> GetRunningQueriesAsync()
+        {
+            var response = await influx.Client.QueryAsync("_internal", "SHOW QUERIES").ConfigureAwait(false);
+            if (response.Count() == 0 || response.First().Values == null) return new InfluxDbRunningQuery[0];
+            var results = response.First().Values;
+            var queries = new List<InfluxDbRunningQuery>(results.Count);
+
+            foreach (var r in results)
+            {
+                queries.Add(new InfluxDbRunningQuery(int.Parse(r[0].ToString()), r[2] as string, r[3] as string, r[1] as string));
+            }
+
+            return queries;
+        }
+
+        /// <summary>
+        /// Kills a running query given its process ID.
+        /// </summary>
+        /// <returns>The API response.</returns>
+        public async override Task<InfluxDbApiResponse> KillQueryAsync(int pid)
+        {
+            var response = await influx.RequestClient.PostQueryAsync(string.Format("KILL QUERY {0}", pid)).ConfigureAwait(false);
+            return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
+        }
+
+        /// <summary>
         /// Executes a query against the connection for the given database.
         /// </summary>
         /// <param name="database">The name of the database to query.</param>
@@ -468,6 +497,7 @@ namespace CymaticLabs.InfluxDB.Data
         public async override Task<IEnumerable<InfluxDbUser>> GetUsersAsync()
         {
             var response = await influx.User.GetUsersAsync().ConfigureAwait(false);
+            if (response == null || response.Count() == 0) return new InfluxDbUser[0];
             return (from u in response select new InfluxDbUser(u.Name, u.IsAdmin));
         }
 

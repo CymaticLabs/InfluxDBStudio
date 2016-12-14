@@ -456,14 +456,14 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
             // Get the current list of users
             var users = await InfluxDbClient.GetUsersAsync();
 
-            if (users.Count() > 0)
+            if (users != null && users.Count() > 0)
             {
                 foreach (var user in users)
                 {
                     usersListView.Items.Add(
                         new ListViewItem(new string[] {
                                 user.Name,
-                                user.IsAdmin ? RequestControl.CheckMark : null
+                                user.IsAdmin ? CheckMark : null
                     }) { Tag = user });
                 }
             }

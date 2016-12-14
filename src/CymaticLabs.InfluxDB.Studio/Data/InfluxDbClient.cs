@@ -129,6 +129,18 @@ namespace CymaticLabs.InfluxDB.Data
         #region Query
 
         /// <summary>
+        /// Gets a list of the currently running queries.
+        /// </summary>
+        /// <returns>A list of the currently running queries.</returns>
+        public abstract Task<IEnumerable<InfluxDbRunningQuery>> GetRunningQueriesAsync();
+
+        /// <summary>
+        /// Kills a running query given its process ID.
+        /// </summary>
+        /// <returns>The API response.</returns>
+        public abstract Task<InfluxDbApiResponse> KillQueryAsync(int pid);
+
+        /// <summary>
         /// Executes a query against the connection for the given database.
         /// </summary>
         /// <param name="database">The name of the database to query.</param>

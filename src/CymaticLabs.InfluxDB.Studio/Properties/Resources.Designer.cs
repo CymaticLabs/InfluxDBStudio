@@ -435,6 +435,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap KillQuery {
+            get {
+                object obj = ResourceManager.GetObject("KillQuery", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Measurement {
             get {
                 object obj = ResourceManager.GetObject("Measurement", resourceCulture);
@@ -488,6 +498,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         internal static System.Drawing.Bitmap Series {
             get {
                 object obj = ResourceManager.GetObject("Series", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShowQueries {
+            get {
+                object obj = ResourceManager.GetObject("ShowQueries", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

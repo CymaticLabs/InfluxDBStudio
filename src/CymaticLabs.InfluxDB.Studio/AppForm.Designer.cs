@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppForm));
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Measurement", 3, 3);
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Database", 2, 2, new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Connection", 1, 1, new System.Windows.Forms.TreeNode[] {
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Measurement", 3, 3);
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Database", 2, 2, new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Connection", 1, 1, new System.Windows.Forms.TreeNode[] {
+            treeNode2});
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +48,7 @@
             this.queryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newQueryToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.runQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timeFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timeFormatComboBox = new System.Windows.Forms.ToolStripComboBox();
@@ -66,6 +67,7 @@
             this.refreshButton = new System.Windows.Forms.ToolStripButton();
             this.newQueryButton = new System.Windows.Forms.ToolStripButton();
             this.runQueryButton = new System.Windows.Forms.ToolStripButton();
+            this.showQueriesButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.createDatabaseButton = new System.Windows.Forms.ToolStripButton();
             this.continuousQueryButton = new System.Windows.Forms.ToolStripButton();
@@ -86,6 +88,7 @@
             this.connectionsContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.connectionRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showQueriesContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.diagnosticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -207,7 +210,8 @@
             // 
             this.queryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newQueryToolStripMenuItem2,
-            this.runQueryToolStripMenuItem});
+            this.runQueryToolStripMenuItem,
+            this.showQueriesToolStripMenuItem});
             this.queryToolStripMenuItem.Name = "queryToolStripMenuItem";
             this.queryToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.queryToolStripMenuItem.Text = "Query";
@@ -216,7 +220,7 @@
             // 
             this.newQueryToolStripMenuItem2.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.NewQuery;
             this.newQueryToolStripMenuItem2.Name = "newQueryToolStripMenuItem2";
-            this.newQueryToolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
+            this.newQueryToolStripMenuItem2.Size = new System.Drawing.Size(146, 22);
             this.newQueryToolStripMenuItem2.Text = "New Query";
             this.newQueryToolStripMenuItem2.Click += new System.EventHandler(this.newQueryToolStripMenuItem2_Click);
             // 
@@ -225,9 +229,17 @@
             this.runQueryToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("runQueryToolStripMenuItem.Image")));
             this.runQueryToolStripMenuItem.Name = "runQueryToolStripMenuItem";
             this.runQueryToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.runQueryToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.runQueryToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.runQueryToolStripMenuItem.Text = "Run";
             this.runQueryToolStripMenuItem.Click += new System.EventHandler(this.runQueryToolStripMenuItem_Click);
+            // 
+            // showQueriesToolStripMenuItem
+            // 
+            this.showQueriesToolStripMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.ShowQueries;
+            this.showQueriesToolStripMenuItem.Name = "showQueriesToolStripMenuItem";
+            this.showQueriesToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.showQueriesToolStripMenuItem.Text = "Show Queries";
+            this.showQueriesToolStripMenuItem.Click += new System.EventHandler(this.showQueriesToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -318,6 +330,7 @@
             this.disconnectButton,
             this.showUsersButton,
             this.showDiagnosticsButton,
+            this.showQueriesButton,
             this.toolStripSeparator1,
             this.refreshButton,
             this.newQueryButton,
@@ -420,6 +433,16 @@
             this.runQueryButton.Text = "runQueryButton";
             this.runQueryButton.ToolTipText = "Run Query";
             this.runQueryButton.Click += new System.EventHandler(this.runQueryButton_Click);
+            // 
+            // showQueriesButton
+            // 
+            this.showQueriesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.showQueriesButton.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.ShowQueries;
+            this.showQueriesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.showQueriesButton.Name = "showQueriesButton";
+            this.showQueriesButton.Size = new System.Drawing.Size(23, 22);
+            this.showQueriesButton.Text = "Show Queries";
+            this.showQueriesButton.Click += new System.EventHandler(this.showQueriesButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -581,20 +604,20 @@
             this.connectionsTreeView.ImageList = this.imageList;
             this.connectionsTreeView.Location = new System.Drawing.Point(0, 0);
             this.connectionsTreeView.Name = "connectionsTreeView";
-            treeNode4.ImageIndex = 3;
-            treeNode4.Name = "Node2";
-            treeNode4.SelectedImageIndex = 3;
-            treeNode4.Text = "Measurement";
-            treeNode5.ImageIndex = 2;
-            treeNode5.Name = "Node1";
-            treeNode5.SelectedImageIndex = 2;
-            treeNode5.Text = "Database";
-            treeNode6.ImageIndex = 1;
-            treeNode6.Name = "Node0";
-            treeNode6.SelectedImageIndex = 1;
-            treeNode6.Text = "Connection";
+            treeNode1.ImageIndex = 3;
+            treeNode1.Name = "Node2";
+            treeNode1.SelectedImageIndex = 3;
+            treeNode1.Text = "Measurement";
+            treeNode2.ImageIndex = 2;
+            treeNode2.Name = "Node1";
+            treeNode2.SelectedImageIndex = 2;
+            treeNode2.Text = "Database";
+            treeNode3.ImageIndex = 1;
+            treeNode3.Name = "Node0";
+            treeNode3.SelectedImageIndex = 1;
+            treeNode3.Text = "Connection";
             this.connectionsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode3});
             this.connectionsTreeView.SelectedImageIndex = 0;
             this.connectionsTreeView.Size = new System.Drawing.Size(168, 491);
             this.connectionsTreeView.TabIndex = 1;
@@ -628,11 +651,12 @@
             this.connectionsContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectionRefreshToolStripMenuItem,
             this.createDatabaseToolStripMenuItem,
+            this.showQueriesContextMenuItem,
             this.showUsersToolStripMenuItem,
             this.diagnosticsToolStripMenuItem,
             this.disconnectToolStripMenuItem});
             this.connectionsContextMenu.Name = "connectionsContextMenu";
-            this.connectionsContextMenu.Size = new System.Drawing.Size(160, 114);
+            this.connectionsContextMenu.Size = new System.Drawing.Size(160, 136);
             // 
             // connectionRefreshToolStripMenuItem
             // 
@@ -649,6 +673,14 @@
             this.createDatabaseToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.createDatabaseToolStripMenuItem.Text = "Create Database";
             this.createDatabaseToolStripMenuItem.Click += new System.EventHandler(this.createDatabaseToolStripMenuItem_Click);
+            // 
+            // showQueriesContextMenuItem
+            // 
+            this.showQueriesContextMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.ShowQueries;
+            this.showQueriesContextMenuItem.Name = "showQueriesContextMenuItem";
+            this.showQueriesContextMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.showQueriesContextMenuItem.Text = "Show Queries";
+            this.showQueriesContextMenuItem.Click += new System.EventHandler(this.showQueriesContextMenuItem_Click);
             // 
             // showUsersToolStripMenuItem
             // 
@@ -908,6 +940,9 @@
         private System.Windows.Forms.ToolStripMenuItem dateFormatToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox dateFormatComboBox;
         private System.Windows.Forms.ToolStripMenuItem allowUntrustedSSLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton showQueriesButton;
+        private System.Windows.Forms.ToolStripMenuItem showQueriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showQueriesContextMenuItem;
     }
 }
 

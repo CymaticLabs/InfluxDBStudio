@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.IO;
 using log4net;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using CymaticLabs.InfluxDB.Data;
 using CymaticLabs.InfluxDB.Studio.Controls;
 using CymaticLabs.InfluxDB.Studio.Dialogs;
@@ -192,6 +191,14 @@ namespace CymaticLabs.InfluxDB.Studio
             NewQuery(node);
         }
 
+        // Query -> Show Queries
+        private async void showQueriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await ShowQueries(node);
+        }
+
         #endregion Query
 
         #region Settings
@@ -309,6 +316,14 @@ namespace CymaticLabs.InfluxDB.Studio
             var node = connectionsTreeView.SelectedNode;
             if (node == null) return;
             NewQuery(node);
+        }
+
+        // Query -> Show Queries
+        private async void showQueriesButton_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await ShowQueries(node);
         }
 
         // Create Database
@@ -444,6 +459,14 @@ namespace CymaticLabs.InfluxDB.Studio
             var node = connectionsTreeView.SelectedNode;
             if (node == null) return;
             await CreateDatabase(node);
+        }
+
+        // Connection -> Show Queries
+        private async void showQueriesContextMenuItem_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await ShowQueries(node);
         }
 
         // Connection -> Show Users
@@ -1379,6 +1402,35 @@ namespace CymaticLabs.InfluxDB.Studio
             }
         }
 
+        // Queries -> Show Queries
+        async Task ShowQueries(TreeNode node)
+        {
+            try
+            {
+                // Get the connection for this node
+                var connection = GetConnection(node);
+
+                // Get the active client for this connection
+                var client = GetClient(connection);
+
+                // Create a new contiuous query control
+                var runningQueriesControl = new RunningQueriesControl();
+                runningQueriesControl.InfluxDbClient = client;
+
+                // Add a tab with a query control in it
+                tabControl.AddTabWithControl(connection.Name + ".queries",
+                    runningQueriesControl, Properties.Resources.ShowQueries);
+
+                UpdateUIState();
+
+                await runningQueriesControl.ExecuteRequestAsync();
+            }
+            catch (Exception ex)
+            {
+                DisplayException(ex);
+            }
+        }
+
         // Executes the current request control's request
         async Task ExecuteCurrentRequest()
         {
@@ -1464,6 +1516,7 @@ namespace CymaticLabs.InfluxDB.Studio
             refreshToolStripMenuItem.Enabled = false;
             runQueryToolStripMenuItem.Enabled = false;
             newQueryToolStripMenuItem2.Enabled = false;
+            showQueriesToolStripMenuItem.Enabled = false;
 
             if (node != null)
             {
@@ -1473,6 +1526,7 @@ namespace CymaticLabs.InfluxDB.Studio
             // Update run query based on whether or not a request control is currently in focus
             runQueryToolStripMenuItem.Enabled = canRunQeury;
             newQueryToolStripMenuItem2.Enabled = type == InfluxDbNodeTypes.Database || type == InfluxDbNodeTypes.Measurement;
+            showQueriesToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Connection;
 
             #endregion File Menu
 
@@ -1480,6 +1534,7 @@ namespace CymaticLabs.InfluxDB.Studio
 
             // Start out by clearing all button states
             disconnectButton.Enabled = false;
+            showQueriesButton.Enabled = false;
             showUsersButton.Enabled = false;
             showDiagnosticsButton.Enabled = false;
             refreshButton.Enabled = false;
@@ -1503,6 +1558,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 disconnectButton.Enabled = true;
                 refreshButton.Enabled = type == InfluxDbNodeTypes.Connection || type == InfluxDbNodeTypes.Database;
                 newQueryButton.Enabled = type == InfluxDbNodeTypes.Database || type == InfluxDbNodeTypes.Measurement;
+                showQueriesButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 showUsersButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 showDiagnosticsButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 createDatabaseButton.Enabled = type == InfluxDbNodeTypes.Connection;
@@ -1524,6 +1580,7 @@ namespace CymaticLabs.InfluxDB.Studio
 
             #region Context Menus
 
+            showQueriesContextMenuItem.Enabled = type == InfluxDbNodeTypes.Connection;
             continousQueriesToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database;
             backFillToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database;
             dropDatabaseToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database && node.Text != "_internal";
@@ -1779,6 +1836,14 @@ namespace CymaticLabs.InfluxDB.Studio
         public static void DisplayException(Exception ex, string caption = "Unexpected Error", bool stackTrace = false)
         {
             if (ex == null) throw new ArgumentNullException("ex");
+
+            // Workaround for KILL QUERY command
+            if (ex is InfluxData.Net.Common.Infrastructure.InfluxDataApiException)
+            {
+                var apiEx = (InfluxData.Net.Common.Infrastructure.InfluxDataApiException)ex;
+                if (apiEx.ResponseBody.Contains("query interrupted")) return;
+            }
+
             var message = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
             if (stackTrace) message += "\n\n{0}" + ex.StackTrace;
 
