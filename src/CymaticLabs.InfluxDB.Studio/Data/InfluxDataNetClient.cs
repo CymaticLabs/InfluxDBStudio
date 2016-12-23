@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using InfluxData.Net.InfluxDb.Enums;
 using InfluxData.Net.Common.Enums;
 using InfluxData.Net.InfluxDb.Models;
+using InfluxData.Net.InfluxDb.Models.Responses;
 
 namespace CymaticLabs.InfluxDB.Data
 {
@@ -234,17 +235,17 @@ namespace CymaticLabs.InfluxDB.Data
         /// <param name="database">The name of the database to query.</param>
         /// <param name="query">The query to execute.</param>
         /// <returns></returns>
-        public async override Task<IEnumerable<InfluxDbQueryResult>> QueryAsync(string database, string query)
+        public async override Task<IEnumerable<InfluxDbSeries>> QueryAsync(string database, string query)
         {
             if (string.IsNullOrWhiteSpace(database)) throw new ArgumentNullException("database");
             if (string.IsNullOrWhiteSpace(query)) throw new ArgumentNullException("query");
 
             var response = await influx.Client.QueryAsync(database, query).ConfigureAwait(false);
-            var results = new List<InfluxDbQueryResult>(response.Count());
+            var results = new List<InfluxDbSeries>(response.Count());
 
             foreach (var r in response)
             {
-                results.Add(new InfluxDbQueryResult(r.Name, r.Columns, r.Tags, r.Values));
+                results.Add(new InfluxDbSeries(r.Name, r.Columns, r.Tags, r.Values));
             }
 
             return results;
@@ -487,6 +488,32 @@ namespace CymaticLabs.InfluxDB.Data
             };
         }
 
+        /// <summary>
+        /// Gets server statistics from the InfluxDB server.
+        /// </summary>
+        /// <returns>The server's statistics.</returns>
+        public async override Task<InfluxDbStats> GetStatsAsync()
+        {
+            var stats = await influx.Diagnostics.GetStatsAsync().ConfigureAwait(false);
+
+            return new InfluxDbStats()
+            {
+                CQ = stats.CQ == null ? null : (from s in stats.CQ select ConvertSeries(s)),
+                Database = stats.Database == null ? null : (from s in stats.Database select ConvertSeries(s)),
+                Engine = stats.Engine == null ? null : (from s in stats.Engine select ConvertSeries(s)),
+                Httpd = stats.Httpd == null ? null : (from s in stats.Httpd select ConvertSeries(s)),
+                QueryExecutor = stats.QueryExecutor == null ? null : (from s in stats.QueryExecutor select ConvertSeries(s)),
+                Runtime = stats.Runtime == null ? null : (from s in stats.Runtime select ConvertSeries(s)),
+                Shard = stats.Shard == null ? null : (from s in stats.Shard select ConvertSeries(s)),
+                Subscriber = stats.Subscriber == null ? null : (from s in stats.Subscriber select ConvertSeries(s)),
+                Tsm1Cache = stats.Tsm1Cache == null ? null : (from s in stats.Tsm1Cache select ConvertSeries(s)),
+                Tsm1Filestore = stats.Tsm1Filestore == null ? null : (from s in stats.Tsm1Filestore select ConvertSeries(s)),
+                Tsm1Wal = stats.Tsm1Wal == null ? null : (from s in stats.Tsm1Wal select ConvertSeries(s)),
+                WAL = stats.WAL == null ? null : (from s in stats.WAL select ConvertSeries(s)),
+                Write = stats.Write == null ? null : (from s in stats.Write select ConvertSeries(s))
+            };
+        }
+
         #endregion Server
 
         #region Users
@@ -606,6 +633,16 @@ namespace CymaticLabs.InfluxDB.Data
         }
 
         #endregion Users
+
+        #region Utility
+
+        // Converts from InfluxData.NET serie to native
+        InfluxDbSeries ConvertSeries(Serie serie)
+        {
+            return new InfluxDbSeries(serie.Name, serie.Columns, serie.Tags, serie.Values);
+        }
+
+        #endregion Utility
 
         #endregion Methods
     }

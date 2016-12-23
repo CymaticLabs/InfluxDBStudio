@@ -20,7 +20,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         int resultsCount = 0;
 
         // A cache of the last results received.
-        InfluxDbQueryResult lastResult;
+        InfluxDbSeries lastResult;
 
         #endregion Fields
 
@@ -97,7 +97,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         /// </summary>
         /// <param name="result">The query result to render.</param>
         /// <returns>The total number of results found.</returns>
-        public int UpdateResults(InfluxDbQueryResult result, bool clear = false)
+        public int UpdateResults(InfluxDbSeries result, bool clear = false)
         {
             if (result == null) throw new ArgumentNullException("result");
 

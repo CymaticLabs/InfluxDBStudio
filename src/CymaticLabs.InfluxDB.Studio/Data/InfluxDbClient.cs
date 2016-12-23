@@ -146,7 +146,7 @@ namespace CymaticLabs.InfluxDB.Data
         /// <param name="database">The name of the database to query.</param>
         /// <param name="query">The query to execute.</param>
         /// <returns>The result of the query.</returns>
-        public abstract Task<IEnumerable<InfluxDbQueryResult>> QueryAsync(string database, string query);
+        public abstract Task<IEnumerable<InfluxDbSeries>> QueryAsync(string database, string query);
 
         /// <summary>
         /// Gets the continuous queries for a given database.
@@ -228,6 +228,12 @@ namespace CymaticLabs.InfluxDB.Data
         /// </summary>
         /// <returns>The server's diagnostics information.</returns>
         public abstract Task<InfluxDbDiagnostics> GetDiagnosticsAsync();
+
+        /// <summary>
+        /// Gets server statistics from the InfluxDB server.
+        /// </summary>
+        /// <returns>The server's statistics.</returns>
+        public abstract Task<InfluxDbStats> GetStatsAsync();
 
         #endregion Server
 

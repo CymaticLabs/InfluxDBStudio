@@ -115,6 +115,12 @@
     <Compile Include="Controls\RunningQueriesControl.Designer.cs">
       <DependentUpon>RunningQueriesControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StatsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StatsControl.Designer.cs">
+      <DependentUpon>StatsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\InfluxDataNetClient.cs" />
     <Compile Include="Data\InfluxDbApiResponse.cs" />
     <Compile Include="Data\InfluxDbBackfillParams.cs" />
@@ -131,8 +137,9 @@
     <Compile Include="Data\InfluxDbPingResponse.cs" />
     <Compile Include="Data\InfluxDbPoint.cs" />
     <Compile Include="Data\InfluxDbPrivileges.cs" />
-    <Compile Include="Data\InfluxDbQueryResult.cs" />
+    <Compile Include="Data\InfluxDbSeries.cs" />
     <Compile Include="Data\InfluxDbRunningQuery.cs" />
+    <Compile Include="Data\InfluxDbStats.cs" />
     <Compile Include="Data\InfluxDbTagValue.cs" />
     <Compile Include="Data\InfluxDbTimePrecisions.cs" />
     <Compile Include="Data\InfluxDbTimeUnits.cs" />
@@ -284,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SeriesControl.resx">
       <DependentUpon>SeriesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StatsControl.resx">
+      <DependentUpon>StatsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
@@ -513,6 +523,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImagesFinal\KillQuery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\Stats.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

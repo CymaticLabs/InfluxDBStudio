@@ -277,6 +277,14 @@ namespace CymaticLabs.InfluxDB.Studio
             await ShowUsers(node);
         }
 
+        // Show Statistics
+        private async void showStatsButton_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await ShowStatistics(node);
+        }
+
         // Show Diagnostics
         private async void showDiagnosticsButton_Click(object sender, EventArgs e)
         {
@@ -477,7 +485,15 @@ namespace CymaticLabs.InfluxDB.Studio
             await ShowUsers(node);
         }
 
-        // Connection -> Diagnostics
+        // Connection -> Show Statistics
+        private async void showStatisticsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await ShowStatistics(node);
+        }
+
+        // Connection -> Show Diagnostics
         private async void diagnosticsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var node = connectionsTreeView.SelectedNode;
@@ -884,7 +900,7 @@ namespace CymaticLabs.InfluxDB.Studio
         {
             try
             {
-                // Query diagnostics info
+                // Get connection
                 var connection = GetConnection(node);
                 var client = GetClient(connection);
 
@@ -900,6 +916,34 @@ namespace CymaticLabs.InfluxDB.Studio
 
                 // Render
                 await usersControl.ExecuteRequestAsync();
+            }
+            catch (Exception ex)
+            {
+                DisplayException(ex);
+            }
+        }
+
+        // Connection -> Show Statistics
+        async Task ShowStatistics(TreeNode node)
+        {
+            try
+            {
+                // Get connection
+                var connection = GetConnection(node);
+                var client = GetClient(connection);
+
+                // Create a new diagnostics control
+                var statsControl = new StatsControl();
+                statsControl.InfluxDbClient = client;
+
+                // Add a tab with a query control in it
+                tabControl.AddTabWithControl(connection.Name + ".statistics", statsControl, Properties.Resources.Stats);
+
+                // Update UI
+                UpdateUIState();
+
+                // Render
+                await statsControl.ExecuteRequestAsync();
             }
             catch (Exception ex)
             {
@@ -1536,6 +1580,7 @@ namespace CymaticLabs.InfluxDB.Studio
             disconnectButton.Enabled = false;
             showQueriesButton.Enabled = false;
             showUsersButton.Enabled = false;
+            showStatsButton.Enabled = false;
             showDiagnosticsButton.Enabled = false;
             refreshButton.Enabled = false;
             runQueryButton.Enabled = false;
@@ -1560,6 +1605,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 newQueryButton.Enabled = type == InfluxDbNodeTypes.Database || type == InfluxDbNodeTypes.Measurement;
                 showQueriesButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 showUsersButton.Enabled = type == InfluxDbNodeTypes.Connection;
+                showStatsButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 showDiagnosticsButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 createDatabaseButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 continuousQueryButton.Enabled = type == InfluxDbNodeTypes.Database;
@@ -1580,6 +1626,7 @@ namespace CymaticLabs.InfluxDB.Studio
 
             #region Context Menus
 
+            showStatisticsToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Connection;
             showQueriesContextMenuItem.Enabled = type == InfluxDbNodeTypes.Connection;
             continousQueriesToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database;
             backFillToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database;

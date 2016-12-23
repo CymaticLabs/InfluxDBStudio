@@ -41,7 +41,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView.Dock = System.Windows.Forms.DockStyle.None;
             this.listView.Location = new System.Drawing.Point(0, 28);
-            this.listView.Size = new System.Drawing.Size(773, 452);
+            this.listView.Size = new System.Drawing.Size(773, 449);
             // 
             // toolStrip1
             // 
