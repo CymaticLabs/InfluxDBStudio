@@ -269,6 +269,14 @@ namespace CymaticLabs.InfluxDB.Studio
             }
         }
 
+        // Show Retention Policies
+        private async void showPoliciesButton_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await ShowRetentionPolicies(node);
+        }
+
         // Show Users
         private async void showUsersButton_Click(object sender, EventArgs e)
         {
@@ -475,6 +483,14 @@ namespace CymaticLabs.InfluxDB.Studio
             var node = connectionsTreeView.SelectedNode;
             if (node == null) return;
             await ShowQueries(node);
+        }
+
+        // Connection -> Show Retention Policies
+        private  async void showRetentionPoliciesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await ShowRetentionPolicies(node);
         }
 
         // Connection -> Show Users
@@ -888,6 +904,34 @@ namespace CymaticLabs.InfluxDB.Studio
                         connectionsTreeView.SelectedNode = newDatabaseNode;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                DisplayException(ex);
+            }
+        }
+
+        // Connection -> Show Retention Policies
+        async Task ShowRetentionPolicies(TreeNode node)
+        {
+            try
+            {
+                // Get connection
+                var connection = GetConnection(node);
+                var client = GetClient(connection);
+
+                // Create a new control
+                var policyControl = new RetentionPolicyControl();
+                policyControl.InfluxDbClient = client;
+
+                // Add a tab with a query control in it
+                tabControl.AddTabWithControl(connection.Name + ".policies", policyControl, Properties.Resources.RetentionPolicy);
+
+                // Update UI
+                UpdateUIState();
+
+                // Render
+                await policyControl.ExecuteRequestAsync();
             }
             catch (Exception ex)
             {
@@ -1579,6 +1623,7 @@ namespace CymaticLabs.InfluxDB.Studio
             // Start out by clearing all button states
             disconnectButton.Enabled = false;
             showQueriesButton.Enabled = false;
+            showPoliciesButton.Enabled = false;
             showUsersButton.Enabled = false;
             showStatsButton.Enabled = false;
             showDiagnosticsButton.Enabled = false;
@@ -1604,6 +1649,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 refreshButton.Enabled = type == InfluxDbNodeTypes.Connection || type == InfluxDbNodeTypes.Database;
                 newQueryButton.Enabled = type == InfluxDbNodeTypes.Database || type == InfluxDbNodeTypes.Measurement;
                 showQueriesButton.Enabled = type == InfluxDbNodeTypes.Connection;
+                showPoliciesButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 showUsersButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 showStatsButton.Enabled = type == InfluxDbNodeTypes.Connection;
                 showDiagnosticsButton.Enabled = type == InfluxDbNodeTypes.Connection;
@@ -1626,7 +1672,6 @@ namespace CymaticLabs.InfluxDB.Studio
 
             #region Context Menus
 
-            showStatisticsToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Connection;
             showQueriesContextMenuItem.Enabled = type == InfluxDbNodeTypes.Connection;
             continousQueriesToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database;
             backFillToolStripMenuItem.Enabled = type == InfluxDbNodeTypes.Database;

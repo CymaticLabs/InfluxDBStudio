@@ -265,6 +265,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CreateRetentionPolicy {
+            get {
+                object obj = ResourceManager.GetObject("CreateRetentionPolicy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CreateUser {
             get {
                 object obj = ResourceManager.GetObject("CreateUser", resourceCulture);
@@ -345,6 +355,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DropRetentionPolicy {
+            get {
+                object obj = ResourceManager.GetObject("DropRetentionPolicy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DropSeries {
             get {
                 object obj = ResourceManager.GetObject("DropSeries", resourceCulture);
@@ -378,6 +398,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         internal static System.Drawing.Bitmap EditPrivilege {
             get {
                 object obj = ResourceManager.GetObject("EditPrivilege", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EditRetentionPolicy {
+            get {
+                object obj = ResourceManager.GetObject("EditRetentionPolicy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -478,6 +508,16 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         internal static System.Drawing.Bitmap Refresh {
             get {
                 object obj = ResourceManager.GetObject("Refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RetentionPolicy {
+            get {
+                object obj = ResourceManager.GetObject("RetentionPolicy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

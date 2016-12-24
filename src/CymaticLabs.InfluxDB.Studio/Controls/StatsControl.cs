@@ -50,7 +50,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         {
             var lastStatistic = SelectedStatistic;
             SelectedStatistic = statsComboBox.SelectedItem == null ? null : statsComboBox.SelectedItem.ToString();
-            if (lastStatistic != SelectedStatistic) DisplaySelectedStats();
+            if (lastStatistic != SelectedStatistic) BindSelectedStats();
         }
 
         #endregion Event Handlers
@@ -92,7 +92,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
                     if (item.ToString() == SelectedStatistic)
                     {
                         statsComboBox.SelectedIndex = i;
-                        DisplaySelectedStats();
+                        BindSelectedStats();
                         break;
                     }
                 }
@@ -105,7 +105,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         }
 
         // Displays the statistic data for the selected statistic
-        void DisplaySelectedStats()
+        void BindSelectedStats()
         {
             // Clear current tab list
             tabControl.TabPages.Clear();

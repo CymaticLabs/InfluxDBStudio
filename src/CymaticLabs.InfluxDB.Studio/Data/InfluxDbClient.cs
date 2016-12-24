@@ -62,6 +62,17 @@ namespace CymaticLabs.InfluxDB.Data
 
         #endregion Databases
 
+        #region Retention Policies
+
+        /// <summary>
+        /// Gets the retention policies for a given database.
+        /// </summary>
+        /// <param name="database">The name of the database to get retention policies for.</param>
+        /// <returns>The list of retention policies for the database.</returns>
+        public abstract Task<IEnumerable<InfluxDbRetentionPolicy>> GetRetentionPoliciesAsync(string database);
+
+        #endregion Retention Policies
+
         #region Measurements
 
         /// <summary>

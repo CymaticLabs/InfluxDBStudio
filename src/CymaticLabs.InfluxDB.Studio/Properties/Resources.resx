@@ -271,4 +271,16 @@
   <data name="Stats" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\Stats.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CreateRetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\CreateRetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DropRetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DropRetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EditRetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\EditRetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\RetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

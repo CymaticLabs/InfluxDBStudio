@@ -109,6 +109,12 @@
     <Compile Include="Controls\ExtendedTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\RetentionPolicyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RetentionPolicyControl.Designer.cs">
+      <DependentUpon>RetentionPolicyControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RunningQueriesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,6 +143,7 @@
     <Compile Include="Data\InfluxDbPingResponse.cs" />
     <Compile Include="Data\InfluxDbPoint.cs" />
     <Compile Include="Data\InfluxDbPrivileges.cs" />
+    <Compile Include="Data\InfluxDbRetentionPolicy.cs" />
     <Compile Include="Data\InfluxDbSeries.cs" />
     <Compile Include="Data\InfluxDbRunningQuery.cs" />
     <Compile Include="Data\InfluxDbStats.cs" />
@@ -285,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ExtendedTabControl.resx">
       <DependentUpon>ExtendedTabControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RetentionPolicyControl.resx">
+      <DependentUpon>RetentionPolicyControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\RunningQueriesControl.resx">
       <DependentUpon>RunningQueriesControl.cs</DependentUpon>
@@ -526,6 +536,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImagesFinal\Stats.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\CreateRetentionPolicy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\DropRetentionPolicy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\EditRetentionPolicy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImagesFinal\RetentionPolicy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

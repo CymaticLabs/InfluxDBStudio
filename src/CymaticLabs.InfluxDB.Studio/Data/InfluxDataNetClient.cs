@@ -83,6 +83,32 @@ namespace CymaticLabs.InfluxDB.Data
 
         #endregion Databases
 
+        #region Retention Policies
+
+        /// <summary>
+        /// Gets the retention policies for a given database.
+        /// </summary>
+        /// <param name="database">The name of the database to get retention policies for.</param>
+        /// <returns>The list of retention policies for the database.</returns>
+        public async override Task<IEnumerable<InfluxDbRetentionPolicy>> GetRetentionPoliciesAsync(string database)
+        {
+            if (string.IsNullOrWhiteSpace(database)) throw new ArgumentNullException("database");
+            var response = await influx.Retention.GetRetentionPoliciesAsync(database);
+
+            return from rp in response
+                   select new InfluxDbRetentionPolicy()
+                   {
+                       Database = database,
+                       Default = rp.Default,
+                       Duration = rp.Duration,
+                       Name = rp.Name,
+                       ReplicationCopies = rp.ReplicationCopies,
+                       ShardGroupDuration = rp.ShardGroupDuration,
+                   };
+        }
+
+        #endregion Retention Policies
+
         #region Measurements
 
         /// <summary>
