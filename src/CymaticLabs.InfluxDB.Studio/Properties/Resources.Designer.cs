@@ -523,6 +523,15 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The duration of the retention policy: 1h, 30m, 45s, etc..
+        /// </summary>
+        internal static string RP_Duration_Info {
+            get {
+                return ResourceManager.GetString("RP_Duration_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap RunQuery {

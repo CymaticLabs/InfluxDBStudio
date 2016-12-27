@@ -194,6 +194,12 @@
     <Compile Include="Controls\DiagnosticsControl.Designer.cs">
       <DependentUpon>DiagnosticsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\RetentionPolicyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\RetentionPolicyDialog.Designer.cs">
+      <DependentUpon>RetentionPolicyDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\EditPrivilegeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -325,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DiagnosticsControl.resx">
       <DependentUpon>DiagnosticsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\RetentionPolicyDialog.resx">
+      <DependentUpon>RetentionPolicyDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\CreateUserDialog.resx">
       <DependentUpon>CreateUserDialog.cs</DependentUpon>
@@ -548,6 +557,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImagesFinal\RetentionPolicy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\RP_Duration_Info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

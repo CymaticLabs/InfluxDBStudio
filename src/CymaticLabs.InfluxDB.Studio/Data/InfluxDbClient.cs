@@ -71,6 +71,36 @@ namespace CymaticLabs.InfluxDB.Data
         /// <returns>The list of retention policies for the database.</returns>
         public abstract Task<IEnumerable<InfluxDbRetentionPolicy>> GetRetentionPoliciesAsync(string database);
 
+        /// <summary>
+        /// Creates a new retention policy for a given database.
+        /// </summary>
+        /// <param name="database">The name of the database to create the retention policy for.</param>
+        /// <param name="policyName">The policy's name.</param>
+        /// <param name="duration">The retention duration of data.</param>
+        /// <param name="replication">The replication number for the policy.</param>
+        /// <param name="isDefault">Whether or not this will be the default policy for the database.</param>
+        /// <returns>The API response.</returns>
+        public abstract Task<InfluxDbApiResponse> CreateRetentionPolicyAsync(string database, string policyName, string duration, int replication, bool isDefault = false);
+
+        /// <summary>
+        /// Alters an existing retention policy for a given database.
+        /// </summary>
+        /// <param name="database">The name of the database the retention policy belongs to.</param>
+        /// <param name="policyName">The policy's name to alter.</param>
+        /// <param name="duration">The retention duration of data.</param>
+        /// <param name="replication">The replication number for the policy.</param>
+        /// <param name="isDefault">Whether or not this will be the default policy for the database.</param>
+        /// <returns>The API response.</returns>
+        public abstract Task<InfluxDbApiResponse> AlterRetentionPolicyAsync(string database, string policyName, string duration, int replication, bool isDefault = false);
+
+        /// <summary>
+        /// Drops an existing retention policy.
+        /// </summary>
+        /// <param name="database">The name of the database the retention policy belongs to.</param>
+        /// <param name="policyName">The name of the retention policy to drop.</param>
+        /// <returns>The API response.</returns>
+        public abstract Task<InfluxDbApiResponse> DropRetentionPolicyAsync(string database, string policyName);
+
         #endregion Retention Policies
 
         #region Measurements

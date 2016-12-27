@@ -1,0 +1,1 @@
+﻿The duration of the retention policy: 1h, 30m, 45s, etc.

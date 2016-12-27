@@ -107,6 +107,78 @@ namespace CymaticLabs.InfluxDB.Data
                    };
         }
 
+        /// <summary>
+        /// Creates a new retention policy for a given database.
+        /// </summary>
+        /// <param name="database">The name of the database to create the retention policy for.</param>
+        /// <param name="policyName">The policy's name.</param>
+        /// <param name="duration">The retention duration of data.</param>
+        /// <param name="replication">The replication number for the policy.</param>
+        /// <param name="isDefault">Whether or not this will be the default policy for the database.</param>
+        /// <returns>The API response.</returns>
+        public async override Task<InfluxDbApiResponse> CreateRetentionPolicyAsync(string database, string policyName, string duration, int replication, bool isDefault = false)
+        {
+            if (string.IsNullOrWhiteSpace(database)) throw new ArgumentNullException("database");
+            if (string.IsNullOrWhiteSpace(policyName)) throw new ArgumentNullException("policyName");
+            if (string.IsNullOrWhiteSpace(duration)) throw new ArgumentNullException("duration");
+            if (replication <= 0) replication = 1;
+
+            // Create the policy and get the response
+            var response = await influx.Retention.CreateRetentionPolicyAsync(database, policyName, duration, replication).ConfigureAwait(false);
+
+            // If the default was supplied, run a second query to alter and add the default status since InfluxData.NET doesn't allow for the default argument
+            if (response != null && response.Success && isDefault)
+            {
+                var alterResponse = await influx.Client.QueryAsync(database, string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT", policyName, database)).ConfigureAwait(false);
+            }
+
+            return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
+        }
+
+        /// <summary>
+        /// Alters an existing retention policy for a given database.
+        /// </summary>
+        /// <param name="database">The name of the database the retention policy belongs to.</param>
+        /// <param name="policyName">The policy's name to alter.</param>
+        /// <param name="duration">The retention duration of data.</param>
+        /// <param name="replication">The replication number for the policy.</param>
+        /// <param name="isDefault">Whether or not this will be the default policy for the database.</param>
+        /// <returns>The API response.</returns>
+        public async override Task<InfluxDbApiResponse> AlterRetentionPolicyAsync(string database, string policyName, string duration, int replication, bool isDefault = false)
+        {
+            if (string.IsNullOrWhiteSpace(database)) throw new ArgumentNullException("database");
+            if (string.IsNullOrWhiteSpace(policyName)) throw new ArgumentNullException("policyName");
+            if (string.IsNullOrWhiteSpace(duration)) throw new ArgumentNullException("duration");
+            if (replication <= 0) replication = 1;
+
+            // Alter the policy and get the response
+            var response = await influx.Retention.AlterRetentionPolicyAsync(database, policyName, duration, replication).ConfigureAwait(false);
+
+            // If the default was supplied, run a second query to alter and add the default status since InfluxData.NET doesn't allow for the default argument
+            if (response != null && response.Success && isDefault)
+            {
+                var alterResponse = await influx.Client.QueryAsync(database, string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT", policyName, database)).ConfigureAwait(false);
+            }
+
+            return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
+        }
+
+        /// <summary>
+        /// Drops an existing retention policy.
+        /// </summary>
+        /// <param name="database">The name of the database the retention policy belongs to.</param>
+        /// <param name="policyName">The name of the retention policy to drop.</param>
+        /// <returns>The API response.</returns>
+        public async override Task<InfluxDbApiResponse> DropRetentionPolicyAsync(string database, string policyName)
+        {
+            if (string.IsNullOrWhiteSpace(database)) throw new ArgumentNullException("database");
+            if (string.IsNullOrWhiteSpace(policyName)) throw new ArgumentNullException("policyName");
+
+            var response = await influx.Retention.DropRetentionPolicyAsync(database, policyName);
+
+            return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
+        }
+
         #endregion Retention Policies
 
         #region Measurements

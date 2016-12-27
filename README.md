@@ -8,11 +8,11 @@ InfluxDB Studio presently implements interfaces and workflows for most of the In
 
 The following are planned features that are not yet implemented in the current version:
 
-* _Retention Policy management_
-* _An interface for writing point data directly to the database_
+* _~~Retention Policy management~~ implemented, but not documented_
 * _~~Custom stats view for server stats (diagnostics is presently supported)~~ implemented, but not documented_
 * _~~Listing currently running queries~~ implemented, but not documented_ 
 * _~~Stopping long running queries~~ implemented, but not documented_
+* _An interface for writing point data directly to the database_
 
 ## Table of Contents
 
