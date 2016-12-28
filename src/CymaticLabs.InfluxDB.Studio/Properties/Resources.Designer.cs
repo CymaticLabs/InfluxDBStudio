@@ -620,5 +620,15 @@ namespace CymaticLabs.InfluxDB.Studio.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WritePoint {
+            get {
+                object obj = ResourceManager.GetObject("WritePoint", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

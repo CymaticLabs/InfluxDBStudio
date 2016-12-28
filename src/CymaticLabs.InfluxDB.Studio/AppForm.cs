@@ -342,6 +342,14 @@ namespace CymaticLabs.InfluxDB.Studio
             await ShowQueries(node);
         }
 
+        // Write Point Data
+        private async void writePointButton_Click(object sender, EventArgs e)
+        {
+            var node = connectionsTreeView.SelectedNode;
+            if (node == null) return;
+            await WritePointData(node);
+        }
+
         // Create Database
         private async void createDatabaseButton_Click(object sender, EventArgs e)
         {
@@ -1501,7 +1509,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 // Get the active client for this connection
                 var client = GetClient(connection);
 
-                // Create a new contiuous query control
+                // Create a new control
                 var runningQueriesControl = new RunningQueriesControl();
                 runningQueriesControl.InfluxDbClient = client;
 
@@ -1512,6 +1520,61 @@ namespace CymaticLabs.InfluxDB.Studio
                 UpdateUIState();
 
                 await runningQueriesControl.ExecuteRequestAsync();
+            }
+            catch (Exception ex)
+            {
+                DisplayException(ex);
+            }
+        }
+
+        // Database|Measurement -> Write Point Data
+        async Task WritePointData(TreeNode node)
+        {
+            try
+            {
+                // Get the connection for this node
+                var connection = GetConnection(node);
+
+                // Get the active client for this connection
+                var client = GetClient(connection);
+
+                // Some dynamic values
+                string database = null;
+                string measurement = null;
+
+                // Figure out what type of node was clicked
+                switch (GetNodeType(node))
+                {
+                    // Connection
+                    case InfluxDbNodeTypes.Connection:
+                        return;
+
+                    // Database
+                    case InfluxDbNodeTypes.Database:
+                        database = node.Text;
+                        break;
+
+                    // Measurement
+                    case InfluxDbNodeTypes.Measurement:
+                        database = node.Parent.Text;
+                        measurement = node.Text;
+                        break;
+                }
+
+                // Create a new contiuous control
+                var writePointControl = new WritePointControl();
+                writePointControl.InfluxDbClient = client;
+                writePointControl.Database = database;
+                writePointControl.Measurement = measurement;
+
+                // Reset the form
+                await writePointControl.ResetFormValues();
+
+                // Add a tab with a query control in it
+                tabControl.AddTabWithControl(string.Format("{0}.{1}.write", connection.Name, database),
+                    writePointControl, Properties.Resources.WritePoint);
+
+                UpdateUIState();
             }
             catch (Exception ex)
             {

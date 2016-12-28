@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppForm));
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Measurement", 3, 3);
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Database", 2, 2, new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Connection", 1, 1, new System.Windows.Forms.TreeNode[] {
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Measurement", 3, 3);
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Database", 2, 2, new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Connection", 1, 1, new System.Windows.Forms.TreeNode[] {
+            treeNode2});
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +70,7 @@
             this.refreshButton = new System.Windows.Forms.ToolStripButton();
             this.newQueryButton = new System.Windows.Forms.ToolStripButton();
             this.runQueryButton = new System.Windows.Forms.ToolStripButton();
+            this.writePointButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.createDatabaseButton = new System.Windows.Forms.ToolStripButton();
             this.continuousQueryButton = new System.Windows.Forms.ToolStripButton();
@@ -99,11 +100,13 @@
             this.databaseContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.databaseRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writePointDataDatabaseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.continousQueriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backFillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dropDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.measurementContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newQueryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.writePointDataMeasurementMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tagKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tagValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fieldKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -341,6 +344,7 @@
             this.refreshButton,
             this.newQueryButton,
             this.runQueryButton,
+            this.writePointButton,
             this.toolStripSeparator2,
             this.createDatabaseButton,
             this.continuousQueryButton,
@@ -470,6 +474,16 @@
             this.runQueryButton.Text = "runQueryButton";
             this.runQueryButton.ToolTipText = "Run Query";
             this.runQueryButton.Click += new System.EventHandler(this.runQueryButton_Click);
+            // 
+            // writePointButton
+            // 
+            this.writePointButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.writePointButton.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.WritePoint;
+            this.writePointButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.writePointButton.Name = "writePointButton";
+            this.writePointButton.Size = new System.Drawing.Size(23, 22);
+            this.writePointButton.Text = "Write Point Data";
+            this.writePointButton.Click += new System.EventHandler(this.writePointButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -631,20 +645,20 @@
             this.connectionsTreeView.ImageList = this.imageList;
             this.connectionsTreeView.Location = new System.Drawing.Point(0, 0);
             this.connectionsTreeView.Name = "connectionsTreeView";
-            treeNode4.ImageIndex = 3;
-            treeNode4.Name = "Node2";
-            treeNode4.SelectedImageIndex = 3;
-            treeNode4.Text = "Measurement";
-            treeNode5.ImageIndex = 2;
-            treeNode5.Name = "Node1";
-            treeNode5.SelectedImageIndex = 2;
-            treeNode5.Text = "Database";
-            treeNode6.ImageIndex = 1;
-            treeNode6.Name = "Node0";
-            treeNode6.SelectedImageIndex = 1;
-            treeNode6.Text = "Connection";
+            treeNode1.ImageIndex = 3;
+            treeNode1.Name = "Node2";
+            treeNode1.SelectedImageIndex = 3;
+            treeNode1.Text = "Measurement";
+            treeNode2.ImageIndex = 2;
+            treeNode2.Name = "Node1";
+            treeNode2.SelectedImageIndex = 2;
+            treeNode2.Text = "Database";
+            treeNode3.ImageIndex = 1;
+            treeNode3.Name = "Node0";
+            treeNode3.SelectedImageIndex = 1;
+            treeNode3.Text = "Connection";
             this.connectionsTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode3});
             this.connectionsTreeView.SelectedImageIndex = 0;
             this.connectionsTreeView.Size = new System.Drawing.Size(168, 491);
             this.connectionsTreeView.TabIndex = 1;
@@ -685,7 +699,7 @@
             this.diagnosticsToolStripMenuItem,
             this.disconnectToolStripMenuItem});
             this.connectionsContextMenu.Name = "connectionsContextMenu";
-            this.connectionsContextMenu.Size = new System.Drawing.Size(201, 202);
+            this.connectionsContextMenu.Size = new System.Drawing.Size(201, 180);
             // 
             // connectionRefreshToolStripMenuItem
             // 
@@ -756,11 +770,12 @@
             this.databaseContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.databaseRefreshToolStripMenuItem,
             this.newQueryToolStripMenuItem,
+            this.writePointDataDatabaseMenuItem,
             this.continousQueriesToolStripMenuItem,
             this.backFillToolStripMenuItem,
             this.dropDatabaseToolStripMenuItem});
             this.databaseContextMenu.Name = "databaseContextMenu";
-            this.databaseContextMenu.Size = new System.Drawing.Size(205, 114);
+            this.databaseContextMenu.Size = new System.Drawing.Size(205, 136);
             // 
             // databaseRefreshToolStripMenuItem
             // 
@@ -777,6 +792,13 @@
             this.newQueryToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
             this.newQueryToolStripMenuItem.Text = "New Query";
             this.newQueryToolStripMenuItem.Click += new System.EventHandler(this.newQueryMenuItem_Click);
+            // 
+            // writePointDataDatabaseMenuItem
+            // 
+            this.writePointDataDatabaseMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.WritePoint;
+            this.writePointDataDatabaseMenuItem.Name = "writePointDataDatabaseMenuItem";
+            this.writePointDataDatabaseMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.writePointDataDatabaseMenuItem.Text = "Write Point Data";
             // 
             // continousQueriesToolStripMenuItem
             // 
@@ -806,6 +828,7 @@
             // 
             this.measurementContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newQueryToolStripMenuItem1,
+            this.writePointDataMeasurementMenuItem,
             this.tagKeysToolStripMenuItem,
             this.tagValuesToolStripMenuItem,
             this.fieldKeysToolStripMenuItem,
@@ -813,7 +836,7 @@
             this.dropMeasurementToolStripMenuItem,
             this.dropSeriesToolStripMenuItem});
             this.measurementContextMenu.Name = "measurementContextMenu";
-            this.measurementContextMenu.Size = new System.Drawing.Size(177, 158);
+            this.measurementContextMenu.Size = new System.Drawing.Size(177, 180);
             // 
             // newQueryToolStripMenuItem1
             // 
@@ -822,6 +845,13 @@
             this.newQueryToolStripMenuItem1.Size = new System.Drawing.Size(176, 22);
             this.newQueryToolStripMenuItem1.Text = "New Query";
             this.newQueryToolStripMenuItem1.Click += new System.EventHandler(this.newQueryMenuItem_Click);
+            // 
+            // writePointDataMeasurementMenuItem
+            // 
+            this.writePointDataMeasurementMenuItem.Image = global::CymaticLabs.InfluxDB.Studio.Properties.Resources.WritePoint;
+            this.writePointDataMeasurementMenuItem.Name = "writePointDataMeasurementMenuItem";
+            this.writePointDataMeasurementMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.writePointDataMeasurementMenuItem.Text = "Write Point Data";
             // 
             // tagKeysToolStripMenuItem
             // 
@@ -992,6 +1022,9 @@
         private System.Windows.Forms.ToolStripMenuItem showStatisticsToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton showPoliciesButton;
         private System.Windows.Forms.ToolStripMenuItem showPoliciesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton writePointButton;
+        private System.Windows.Forms.ToolStripMenuItem writePointDataDatabaseMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writePointDataMeasurementMenuItem;
     }
 }
 

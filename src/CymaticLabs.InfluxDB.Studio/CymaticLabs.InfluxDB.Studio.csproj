@@ -127,6 +127,12 @@
     <Compile Include="Controls\StatsControl.Designer.cs">
       <DependentUpon>StatsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WritePointControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WritePointControl.Designer.cs">
+      <DependentUpon>WritePointControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\InfluxDataNetClient.cs" />
     <Compile Include="Data\InfluxDbApiResponse.cs" />
     <Compile Include="Data\InfluxDbBackfillParams.cs" />
@@ -310,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\StatsControl.resx">
       <DependentUpon>StatsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WritePointControl.resx">
+      <DependentUpon>WritePointControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
@@ -559,6 +568,7 @@
     <None Include="Resources\ImagesFinal\RetentionPolicy.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\ImagesFinal\WritePoint.png" />
     <Content Include="Resources\RP_Duration_Info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
