@@ -52,7 +52,9 @@ The following are planned features that are not yet implemented in the current v
    
 ## Installation
 
-Currently you should build locally by downloading the source or cloning the repository. Eventually some binary releases might be included with the repository going forward. To build, you will need [Visual Studio 2015](https://www.visualstudio.com/downloads/). Building with Mono might be possible with additional steps but it's not clear how usable it will be. The Mac OS X version definitely has some issues. For now, Windows is the recommended platform to use.
+Binary releases can be found [here](https://github.com/CymaticLabs/InfluxDBStudio/releases).
+
+You can build locally by downloading the source or cloning the repository. Eventually some binary releases might be included with the repository going forward. To build, you will need [Visual Studio 2015](https://www.visualstudio.com/downloads/). Building with Mono might be possible with additional steps but it's not clear how usable it will be. The Mac OS X version definitely has some issues. For now, Windows is the recommended platform to use.
 
 Open the solution file `CymaticLabs.InfluxDB.sln` to get started.
 
