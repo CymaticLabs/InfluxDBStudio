@@ -38,19 +38,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="InfluxData.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\InfluxData.Net.7.0.3\lib\net461\InfluxData.Net.dll</HintPath>
+      <HintPath>..\..\packages\InfluxData.Net.8.0.1\lib\net461\InfluxData.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="InfluxData.Net.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\InfluxData.Net.7.0.3\lib\net461\InfluxData.Net.Common.dll</HintPath>
+      <HintPath>..\..\packages\InfluxData.Net.8.0.1\lib\net461\InfluxData.Net.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="InfluxData.Net.InfluxDb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\InfluxData.Net.7.0.3\lib\net461\InfluxData.Net.InfluxDb.dll</HintPath>
+      <HintPath>..\..\packages\InfluxData.Net.8.0.1\lib\net461\InfluxData.Net.InfluxDb.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="InfluxData.Net.Kapacitor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\InfluxData.Net.7.0.3\lib\net461\InfluxData.Net.Kapacitor.dll</HintPath>
+      <HintPath>..\..\packages\InfluxData.Net.8.0.1\lib\net461\InfluxData.Net.Kapacitor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">

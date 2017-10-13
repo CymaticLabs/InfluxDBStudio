@@ -125,6 +125,9 @@ namespace CymaticLabs.InfluxDB.Studio
 
             // Set the version string
             Version = GetType().Assembly.GetName().Version.ToString();
+
+            // Upgrade settings as needed
+            Properties.Settings.Default.Upgrade();
         }
 
         #endregion Constructors

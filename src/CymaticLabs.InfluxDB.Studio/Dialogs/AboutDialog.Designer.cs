@@ -108,7 +108,7 @@
             this.copyrightLabel.Name = "copyrightLabel";
             this.copyrightLabel.Size = new System.Drawing.Size(250, 13);
             this.copyrightLabel.TabIndex = 3;
-            this.copyrightLabel.Text = "Copyright 2016 Michael Everett. All  rights reserved.";
+            this.copyrightLabel.Text = "Copyright 2017 Michael Everett. All  rights reserved.";
             // 
             // warranyLabel
             // 

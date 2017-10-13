@@ -83,6 +83,11 @@ namespace CymaticLabs.InfluxDB.Studio
         /// </summary>
         public static List<InfluxDbClient> ActiveClients { get; private set; }
 
+        /// <summary>
+        /// The global tab context menu used for closing tabs with extended options.
+        /// </summary>
+        public static ContextMenuStrip TabContextMenu { get; private set; }
+
         #endregion Properties
 
         #region Constructors
@@ -119,6 +124,9 @@ namespace CymaticLabs.InfluxDB.Studio
         // Handle app load
         private async void AppForm_Load(object sender, EventArgs e)
         {
+            // Assign the tab context menu
+            TabContextMenu = tabContextMenuStrip;
+
             // Clear status
             statusLabel.Text = null;
 

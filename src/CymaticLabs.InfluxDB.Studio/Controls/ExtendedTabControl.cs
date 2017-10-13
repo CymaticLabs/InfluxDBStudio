@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -12,6 +13,15 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
     public partial class ExtendedTabControl : TabControl
     {
         #region Fields
+
+        // Used for a custom tab context menu for closing tabs with options
+        private System.Windows.Forms.ContextMenuStrip tabContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem closeTabMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllButThisMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeAllMenuItem;
+
+        // Used when selected "Close All But This" in the tab context menu
+        TabPage tabToLeave;
 
         #endregion Fields
 
@@ -101,6 +111,30 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
             DrawItem += ExtendedTabControl_DrawItem;
             DrawMode = TabDrawMode.OwnerDrawFixed;
             SizeMode = TabSizeMode.Fixed;
+
+            // Initialize tab context meu
+            this.tabContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
+            this.closeTabMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllButThisMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
+            // Setup the tab context menu
+            this.tabContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeTabMenuItem,
+            this.closeAllButThisMenuItem,
+            this.closeAllMenuItem});
+            this.tabContextMenuStrip.Name = "tabContextMenuStrip";
+            this.tabContextMenuStrip.Size = new System.Drawing.Size(167, 70);
+
+            // Setup tab context menu items
+            this.closeTabMenuItem.Text = "Close";
+            this.closeTabMenuItem.Click += CloseMenuItem_Click;
+
+            this.closeAllButThisMenuItem.Text = "Close All But This";
+            this.closeAllButThisMenuItem.Click += CloseAllButThisMenuItem_Click;
+
+            this.closeAllMenuItem.Text = "Close All";
+            this.closeAllMenuItem.Click += CloseAllMenuItem_Click;
         }
 
         #endregion Constructors
@@ -115,14 +149,70 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
             Rectangle r = GetTabRect(SelectedIndex);
             Rectangle closeButton = new Rectangle(r.Right - TabCloseWidth, r.Top + 4, 10, 10);
 
-            if (closeButton.Contains(e.Location))
+            // Left click, check for tab close
+            if (e.Button == MouseButtons.Left && closeButton.Contains(e.Location))
             {
                 // Remove tab if a close click detected
-                var tab = SelectedTab;
-                TabPages.Remove(tab);
+                CloseTab(SelectedTab);
+            }
+            // Right click, show tab context menu
+            else if (e.Button == MouseButtons.Right)
+            {
+                // First go through and get the tab that was right-clicked
+                Point p = PointToClient(Cursor.Position);
+                for (int i = 0; i < TabCount; i++)
+                {
+                    r = GetTabRect(i);
 
-                // Notify
-                if (TabClosed != null) TabClosed(this, tab);
+                    if (r.Contains(p))
+                    {
+                        SelectedIndex = i; // i is the index of tab under cursor
+                        tabToLeave = SelectedTab;
+                        break;
+                    }
+                }
+
+                // Now show the context menu
+                tabContextMenuStrip.Show(this, e.Location);
+            }
+        }
+
+        // Handles click of tab context menu "Close"
+        private void CloseMenuItem_Click(object sender, EventArgs e)
+        {
+            // Remove tab
+            CloseTab(SelectedTab);
+        }
+
+        // Handles click of tab context menu "Close All But This"
+        private void CloseAllButThisMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tabToLeave == null) return;
+
+            // First copy the current list of tab pages
+            List<TabPage> tabPagesToClose = new List<TabPage>();
+            foreach (TabPage tab in TabPages) tabPagesToClose.Add(tab);
+
+            // Now go through and close all but this one
+            foreach (TabPage tab in tabPagesToClose)
+            {
+                if (tab != tabToLeave) CloseTab(tab);
+            }
+
+            tabToLeave = null;
+        }
+
+        // Handles click of tab context menu "Close All"
+        private void CloseAllMenuItem_Click(object sender, EventArgs e)
+        {
+            // First copy the current list of tab pages
+            List<TabPage> tabPagesToClose = new List<TabPage>();
+            foreach (TabPage tab in TabPages) tabPagesToClose.Add(tab);
+
+            // Close all tabs
+            foreach (TabPage tab in tabPagesToClose)
+            {
+                CloseTab(tab);
             }
         }
 
@@ -208,6 +298,18 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
             // Resize tabs to new width
             Size newTabSize = new Size(tabWidth, ItemSize.Height);
             ItemSize = newTabSize;
+        }
+
+        // Closes a tab
+        private void CloseTab(TabPage tab)
+        {
+            if (tab == null) return;
+
+            // Remove tab
+            TabPages.Remove(tab);
+
+            // Notify
+            if (TabClosed != null) TabClosed(this, tab);
         }
 
         #endregion Methods
