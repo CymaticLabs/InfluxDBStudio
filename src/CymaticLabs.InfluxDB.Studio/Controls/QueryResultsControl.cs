@@ -206,21 +206,57 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
                         await sw.WriteLineAsync(sb.ToString());
 
                         // Now write each series row
-                        foreach (ListViewItem li in listView.Items)
+                        if (lastResult != null)
                         {
-                            if (onlySelected && !li.Selected) continue;
+                            // Build name lookup
+                            var indexToName = new Dictionary<int, string>();
 
-                            sb.Clear();
-
-                            // (skip first column which is just row # label)
-                            for (var i = 1; i < li.SubItems.Count; i++)
+                            foreach (var colName in lastResult.Columns)
                             {
-                                var sli = li.SubItems[i];
-                                sb.Append(sli.Text);
-                                if (i < li.SubItems.Count - 1) sb.Append(",");
+                                if (!indexToName.ContainsKey(indexToName.Count))
+                                    indexToName.Add(indexToName.Count, colName);
                             }
 
-                            await sw.WriteLineAsync(sb.ToString());
+                            // Build selected states from UI state
+                            var selectedByRowId = new Dictionary<int, bool>();
+
+                            for (var i = 0; i < listView.Items.Count; i++)
+                            {
+                                var li = listView.Items[i];
+                                selectedByRowId.Add(i, li.Selected);
+                            }
+
+                            // Now write each series row
+                            for (var i = 0; i < lastResult.Values.Count; i++)
+                            {
+                                var r = lastResult.Values[i];
+
+                                if (onlySelected && !selectedByRowId[i]) continue;
+
+                                sb.Clear();
+
+                                // Write the values
+                                for (var x = 0; x < r.Count; x++)
+                                {
+                                    var key = indexToName[x];
+                                    var value = r[x];
+
+                                    if (value is DateTime)
+                                    {
+                                        var time = (DateTime)value;
+                                        sb.AppendFormat("{0}", time.ToUniversalTime().ToString("o", System.Globalization.CultureInfo.InvariantCulture));
+                                    }
+                                    else
+                                    {
+                                        sb.AppendFormat("{0}", value);
+                                    }
+
+                                    if (x < r.Count - 1) sb.Append(",");
+                                }
+
+                                // Write the points to the file
+                                await sw.WriteLineAsync(sb.ToString());
+                            }
                         }
                     }
                 }
