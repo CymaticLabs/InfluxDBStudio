@@ -129,7 +129,7 @@ namespace CymaticLabs.InfluxDB.Data
             // If the default was supplied, run a second query to alter and add the default status since InfluxData.NET doesn't allow for the default argument
             if (response != null && response.Success && isDefault)
             {
-                var alterResponse = await influx.Client.QueryAsync(string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT",database, policyName, database)).ConfigureAwait(false);
+                var alterResponse = await influx.Client.QueryAsync(string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT", policyName, database)).ConfigureAwait(false);
             }
 
             return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
@@ -157,7 +157,7 @@ namespace CymaticLabs.InfluxDB.Data
             // If the default was supplied, run a second query to alter and add the default status since InfluxData.NET doesn't allow for the default argument
             if (response != null && response.Success && isDefault)
             {
-                var alterResponse = await influx.Client.QueryAsync(string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT",database, policyName, database)).ConfigureAwait(false);
+                var alterResponse = await influx.Client.QueryAsync(string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT", policyName, database)).ConfigureAwait(false);
             }
 
             return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);

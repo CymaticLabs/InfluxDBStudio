@@ -62,6 +62,7 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
                 isCreating = value;
                 nameTextBox.ReadOnly = !isCreating;
                 createButton.Text = isCreating ? "Create" : "Update";
+                Text = isCreating ? "Create Retention Policy" : "Alter Retention Policy";
             }
         }
 
