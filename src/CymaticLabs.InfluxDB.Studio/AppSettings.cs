@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using CymaticLabs.InfluxDB.Data;
@@ -26,21 +27,26 @@ namespace CymaticLabs.InfluxDB.Studio
         /// <summary>
         /// Date format string for day-first dates.
         /// </summary>
-        public const string DateFormatDay = "d/MM/yyyy";
+        public const string DateFormatDay = "dd/MM/yyyy";
 
         /// <summary>
         /// Date format string for month-first dates.
         /// </summary>
-        public const string DateFormatMonth = "M/dd/yyyy";
+        public const string DateFormatMonth = "MM/dd/yyyy";
+
+        public const string DateFormatYear = "yyyy/MM/dd";
 
         // Whether or not to allow untrusted SSL certificates
-        bool allowUntrustedSsl = false;
+        bool allowUntrustedSsl = true;
 
         // Internal app time format setting
-        string timeFormat;
+        string timeFormat = TimeFormat24Hour;
 
         // Internal app date format setting
-        string dateFormat;
+        string dateFormat = DateFormatYear;
+
+        string precision = "rfc3339";
+        static readonly string[] PRECISION_VALUES = {"h", "m", "s", "ms", "u", "ns", "rfc3339"};
 
         #endregion Fields
 
@@ -106,6 +112,18 @@ namespace CymaticLabs.InfluxDB.Studio
             }
         }
 
+        public string Precision {
+            get { return this.precision; }
+            set {
+                if (this.precision!=value) {
+                    if (!PRECISION_VALUES.Contains(value)) { throw new Exception("Precisión inválida."); } // fin if
+                    this.precision = value;
+                    Properties.Settings.Default.Precision = this.precision;
+                    Properties.Settings.Default.Save(); // actualizar ajustes
+                } // fin if
+            }
+        }
+
         /// <summary>
         /// Gets or sets the available InfluxDB connections.
         /// </summary>
@@ -118,9 +136,10 @@ namespace CymaticLabs.InfluxDB.Studio
         public AppSettings()
         {
             // Initialize default settings
-            timeFormat = TimeFormat12Hour;
-            dateFormat = DateFormatMonth;
-            allowUntrustedSsl = false;
+            timeFormat = TimeFormat24Hour;
+            dateFormat = DateFormatYear;
+            allowUntrustedSsl = true;
+            SslIgnoreValidator.AllowUntrusted = allowUntrustedSsl;
             Connections = new List<InfluxDbConnection>();
 
             // Set the version string
@@ -142,6 +161,7 @@ namespace CymaticLabs.InfluxDB.Studio
             timeFormat = Properties.Settings.Default.TimeFormat;
             dateFormat = Properties.Settings.Default.DateFormat;
             allowUntrustedSsl = Properties.Settings.Default.AllowUntrustedSsl;
+            precision = Properties.Settings.Default.Precision;
             LoadConnections();
         }
 
@@ -152,6 +172,7 @@ namespace CymaticLabs.InfluxDB.Studio
         {
             Properties.Settings.Default.TimeFormat = TimeFormat;
             Properties.Settings.Default.DateFormat = DateFormat;
+            Properties.Settings.Default.Precision = Precision;
             Properties.Settings.Default.AllowUntrustedSsl = AllowUntrustedSsl;
             SaveConnections();
         }

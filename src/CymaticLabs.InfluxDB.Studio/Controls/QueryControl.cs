@@ -111,7 +111,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
             }
 
             // Show stat results of query
-            resultsLabel.Text = string.Format("results: {0}, response time: {1:0} ms", resultsCount, stopWatch.Elapsed.TotalMilliseconds);
+            resultsLabel.Text = string.Format("Results: {0}, Response time: {1:0} ms", resultsCount, stopWatch.Elapsed.TotalMilliseconds);
         }
 
         #endregion Methods

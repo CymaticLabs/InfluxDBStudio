@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CymaticLabs.InfluxDB.Studio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -129,7 +130,7 @@ namespace CymaticLabs.InfluxDB.Data
             // If the default was supplied, run a second query to alter and add the default status since InfluxData.NET doesn't allow for the default argument
             if (response != null && response.Success && isDefault)
             {
-                var alterResponse = await influx.Client.QueryAsync(string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT",database, policyName, database)).ConfigureAwait(false);
+                var alterResponse = await influx.Client.QueryAsync(string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT",database, policyName, database), null, (AppForm.Settings.Precision.Equals("rfc3339") ? null : AppForm.Settings.Precision)).ConfigureAwait(false);
             }
 
             return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
@@ -157,7 +158,7 @@ namespace CymaticLabs.InfluxDB.Data
             // If the default was supplied, run a second query to alter and add the default status since InfluxData.NET doesn't allow for the default argument
             if (response != null && response.Success && isDefault)
             {
-                var alterResponse = await influx.Client.QueryAsync(string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT",database, policyName, database)).ConfigureAwait(false);
+                var alterResponse = await influx.Client.QueryAsync(string.Format("ALTER RETENTION POLICY \"{0}\" ON \"{1}\" DEFAULT",database, policyName, database), null, (AppForm.Settings.Precision.Equals("rfc3339") ? null : AppForm.Settings.Precision)).ConfigureAwait(false);
             }
 
             return new InfluxDbApiResponse(response.Body, response.StatusCode, response.Success);
@@ -304,7 +305,7 @@ namespace CymaticLabs.InfluxDB.Data
         /// <returns>A list of the currently running queries.</returns>
         public async override Task<IEnumerable<InfluxDbRunningQuery>> GetRunningQueriesAsync()
         {
-            var response = await influx.Client.QueryAsync( "SHOW QUERIES", "_internal").ConfigureAwait(false);
+            var response = await influx.Client.QueryAsync( "SHOW QUERIES", "_internal", (AppForm.Settings.Precision.Equals("rfc3339") ? null : AppForm.Settings.Precision)).ConfigureAwait(false);
             if (response.Count() == 0 || response.First().Values == null) return new InfluxDbRunningQuery[0];
             var results = response.First().Values;
             var queries = new List<InfluxDbRunningQuery>(results.Count);
@@ -338,7 +339,7 @@ namespace CymaticLabs.InfluxDB.Data
             if (string.IsNullOrWhiteSpace(database)) throw new ArgumentNullException("database");
             if (string.IsNullOrWhiteSpace(query)) throw new ArgumentNullException("query");
 
-            var response = await influx.Client.QueryAsync(query, database).ConfigureAwait(false);
+            var response = await influx.Client.QueryAsync(query, database, (AppForm.Settings.Precision.Equals("rfc3339") ? null : AppForm.Settings.Precision)).ConfigureAwait(false);
             var results = new List<InfluxDbSeries>(response.Count());
 
             foreach (var r in response)

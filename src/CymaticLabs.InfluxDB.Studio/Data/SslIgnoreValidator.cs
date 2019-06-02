@@ -10,10 +10,10 @@ namespace CymaticLabs.InfluxDB.Data
     public static class SslIgnoreValidator
     {
         // Whether or not the SSL validator override has been enabled or not
-        private static bool enabled = false;
+        //private static bool enabled = true;
 
         // Whether or not to allow untrusted SSL/TLS certificates.
-        private static bool allowUntrusted = false;
+        private static bool allowUntrusted = true;
 
         /// <summary>
         /// Gets whether or not to allow untrusted SSL/TLS certificates.
@@ -27,11 +27,8 @@ namespace CymaticLabs.InfluxDB.Data
                 allowUntrusted = value;
 
                 // Configure untrusted allowances as needed
-                if (allowUntrusted && !enabled)
-                {
-                    OverrideValidation();
-                    enabled = true;
-                }
+                OverrideValidation();
+                //enabled = allowUntrusted;
             }
         }
 
@@ -40,10 +37,13 @@ namespace CymaticLabs.InfluxDB.Data
         {
             if (sslPolicyErrors != SslPolicyErrors.None)
             {
+                /*
                 if (!allowUntrusted && sslPolicyErrors == SslPolicyErrors.RemoteCertificateChainErrors)
                 {
                     return false;
                 }
+                */
+                return (allowUntrusted ? true : false);
             }
 
             return true;

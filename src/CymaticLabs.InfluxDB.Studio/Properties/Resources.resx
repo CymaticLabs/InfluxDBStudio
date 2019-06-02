@@ -118,98 +118,122 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Password" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Password.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Connection" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\Connection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ContinuousQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\ContinuousQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BF_Interval_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BF_Interval_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="CQ_FillType_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CQ_FillType_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="CQ_Interval_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CQ_Interval_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="CQ_ResampleEvery_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CQ_ResampleEvery_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="CQ_ResampleFor_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CQ_ResampleFor_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="CQ_Resample_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CQ_Resample_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="DbExport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DbExport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CQ_Tags_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CQ_Tags_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="CreateConnection" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\CreateConnection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CreateDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\CreateDatabase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CreateUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\CreateUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Database" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Diagnostics" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Diagnostics.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Disconnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Disconnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DropDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\DropDatabase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DropMeasurement" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\DropMeasurement.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DropSeries" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\DropSeries.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DropUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\DropUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="EditConnection" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\EditConnection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="EditPrivilege" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\EditPrivilege.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="EditUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\EditUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FieldKeys" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\FieldKeys.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GrantPrivilege" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\GrantPrivilege.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Measurement" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Measurement.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NewQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\NewQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Password" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Password.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RunQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\RunQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FieldKeys" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\FieldKeys.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CreateConnection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\CreateConnection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DropRetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DropRetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\RetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Database" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Date" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Date.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DropMeasurement" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DropMeasurement.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CreateContinuousQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\CreateContinuousQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EditUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\EditUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BF_Filters_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BF_Filters_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="CreateDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\CreateDatabase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CQ_ResampleEvery_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_ResampleEvery_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="CQ_Resample_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_Resample_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="Series" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\Series.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ShowSeries" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\ShowSeries.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DropSeries" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DropSeries.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CQ_Destination_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_Destination_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="DropUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DropUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RunQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\RunQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Users" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Users.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BF_Destination_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BF_Destination_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Stats" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Stats.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KillQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\KillQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BF_Source_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BF_Source_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="CQ_Source_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_Source_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="influxdb_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\influxdb-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CreateUser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\CreateUser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Time" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CQ_Interval_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_Interval_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="CQ_ResampleFor_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_ResampleFor_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="DropContinuousQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DropContinuousQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NewQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\NewQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TagKeys" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\TagKeys.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,73 +241,61 @@
   <data name="TagValues" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\TagValues.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Users" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Users.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="EditPrivilege" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\EditPrivilege.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CQ_Subquery_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CQ_Subquery_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="ContinuousQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\ContinuousQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CreateContinuousQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\CreateContinuousQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Diagnostics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Diagnostics.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DropContinuousQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\DropContinuousQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Measurement" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Measurement.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AppIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AppIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="influxdb_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\influxdb-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BackFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\BackFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CQ_Destination_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CQ_Destination_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="CQ_Source_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CQ_Source_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="Date" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Date.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Time" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BF_Destination_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BF_Destination_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="BF_Interval_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BF_Interval_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="BF_Source_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BF_Source_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="BF_Filters_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BF_Filters_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="KillQuery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\KillQuery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ShowQueries" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\ShowQueries.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Stats" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\Stats.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Disconnect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Disconnect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CreateRetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\CreateRetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DropRetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\DropRetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AppIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CQ_Subquery_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_Subquery_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="EditRetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImagesFinal\EditRetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RetentionPolicy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImagesFinal\RetentionPolicy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BackFill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\BackFill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShowQueries" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\ShowQueries.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GrantPrivilege" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\GrantPrivilege.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RP_Duration_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\rp_duration_info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CQ_FillType_Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CQ_FillType_Info.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="DbImport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DbImport.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DropDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\DropDatabase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShowSeries" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\ShowSeries.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wizard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImagesFinal\wizard.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
