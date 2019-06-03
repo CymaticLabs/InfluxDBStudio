@@ -46,10 +46,20 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
             System.Diagnostics.Process.Start("https://github.com/pootzko/InfluxData.Net");
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/sam80180/InfluxDBStudio");
+        } // fin linkLabel1_LinkClicked()
+
         #endregion Event Handlers
 
         #region Methods
 
         #endregion Methods
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.iconfinder.com/iconsets/aspneticons");
+        } // fin linkLabel2_LinkClicked()
     }
 }

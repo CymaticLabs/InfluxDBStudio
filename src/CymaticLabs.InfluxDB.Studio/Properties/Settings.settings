@@ -6,13 +6,16 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="AllowUntrustedSsl" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="TimeFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)">hh:mm:ss tt</Value>
+      <Value Profile="(Default)">HH:mm:ss</Value>
     </Setting>
     <Setting Name="DateFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)">M/dd/yyyy</Value>
+      <Value Profile="(Default)">yyyy/M/d</Value>
+    </Setting>
+    <Setting Name="Precision" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rfc3339</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -104,6 +104,7 @@ namespace CymaticLabs.InfluxDB.Studio
             // Setup container for active database connection clients
             ActiveClients = new List<InfluxDbClient>();
             InitializeComponent();
+            my_InitializeComponent();
 
             // Create dialog windows
             aboutDialog = new AboutDialog();
@@ -207,6 +208,48 @@ namespace CymaticLabs.InfluxDB.Studio
             await ShowQueries(node);
         }
 
+        private void hourToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UncheckOtherToolStripMenuItems((ToolStripMenuItem)sender);
+            Settings.Precision = "h";
+        } // fin hourToolStripMenuItem_Click()
+
+        private void minuteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UncheckOtherToolStripMenuItems((ToolStripMenuItem)sender);
+            Settings.Precision = "m";
+        } // fin minuteToolStripMenuItem_Click()
+
+        private void secondToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UncheckOtherToolStripMenuItems((ToolStripMenuItem)sender);
+            Settings.Precision = "s";
+        } // fin secondToolStripMenuItem_Click()
+
+        private void millisecondToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UncheckOtherToolStripMenuItems((ToolStripMenuItem)sender);
+            Settings.Precision = "ms";
+        } // fin millisecondToolStripMenuItem_Click()
+
+        private void microsecondToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UncheckOtherToolStripMenuItems((ToolStripMenuItem)sender);
+            Settings.Precision = "u";
+        } // fin microsecondToolStripMenuItem_Click()
+
+        private void nanosecondToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UncheckOtherToolStripMenuItems((ToolStripMenuItem)sender);
+            Settings.Precision = "ns";
+        } // fin nanosecondToolStripMenuItem_Click()
+
+        private void rfc3339ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UncheckOtherToolStripMenuItems((ToolStripMenuItem)sender);
+            Settings.Precision = "rfc3339";
+        } // fin rfc3339ToolStripMenuItem_Click()
+
         #endregion Query
 
         #region Settings
@@ -228,7 +271,7 @@ namespace CymaticLabs.InfluxDB.Studio
         // Handles Settings -> Date Format -> change of date format
         private void dateFormatComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Settings.DateFormat = dateFormatComboBox.SelectedIndex == 0 ? AppSettings.DateFormatMonth : AppSettings.DateFormatDay;
+            Settings.DateFormat = (dateFormatComboBox.SelectedIndex == 0 ? AppSettings.DateFormatYear : (dateFormatComboBox.SelectedIndex == 1 ? AppSettings.DateFormatMonth : AppSettings.DateFormatDay));
         }
 
         #endregion Settings
@@ -846,7 +889,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 var client = GetClient(connection);
 
                 // Add a placeholder
-                var placeholderNode = CreateTreeNode("loading...", InfluxDbNodeTypes.LoadingPlacholder);
+                var placeholderNode = CreateTreeNode("Loading...", InfluxDbNodeTypes.LoadingPlacholder);
                 node.Nodes.Add(placeholderNode);
 
                 // Refresh and rerender
@@ -906,7 +949,7 @@ namespace CymaticLabs.InfluxDB.Studio
                         newDatabaseNode.ContextMenuStrip = databaseContextMenu;
 
                         // Don't render measurement, instead include a loading place holder
-                        var placeholderNode = CreateTreeNode("loading...", InfluxDbNodeTypes.LoadingPlacholder);
+                        var placeholderNode = CreateTreeNode("Loading...", InfluxDbNodeTypes.LoadingPlacholder);
                         newDatabaseNode.Nodes.Add(placeholderNode);
 
                         connectionsTreeView.SelectedNode = newDatabaseNode;
@@ -1093,7 +1136,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 var client = GetClient(connection);
 
                 // Add a placeholder
-                var placeholderNode = new TreeNode("loading...", 4, 4);
+                var placeholderNode = new TreeNode("Loading...", 4, 4);
                 node.Nodes.Add(placeholderNode);
 
                 // Refresh and rerender
@@ -1484,7 +1527,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 var queryControl = new QueryControl();
                 queryControl.InfluxDbClient = client;
                 queryControl.Database = database;
-                queryControl.EditorText = string.Format("SELECT * FROM \"{0}\" WHERE time > now() - 5m", measurement);
+                queryControl.EditorText = string.Format("SELECT * FROM \"{0}\" WHERE time > now() - 30m", measurement);
 
                 // Add a tab with a query control in it
                 tabControl.AddTabWithControl(connection.Name + "." + database, queryControl, Properties.Resources.RunQuery);
@@ -1580,16 +1623,7 @@ namespace CymaticLabs.InfluxDB.Studio
             }
 
             // Set date format
-            if (Settings.DateFormat == AppSettings.DateFormatMonth)
-            {
-                // month-first
-                dateFormatComboBox.SelectedIndex = 0;
-            }
-            else
-            {
-                // day-first
-                dateFormatComboBox.SelectedIndex = 1;
-            }
+            dateFormatComboBox.SelectedIndex = (Settings.DateFormat == AppSettings.DateFormatYear ? 0 : (Settings.DateFormat == AppSettings.DateFormatMonth ? 1 : 2));
 
             // Apply untrusted SSL
             allowUntrustedSSLToolStripMenuItem.Checked = Settings.AllowUntrustedSsl;
@@ -1694,6 +1728,35 @@ namespace CymaticLabs.InfluxDB.Studio
             return tabControl.SelectedTab != null && tabControl.SelectedTab.Controls.Count > 0 && tabControl.SelectedTab.Controls[0] is RequestControl;
         }
 
+        private void UncheckOtherToolStripMenuItems(ToolStripMenuItem selectedMenuItem)
+        { // https://stackoverflow.com/a/13604433
+            selectedMenuItem.Checked = true;
+
+            // Select the other MenuItens from the ParentMenu(OwnerItens) and unchecked this,
+            // The current Linq Expression verify if the item is a real ToolStripMenuItem
+            // and if the item is a another ToolStripMenuItem to uncheck this.
+            foreach (var ltoolStripMenuItem in (from object
+                                                    item in selectedMenuItem.Owner.Items
+                                                let ltoolStripMenuItem = item as ToolStripMenuItem
+                                                where ltoolStripMenuItem != null
+                                                where !item.Equals(selectedMenuItem)
+                                                select ltoolStripMenuItem))
+                (ltoolStripMenuItem).Checked = false;
+        } // fin UncheckOtherToolStripMenuItems()
+
+        private void my_InitializeComponent()
+        {
+            this.timeFormatComboBox.Items.AddRange(new object[] {
+                DateTime.Now.ToString(AppSettings.TimeFormat12Hour)+" (12 Hr)",
+                DateTime.Now.ToString(AppSettings.TimeFormat24Hour)+" (24 Hr)"
+            });
+            this.dateFormatComboBox.Items.AddRange(new object[] {
+                DateTime.Now.ToString(AppSettings.DateFormatYear)+" ("+AppSettings.DateFormatYear+")",
+                DateTime.Now.ToString(AppSettings.DateFormatMonth)+" ("+AppSettings.DateFormatMonth+")",
+                DateTime.Now.ToString(AppSettings.DateFormatDay)+" ("+AppSettings.DateFormatDay+")"
+            });
+        } // fin my_InitializeComponent()
+
         #endregion User Interface
 
         #region Connections
@@ -1797,7 +1860,7 @@ namespace CymaticLabs.InfluxDB.Studio
                 else
                 {
                     // Don't render databses, instead include a loading place holder
-                    var placeholderNode = CreateTreeNode("loading...", InfluxDbNodeTypes.LoadingPlacholder);
+                    var placeholderNode = CreateTreeNode("Loading...", InfluxDbNodeTypes.LoadingPlacholder);
                     connectionNode.Nodes.Add(placeholderNode);
                 }
             }
@@ -1843,7 +1906,7 @@ namespace CymaticLabs.InfluxDB.Studio
                     connectionNode.Nodes.Add(dbNode);
 
                     // Don't render measurement, instead include a loading place holder
-                    var placeholderNode = CreateTreeNode("loading...", InfluxDbNodeTypes.LoadingPlacholder);
+                    var placeholderNode = CreateTreeNode("Loading...", InfluxDbNodeTypes.LoadingPlacholder);
                     dbNode.Nodes.Add(placeholderNode);
                 }
             }
