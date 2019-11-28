@@ -1,4 +1,7 @@
-﻿# InfluxDB Studio
+# CymaticLabs/InfluxDBStudio seems to not be maintained anymore. I wanted to make a change and have sumbitted a [PR](https://github.com/CymaticLabs/InfluxDBStudio/pull/42). I've forked it here so I can continue to change for my use if needed.  
+
+
+# InfluxDB Studio
 **InfluxDB Studio is a UI management tool for [the InfluxDB time series database](https://www.influxdata.com/time-series-platform/influxdb/).**
 
 Its inspiration comes from other similar database management tools such as [SQL Server Management Studio](https://en.wikipedia.org/wiki/SQL_Server_Management_Studio)
