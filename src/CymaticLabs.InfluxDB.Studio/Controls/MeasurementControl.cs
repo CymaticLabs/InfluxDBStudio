@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using CymaticLabs.InfluxDB.Studio.Dialogs;
 using Newtonsoft.Json;
 
 namespace CymaticLabs.InfluxDB.Studio.Controls
@@ -73,6 +74,8 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         // Exports series data to CSV
         protected virtual async Task ExportToCsv(bool onlySelected = false)
         {
+            SelectCsvDelimiter.SelectCsv(this.ParentForm);
+
             // Configure save dialog and open
             saveFileDialog.FileName = string.Format("{0}_{1}.csv", Measurement, ExportFileNameStem);
             saveFileDialog.Filter = "CSV files|*.csv|All files|*.*";
@@ -90,7 +93,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
                     for (var i = 1; i < listView.Columns.Count; i++)
                     {
                         sb.Append(listView.Columns[i].Text);
-                        if (i < listView.Columns.Count - 1) sb.Append(",");
+                        if (i < listView.Columns.Count - 1) sb.Append(AppForm.Settings.CsvDelimiter);
                     }
 
                     await sw.WriteLineAsync(sb.ToString());
@@ -107,7 +110,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
                         {
                             var sli = li.SubItems[i];
                             sb.Append(sli.Text);
-                            if (i < li.SubItems.Count - 1) sb.Append(",");
+                            if (i < li.SubItems.Count - 1) sb.Append(AppForm.Settings.CsvDelimiter);
                         }
 
                         await sw.WriteLineAsync(sb.ToString());
@@ -186,9 +189,9 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         /// <summary>
         /// When overriden in derived classes, executes the custom query and databinding operations for the query.
         /// </summary>
-        protected async virtual Task OnExecuteQuery()
-        {
-        }
+#pragma warning disable 1998
+        protected async virtual Task OnExecuteQuery() { }
+#pragma warning restore 1998
 
         #endregion Methods
     }

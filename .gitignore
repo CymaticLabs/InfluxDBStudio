@@ -16,3 +16,4 @@ packages/*
 .vs/config/applicationhost.config
 src/*.Testing/*.xml
 ImagesRaw/
+.vs/*

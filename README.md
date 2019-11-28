@@ -1,4 +1,7 @@
-﻿# InfluxDB Studio
+# CymaticLabs/InfluxDBStudio seems to not be maintained anymore. I wanted to make a change and have sumbitted a [PR](https://github.com/CymaticLabs/InfluxDBStudio/pull/42). I've forked it here so I can continue to change for my use if needed.  
+
+
+# InfluxDB Studio
 **InfluxDB Studio is a UI management tool for [the InfluxDB time series database](https://www.influxdata.com/time-series-platform/influxdb/).**
 
 Its inspiration comes from other similar database management tools such as [SQL Server Management Studio](https://en.wikipedia.org/wiki/SQL_Server_Management_Studio)
@@ -162,7 +165,7 @@ Using **aggregation (GROUP BY)** in queries will group the series results into t
 The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
 Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
 export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
-in the export context menu.
+in the export context menu. Upon saving you can select the chararcter to use as the CSV delimiter.
 
 ![Exporting Database Results](docs/img/Databases_ExportQueryResults.png?raw=true "Exporting Database Results")
 
@@ -240,7 +243,7 @@ Using **aggregation (GROUP BY)** in queries will group the series results into t
 The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
 Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
 export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
-in the export context menu.
+in the export context menu. Upon saving you can select the chararcter to use as the CSV delimiter.
 
 ![Exporting Measurement Results](docs/img/Measurements_ExportQuery_1.png?raw=true "Exporting Measurement Results")
 

@@ -42,6 +42,9 @@ namespace CymaticLabs.InfluxDB.Studio
         // Internal app date format setting
         string dateFormat;
 
+        // Internal CSV delimiter
+        string csvDelimiter;
+
         #endregion Fields
 
         #region Properties
@@ -88,6 +91,24 @@ namespace CymaticLabs.InfluxDB.Studio
         }
 
         /// <summary>
+        /// Gets the current Csv Delimiter setting.
+        /// </summary>
+        public string CsvDelimiter
+        {
+            get { return csvDelimiter; }
+
+            set
+            {
+                if (csvDelimiter != value)
+                {
+                    csvDelimiter = value;
+                    Properties.Settings.Default.CsvDelimiter = csvDelimiter;
+                    Properties.Settings.Default.Save(); // update settings file
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets whether or not the application should allow untrusted SSL certificates
         /// when communicating to InfluxDB servers.
         /// </summary>
@@ -121,6 +142,7 @@ namespace CymaticLabs.InfluxDB.Studio
             timeFormat = TimeFormat12Hour;
             dateFormat = DateFormatMonth;
             allowUntrustedSsl = false;
+            csvDelimiter = ",";
             Connections = new List<InfluxDbConnection>();
 
             // Set the version string
@@ -142,6 +164,7 @@ namespace CymaticLabs.InfluxDB.Studio
             timeFormat = Properties.Settings.Default.TimeFormat;
             dateFormat = Properties.Settings.Default.DateFormat;
             allowUntrustedSsl = Properties.Settings.Default.AllowUntrustedSsl;
+            csvDelimiter = Properties.Settings.Default.CsvDelimiter;
             LoadConnections();
         }
 
@@ -153,6 +176,7 @@ namespace CymaticLabs.InfluxDB.Studio
             Properties.Settings.Default.TimeFormat = TimeFormat;
             Properties.Settings.Default.DateFormat = DateFormat;
             Properties.Settings.Default.AllowUntrustedSsl = AllowUntrustedSsl;
+            Properties.Settings.Default.CsvDelimiter = csvDelimiter;
             SaveConnections();
         }
 
