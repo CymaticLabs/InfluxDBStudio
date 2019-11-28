@@ -47,7 +47,9 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         /// <summary>
         /// When overriden in derived classes, executes an InfluxDB API request and processes the result.
         /// </summary>
+#pragma warning disable 1998
         public virtual async Task ExecuteRequestAsync() { }
+#pragma warning restore 1998
 
         #endregion Methods
     }
