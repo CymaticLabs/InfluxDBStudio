@@ -473,7 +473,7 @@
             this.runQueryButton.Name = "runQueryButton";
             this.runQueryButton.Size = new System.Drawing.Size(23, 22);
             this.runQueryButton.Text = "runQueryButton";
-            this.runQueryButton.ToolTipText = "Run Query";
+            this.runQueryButton.ToolTipText = "Run Query (F5)";
             this.runQueryButton.Click += new System.EventHandler(this.runQueryButton_Click);
             // 
             // toolStripSeparator2

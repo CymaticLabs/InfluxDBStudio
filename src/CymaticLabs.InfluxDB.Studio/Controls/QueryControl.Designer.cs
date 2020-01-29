@@ -67,6 +67,7 @@
             this.queryEditor.Name = "queryEditor";
             this.queryEditor.Size = new System.Drawing.Size(916, 128);
             this.queryEditor.TabIndex = 0;
+            this.queryEditor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.queryEditor_KeyUp);
             // 
             // panel1
             // 
