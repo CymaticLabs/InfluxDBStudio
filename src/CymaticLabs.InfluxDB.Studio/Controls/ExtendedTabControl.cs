@@ -175,6 +175,21 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
                 // Now show the context menu
                 tabContextMenuStrip.Show(this, e.Location);
             }
+            else if (e.Button == MouseButtons.Middle)
+            {
+                // Go through and get the tab that was middle-clicked
+                Point p = PointToClient(Cursor.Position);
+                for (int i = 0; i < TabCount; i++)
+                {
+                    r = GetTabRect(i);
+
+                    if (r.Contains(p))
+                    {
+                        CloseTab(TabPages[i]);
+                        break;
+                    }
+                }
+            }
         }
 
         // Handles click of tab context menu "Close"

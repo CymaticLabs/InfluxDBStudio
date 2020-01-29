@@ -115,5 +115,19 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         }
 
         #endregion Methods
+
+        #region Event Handlers
+
+        private async void queryEditor_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F5:
+                    await ExecuteRequestAsync();
+                    break;
+            }
+        }
+
+        #endregion Event Handlers
     }
 }
