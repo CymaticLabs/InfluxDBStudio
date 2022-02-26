@@ -162,7 +162,7 @@ Using **aggregation (GROUP BY)** in queries will group the series results into t
 The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
 Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
 export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
-in the export context menu.
+in the export context menu. Upon saving you can select the chararcter to use as the CSV delimiter.
 
 ![Exporting Database Results](docs/img/Databases_ExportQueryResults.png?raw=true "Exporting Database Results")
 
@@ -240,7 +240,7 @@ Using **aggregation (GROUP BY)** in queries will group the series results into t
 The results of most query windows in InfluxDB Studio can be exported to file. **Right-click** in the results table and choose from the available export options.
 Data can be exported in either **CSV** or **JSON** format. Choosing **Export All** will export the entire set of returned rows to file. Alternatively you can
 export just the selected rows by using **CTRL + Left Click** and **Shift + Left Click** to select the rows you want to export and then choosing **Export Selected**
-in the export context menu.
+in the export context menu. Upon saving you can select the chararcter to use as the CSV delimiter.
 
 ![Exporting Measurement Results](docs/img/Measurements_ExportQuery_1.png?raw=true "Exporting Measurement Results")
 

@@ -11,8 +11,6 @@ namespace CymaticLabs.InfluxDB.Studio.Dialogs
     {
         #region Fields
 
-        InfluxDbGrant grant;
-
         #endregion Fields
 
         #region Properties

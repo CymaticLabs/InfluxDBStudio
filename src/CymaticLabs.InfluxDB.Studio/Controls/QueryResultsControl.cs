@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
 using CymaticLabs.InfluxDB.Data;
+using CymaticLabs.InfluxDB.Studio.Dialogs;
 
 namespace CymaticLabs.InfluxDB.Studio.Controls
 {
@@ -183,6 +184,8 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
         {
             try
             {
+                SelectCsvDelimiter.SelectCsv(this.ParentForm);
+    
                 // Configure save dialog and open
                 saveFileDialog.FileName = string.Format("{0}.csv", InfluxDbClient.Connection.Name + "_" + Database);
                 saveFileDialog.Filter = "CSV files|*.csv|All files|*.*";
@@ -200,7 +203,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
                         for (var i = 1; i < listView.Columns.Count; i++)
                         {
                             sb.Append(listView.Columns[i].Text);
-                            if (i < listView.Columns.Count - 1) sb.Append(",");
+                            if (i < listView.Columns.Count - 1) sb.Append(AppForm.Settings.CsvDelimiter);
                         }
 
                         await sw.WriteLineAsync(sb.ToString());
@@ -217,7 +220,7 @@ namespace CymaticLabs.InfluxDB.Studio.Controls
                             {
                                 var sli = li.SubItems[i];
                                 sb.Append(sli.Text);
-                                if (i < li.SubItems.Count - 1) sb.Append(",");
+                                if (i < li.SubItems.Count - 1) sb.Append(AppForm.Settings.CsvDelimiter);
                             }
 
                             await sw.WriteLineAsync(sb.ToString());
